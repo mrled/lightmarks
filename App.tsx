@@ -59,23 +59,48 @@ const pinboard = async (method: string, token: string) => {
   return json;
 };
 
-const getTagsAsync = async (token: string, setLoading, setTags) => {
-  try {
-    setLoading(true);
-    const tags = await pinboard('tags/get', token);
-    setLoading(false);
-    setTags(Object.keys(tags));
-  } catch (error) {
-    setLoading(false);
-    console.error(error);
-  }
+interface TagListProps {
+  tags: Array<string>;
+  loading: boolean;
+}
+
+const TagList: React.FC<TagListProps> = ({tags, loading}) => {
+  const header = () => {
+    return <Text style={styles.sectionTitle}>Tags</Text>;
+  };
+  return loading ? (
+    <ActivityIndicator />
+  ) : (
+    <FlatList
+      data={tags}
+      renderItem={({item}) => (
+        <View>
+          <Text>{item}</Text>
+        </View>
+      )}
+      keyExtractor={(item, index) => index.toString()}
+      ListHeaderComponent={header}
+    />
+  );
 };
 
 const App = () => {
   const [loading, setLoading] = useState(false);
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState<Array<string>>([]);
   const token = `${Config.PINBOARD_API_USER}:${Config.PINBOARD_API_SECRET}`;
   console.debug(`Using token: ${token}`);
+
+  const getTagsAsync = async () => {
+    try {
+      setLoading(true);
+      const tagsResponse: object = await pinboard('tags/get', token);
+      setLoading(false);
+      setTags(Object.keys(tagsResponse));
+    } catch (error) {
+      setLoading(false);
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -101,30 +126,16 @@ const App = () => {
               <View style={styles.listTagsButtonContainer}>
                 <Button
                   onPress={() => {
-                    getTagsAsync(token, setLoading, setTags);
+                    getTagsAsync();
                   }}
                   title="List Pinboard tags"
                 />
               </View>
-              <Text style={styles.sectionTitle}>Tags</Text>
-              {loading ? (
-                <ActivityIndicator />
-              ) : (
-                <SafeAreaView>
-                  <FlatList
-                    data={tags}
-                    renderItem={({item}) => (
-                      <View>
-                        <Text>{item}</Text>
-                      </View>
-                    )}
-                  />
-                </SafeAreaView>
-              )}
             </View>
           </View>
         </ScrollView>
       </SafeAreaView>
+      <TagList tags={tags} loading={loading} />
     </>
   );
 };
