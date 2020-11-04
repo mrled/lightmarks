@@ -8,8 +8,11 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
+  ActivityIndicator,
+  Button,
+  FlatList,
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -18,17 +21,62 @@ import {
   StatusBar,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import Config from 'react-native-config';
+
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 declare const global: {HermesInternal: null | {}};
 
+const PINBOARD_URI_BASE = 'https://api.pinboard.in/v1';
+
+const sleep = (delay: number) =>
+  new Promise((resolve) => setTimeout(resolve, delay));
+
+const pinboard = async (method: string, token: string) => {
+  const uri = `${PINBOARD_URI_BASE}/${method}?format=json&auth_token=${token}`;
+  let response = await fetch(uri);
+  let backoff = 10;
+  const maxtries = 5;
+  let thistry = 0;
+  while (!response.ok) {
+    console.error('Response not ok:');
+    console.error(response);
+    if (thistry > maxtries) {
+      console.error(`Exceeded max tries of ${maxtries}, returning nothing lol`);
+      return {};
+    }
+    thistry++;
+    console.log(`Sleeping for ${backoff} seconds...`);
+    sleep(backoff * 1000);
+    backoff = 2 * backoff;
+    response = await fetch(uri);
+  }
+  console.debug('Reponse was ok:');
+  console.debug(response);
+  const json = await response.json();
+  console.debug('JSON response:');
+  console.debug(json);
+  return json;
+};
+
+const getTagsAsync = async (token: string, setLoading, setTags) => {
+  try {
+    setLoading(true);
+    const tags = await pinboard('tags/get', token);
+    setLoading(false);
+    setTags(Object.keys(tags));
+  } catch (error) {
+    setLoading(false);
+    console.error(error);
+  }
+};
+
 const App = () => {
+  const [loading, setLoading] = useState(false);
+  const [tags, setTags] = useState([]);
+  const token = `${Config.PINBOARD_API_USER}:${Config.PINBOARD_API_SECRET}`;
+  console.debug(`Using token: ${token}`);
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -36,7 +84,6 @@ const App = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
               <Text style={styles.footer}>Engine: Hermes</Text>
@@ -44,31 +91,37 @@ const App = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
+              <Text style={styles.sectionTitle}>Welcome to betterpin</Text>
               <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-                screen and then come back to see your edits.
+                Here is where there will be a UI for logging in or something
               </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
               <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
+                Logging in with an API token for user {Config.PINBOARD_API_USER}
               </Text>
+              <View style={styles.listTagsButtonContainer}>
+                <Button
+                  onPress={() => {
+                    getTagsAsync(token, setLoading, setTags);
+                  }}
+                  title="List Pinboard tags"
+                />
+              </View>
+              <Text style={styles.sectionTitle}>Tags</Text>
+              {loading ? (
+                <ActivityIndicator />
+              ) : (
+                <SafeAreaView>
+                  <FlatList
+                    data={tags}
+                    renderItem={({item}) => (
+                      <View>
+                        <Text>{item}</Text>
+                      </View>
+                    )}
+                  />
+                </SafeAreaView>
+              )}
             </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -86,6 +139,10 @@ const styles = StyleSheet.create({
   },
   body: {
     backgroundColor: Colors.white,
+  },
+  listTagsButtonContainer: {
+    marginTop: 32,
+    backgroundColor: '#2196F3',
   },
   sectionContainer: {
     marginTop: 32,
