@@ -22,42 +22,11 @@ import {
 } from 'react-native';
 
 import Config from 'react-native-config';
+import Pinboard from 'node-pinboard';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 declare const global: {HermesInternal: null | {}};
-
-const PINBOARD_URI_BASE = 'https://api.pinboard.in/v1';
-
-const sleep = (delay: number) =>
-  new Promise((resolve) => setTimeout(resolve, delay));
-
-const pinboard = async (method: string, token: string) => {
-  const uri = `${PINBOARD_URI_BASE}/${method}?format=json&auth_token=${token}`;
-  let response = await fetch(uri);
-  let backoff = 10;
-  const maxtries = 5;
-  let thistry = 0;
-  while (!response.ok) {
-    console.error('Response not ok:');
-    console.error(response);
-    if (thistry > maxtries) {
-      console.error(`Exceeded max tries of ${maxtries}, returning nothing lol`);
-      return {};
-    }
-    thistry++;
-    console.log(`Sleeping for ${backoff} seconds...`);
-    sleep(backoff * 1000);
-    backoff = 2 * backoff;
-    response = await fetch(uri);
-  }
-  console.debug('Reponse was ok:');
-  console.debug(response);
-  const json = await response.json();
-  console.debug('JSON response:');
-  console.debug(json);
-  return json;
-};
 
 interface TagListProps {
   tags: Array<string>;
@@ -89,17 +58,19 @@ const App = () => {
   const [tags, setTags] = useState<Array<string>>([]);
   const token = `${Config.PINBOARD_API_USER}:${Config.PINBOARD_API_SECRET}`;
   console.debug(`Using token: ${token}`);
+  const pinboard = new Pinboard(token);
 
-  const getTagsAsync = async () => {
-    try {
-      setLoading(true);
-      const tagsResponse: object = await pinboard('tags/get', token);
-      setLoading(false);
-      setTags(Object.keys(tagsResponse));
-    } catch (error) {
-      setLoading(false);
-      console.error(error);
-    }
+  const getTags = () => {
+    setLoading(true);
+    pinboard
+      .getTags({}, () => {})
+      .then((result) => {
+        setTags(Object.keys(result));
+      })
+      .catch((err) => {
+        console.error('Could not retrieve tags');
+        console.error(err);
+      });
   };
 
   return (
@@ -126,7 +97,7 @@ const App = () => {
               <View style={styles.listTagsButtonContainer}>
                 <Button
                   onPress={() => {
-                    getTagsAsync();
+                    getTags();
                   }}
                   title="List Pinboard tags"
                 />

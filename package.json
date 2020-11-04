@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "node-pinboard": "^2.0.1",
     "react": "16.13.1",
     "react-native": "0.63.3",
     "react-native-config": "^1.4.0"
