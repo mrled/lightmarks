@@ -26,6 +26,8 @@ import Pinboard from 'node-pinboard';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
+import FauxPinboard from './FauxPinboard/index.ts';
+
 declare const global: {HermesInternal: null | {}};
 
 interface TagListProps {
@@ -58,16 +60,22 @@ const App = () => {
   const [tags, setTags] = useState<Array<string>>([]);
   const token = `${Config.PINBOARD_API_USER}:${Config.PINBOARD_API_SECRET}`;
   console.debug(`Using token: ${token}`);
-  const pinboard = new Pinboard(token);
+
+  const modeText = Config.DATA === 'mock' ? 'mock' : 'production';
+  const pinboard =
+    Config.DATA === 'mock' ? new FauxPinboard(token) : new Pinboard(token);
 
   const getTags = () => {
     setLoading(true);
     pinboard
-      .getTags({}, () => {})
-      .then((result) => {
+      .getTags({})
+      .then((result: Object) => {
+        console.log('Found my result:');
+        console.log(result);
         setTags(Object.keys(result));
+        setLoading(false);
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error('Could not retrieve tags');
         console.error(err);
       });
@@ -90,6 +98,9 @@ const App = () => {
               <Text style={styles.sectionTitle}>Welcome to betterpin</Text>
               <Text style={styles.sectionDescription}>
                 Here is where there will be a UI for logging in or something
+              </Text>
+              <Text style={styles.sectionDescription}>
+                This app is running in {modeText} mode.
               </Text>
               <Text style={styles.sectionDescription}>
                 Logging in with an API token for user {Config.PINBOARD_API_USER}
