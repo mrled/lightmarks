@@ -44,11 +44,14 @@ const TagList: React.FC<TagListProps> = ({tags, loading}) => {
   ) : (
     <FlatList
       data={tags}
-      renderItem={({item}) => (
-        <View>
-          <Text>{item}</Text>
-        </View>
-      )}
+      renderItem={({item}) => {
+        const tagName = item !== '' ? item : '(no tags)';
+        return (
+          <View>
+            <Text>{tagName}</Text>
+          </View>
+        );
+      }}
       keyExtractor={(item, index) => index.toString()}
       ListHeaderComponent={header}
     />
