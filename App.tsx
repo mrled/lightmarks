@@ -26,7 +26,7 @@ import Pinboard from 'node-pinboard';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import FauxPinboard from './FauxPinboard/index.ts';
+import FauxPinboard from './FauxPinboard';
 
 declare const global: {HermesInternal: null | {}};
 
