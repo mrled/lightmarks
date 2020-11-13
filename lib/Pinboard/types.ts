@@ -43,11 +43,11 @@ export interface RequestParams {
     meta?: string;
   };
 
-  'posts/suggest': { url: string };
+  'posts/suggest': {url: string};
 
   'tags/get': {};
 
-  'tags/delete': { tag: string };
+  'tags/delete': {tag: string};
 
   'tags/rename': {
     old: string;

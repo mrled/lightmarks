@@ -1,21 +1,21 @@
 import get from './get';
 
-import { Callback, RequestParams } from './types';
+import {Callback, RequestParams} from './types';
 
 function pinboardMethod<T extends keyof RequestParams>(
   endpoint: T,
-  token: string
+  token: string,
 ) {
   return (options: RequestParams[T], callback: Callback) => {
     const qs = Object.assign(
       {},
       // eslint-disable-next-line @typescript-eslint/camelcase
-      { auth_token: token, format: 'json' },
-      options
+      {auth_token: token, format: 'json'},
+      options,
     );
     const params = {
       endpoint,
-      qs
+      qs,
     };
 
     return get(params, callback);
@@ -42,7 +42,7 @@ export default class Pinboard {
    * Delete a bookmark.
    */
   public delete(url: string, cb: Callback) {
-    return pinboardMethod('posts/delete', this.token)({ url }, cb);
+    return pinboardMethod('posts/delete', this.token)({url}, cb);
   }
 
   /**
@@ -71,7 +71,7 @@ export default class Pinboard {
    * Popular tags are tags used site-wide for the url; recommended tags are drawn from the user's own tags.
    */
   public suggest(url: string, cb: Callback) {
-    return pinboardMethod('posts/suggest', this.token)({ url }, cb);
+    return pinboardMethod('posts/suggest', this.token)({url}, cb);
   }
 
   /**
@@ -83,7 +83,7 @@ export default class Pinboard {
    * Delete an existing tag.
    */
   public delTag(tag: string, cb: Callback) {
-    return pinboardMethod('tags/delete', this.token)({ tag }, cb);
+    return pinboardMethod('tags/delete', this.token)({tag}, cb);
   }
 
   /**
@@ -117,7 +117,7 @@ export default class Pinboard {
     const params = {
       endpoint,
       // eslint-disable-next-line @typescript-eslint/camelcase
-      qs: { auth_token: this.token, format: 'json' }
+      qs: {auth_token: this.token, format: 'json'},
     };
 
     return get(params, cb);

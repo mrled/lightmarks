@@ -1,23 +1,23 @@
 import fetch from 'node-fetch';
-import { stringify as buildQS } from 'querystring';
+import {stringify as buildQS} from 'querystring';
 
-import { Callback } from './types';
+import {Callback} from './types';
 
 export const API_URL = 'https://api.pinboard.in/v1';
 
 interface Props {
   endpoint: string;
-  qs: { [propName: string]: any };
+  qs: {[propName: string]: any};
 }
 type Get = (props: Props, cb: Callback) => Promise<object | void>;
 
-const get: Get = ({ endpoint, qs }, cb) => {
+const get: Get = ({endpoint, qs}, cb) => {
   const promise = fetch(`${API_URL}/${endpoint}?${buildQS(qs)}`, {
-    headers: { 'Content-Type': 'application/json' }
-  }).then(res => res.json());
+    headers: {'Content-Type': 'application/json'},
+  }).then((res) => res.json());
 
   return cb
-    ? promise.then(json => cb(null, json)).catch(err => cb(err, null))
+    ? promise.then((json) => cb(null, json)).catch((err) => cb(err, null))
     : promise;
 };
 
