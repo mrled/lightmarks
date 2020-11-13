@@ -19,6 +19,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 const BetterpinsSecrets = require('betterpins.secrets.json');
 const BetterpinsSettings = require('betterpins.settings.json');
 
+import About from 'components/About';
 import DumbTagView from 'components/DumbTagView';
 import usePinboard from 'hooks/usePinboard';
 import Styles from 'lib/Styles';
@@ -34,31 +35,14 @@ const App = () => {
       BetterpinsSettings.mode === 'production',
     );
   }
-  const modeText = pinboardDiag.production ? 'production' : 'mock';
 
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <View style={Styles.body}>
-          <View style={Styles.sectionContainer}>
-            <Text style={Styles.sectionTitle}>Welcome to betterpin</Text>
-            <Text style={Styles.sectionDescription}>
-              Here is where there will be a UI for logging in or something
-            </Text>
-            <Text style={Styles.sectionDescription}>
-              This app is running in {modeText} mode.
-            </Text>
-            <Text style={Styles.sectionDescription}>
-              Logging in with an API token for user{' '}
-              {BetterpinsSecrets.pinboardApiUser}
-            </Text>
-          </View>
-        </View>
-      </SafeAreaView>
       <NavigationContainer>
         <TabBar.Navigator>
           <TabBar.Screen name="DumbTags" component={DumbTagView} />
+          <TabBar.Screen name="About" component={About} />
         </TabBar.Navigator>
       </NavigationContainer>
     </>

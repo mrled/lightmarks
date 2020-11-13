@@ -2,13 +2,15 @@ import React, {useState} from 'react';
 import {Button, SafeAreaView, ScrollView, View} from 'react-native';
 
 import DumbTagList from 'components/DumbTagList';
+import usePinboard from 'hooks/usePinboard';
 import Styles from 'lib/Styles';
 
 interface DumbTagViewProps {
   pinboard: any; // TODO: fixme
 }
 
-const DumbTagView: React.FC<DumbTagViewProps> = ({pinboard}) => {
+const DumbTagView: React.FC<DumbTagViewProps> = () => {
+  const [pinboard, , ,] = usePinboard();
   const [loading, setLoading] = useState(false);
   const [tags, setTags] = useState<Array<string>>([]);
 
@@ -16,10 +18,10 @@ const DumbTagView: React.FC<DumbTagViewProps> = ({pinboard}) => {
     setLoading(true);
     pinboard
       .getTags({})
-      .then((result: Object) => {
+      .then((value: Object) => {
         console.log('Found my result:');
-        console.log(result);
-        setTags(Object.keys(result));
+        console.log(value);
+        setTags(Object.keys(value));
         setLoading(false);
       })
       .catch((err: Error) => {

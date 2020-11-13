@@ -8,12 +8,12 @@
 const MockTags = require('./data/mocks.tags.json');
 
 type Callback = (err: Error | null, body: unknown) => void;
-type GetResult = void | object;
+type GetResult = void | Object;
 
-interface Props {
-  mockData: object;
+interface GetProps {
+  mockData: Object;
 }
-type Get = (props: Props, cb: Callback) => Promise<object | void>;
+type Get = (props: GetProps, cb: Callback | null) => Promise<Object | void>;
 
 const mockGet: Get = ({mockData}, cb) => {
   const promise = new Promise<GetResult>((resolve, reject) => {
@@ -35,7 +35,7 @@ const mockGet: Get = ({mockData}, cb) => {
 export default class FauxPinboard {
   public constructor(readonly token: string) {}
 
-  public getTags(props: Props, cb: Callback) {
+  public getTags(props: Object, cb: Callback | null) {
     return mockGet({...props, mockData: MockTags}, cb);
   }
 }
