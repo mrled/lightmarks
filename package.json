@@ -15,8 +15,6 @@
     "@react-navigation/native": "^5.8.9",
     "babel-plugin-module-resolver": "^4.0.0",
     "chai": "^4.2.0",
-    "node-fetch": "^2.6.1",
-    "node-pinboard": "^2.0.1",
     "querystring": "^0.2.0",
     "react": "16.13.1",
     "react-native": "0.63.3",

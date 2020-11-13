@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import {stringify as buildQS} from 'querystring';
 
 import {Callback} from './types';
