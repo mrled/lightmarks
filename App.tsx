@@ -8,169 +8,51 @@
  * @format
  */
 
-import React, {useState} from 'react';
-import {
-  ActivityIndicator,
-  Button,
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import React from 'react';
+import {SafeAreaView, StatusBar, Text, View} from 'react-native';
 
 import Pinboard from 'node-pinboard';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+const BetterpinsSecrets = require('betterpins.secrets.json');
+const BetterpinsSettings = require('betterpins.settings.json');
 
-const BetterpinsSecrets = require('./betterpins.secrets.json');
-const BetterpinsSettings = require('./betterpins.settings.json');
-
-import FauxPinboard from './FauxPinboard';
-
-declare const global: {HermesInternal: null | {}};
-
-interface TagListProps {
-  tags: Array<string>;
-  loading: boolean;
-}
-
-const TagList: React.FC<TagListProps> = ({tags, loading}) => {
-  const header = () => {
-    return <Text style={styles.sectionTitle}>Tags</Text>;
-  };
-  return loading ? (
-    <ActivityIndicator />
-  ) : (
-    <FlatList
-      data={tags}
-      renderItem={({item}) => {
-        const tagName = item !== '' ? item : '(no tags)';
-        return (
-          <View>
-            <Text>{tagName}</Text>
-          </View>
-        );
-      }}
-      keyExtractor={(item, index) => index.toString()}
-      ListHeaderComponent={header}
-    />
-  );
-};
+import DumbTagView from 'components/DumbTagView';
+import FauxPinboard from 'lib/FauxPinboard';
+import Styles from 'lib/Styles';
 
 const App = () => {
-  const [loading, setLoading] = useState(false);
-  const [tags, setTags] = useState<Array<string>>([]);
   const token = `${BetterpinsSecrets.pinboardApiUser}:${BetterpinsSecrets.pinboardApiSecret}`;
   console.debug(`Using token: ${token}`);
 
-  const modeText = BetterpinsSettings.mode === 'mock' ? 'mock' : 'production';
   const pinboard =
     BetterpinsSettings.mode === 'mock'
       ? new FauxPinboard(token)
       : new Pinboard(token);
-
-  const getTags = () => {
-    setLoading(true);
-    pinboard
-      .getTags({})
-      .then((result: Object) => {
-        console.log('Found my result:');
-        console.log(result);
-        setTags(Object.keys(result));
-        setLoading(false);
-      })
-      .catch((err: Error) => {
-        console.error('Could not retrieve tags');
-        console.error(err);
-      });
-  };
+  const modeText = BetterpinsSettings.mode === 'mock' ? 'mock' : 'production';
 
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Welcome to betterpin</Text>
-              <Text style={styles.sectionDescription}>
-                Here is where there will be a UI for logging in or something
-              </Text>
-              <Text style={styles.sectionDescription}>
-                This app is running in {modeText} mode.
-              </Text>
-              <Text style={styles.sectionDescription}>
-                Logging in with an API token for user{' '}
-                {BetterpinsSettings.pinboardApiUser}
-              </Text>
-              <View style={styles.listTagsButtonContainer}>
-                <Button
-                  onPress={() => {
-                    getTags();
-                  }}
-                  title="List Pinboard tags"
-                />
-              </View>
-            </View>
+        <View style={Styles.body}>
+          <View style={Styles.sectionContainer}>
+            <Text style={Styles.sectionTitle}>Welcome to betterpin</Text>
+            <Text style={Styles.sectionDescription}>
+              Here is where there will be a UI for logging in or something
+            </Text>
+            <Text style={Styles.sectionDescription}>
+              This app is running in {modeText} mode.
+            </Text>
+            <Text style={Styles.sectionDescription}>
+              Logging in with an API token for user{' '}
+              {BetterpinsSecrets.pinboardApiUser}
+            </Text>
           </View>
-        </ScrollView>
+        </View>
       </SafeAreaView>
-      <TagList tags={tags} loading={loading} />
+      <DumbTagView pinboard={pinboard} />
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  listTagsButtonContainer: {
-    marginTop: 32,
-    backgroundColor: '#2196F3',
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
 
 export default App;
