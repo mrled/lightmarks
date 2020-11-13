@@ -8,27 +8,33 @@
  * @format
  */
 
+import 'react-native-gesture-handler';
+
 import React from 'react';
 import {SafeAreaView, StatusBar, Text, View} from 'react-native';
 
-import Pinboard from 'node-pinboard';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const BetterpinsSecrets = require('betterpins.secrets.json');
 const BetterpinsSettings = require('betterpins.settings.json');
 
 import DumbTagView from 'components/DumbTagView';
-import FauxPinboard from 'lib/FauxPinboard';
+import usePinboard from 'hooks/usePinboard';
 import Styles from 'lib/Styles';
 
-const App = () => {
-  const token = `${BetterpinsSecrets.pinboardApiUser}:${BetterpinsSecrets.pinboardApiSecret}`;
-  console.debug(`Using token: ${token}`);
+const TabBar = createBottomTabNavigator();
 
-  const pinboard =
-    BetterpinsSettings.mode === 'mock'
-      ? new FauxPinboard(token)
-      : new Pinboard(token);
-  const modeText = BetterpinsSettings.mode === 'mock' ? 'mock' : 'production';
+const App = () => {
+  const [, pinboardLogin, pinboardDiag] = usePinboard();
+  if (!pinboardDiag.loggedIn) {
+    pinboardLogin(
+      BetterpinsSecrets.pinboardApiUser,
+      BetterpinsSecrets.pinboardApiSecret,
+      BetterpinsSettings.mode === 'production',
+    );
+  }
+  const modeText = pinboardDiag.production ? 'production' : 'mock';
 
   return (
     <>
@@ -50,7 +56,11 @@ const App = () => {
           </View>
         </View>
       </SafeAreaView>
-      <DumbTagView pinboard={pinboard} />
+      <NavigationContainer>
+        <TabBar.Navigator>
+          <TabBar.Screen name="DumbTags" component={DumbTagView} />
+        </TabBar.Navigator>
+      </NavigationContainer>
     </>
   );
 };

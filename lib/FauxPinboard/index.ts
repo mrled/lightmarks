@@ -32,7 +32,7 @@ const mockGet: Get = ({mockData}, cb) => {
     : promise;
 };
 
-export default class Pinboard {
+export default class FauxPinboard {
   public constructor(readonly token: string) {}
 
   public getTags(props: Props, cb: Callback) {
