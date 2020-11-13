@@ -21,10 +21,12 @@ import {
   StatusBar,
 } from 'react-native';
 
-import Config from 'react-native-config';
 import Pinboard from 'node-pinboard';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+
+const BetterpinsSecrets = require('./betterpins.secrets.json');
+const BetterpinsSettings = require('./betterpins.settings.json');
 
 import FauxPinboard from './FauxPinboard';
 
@@ -61,12 +63,14 @@ const TagList: React.FC<TagListProps> = ({tags, loading}) => {
 const App = () => {
   const [loading, setLoading] = useState(false);
   const [tags, setTags] = useState<Array<string>>([]);
-  const token = `${Config.PINBOARD_API_USER}:${Config.PINBOARD_API_SECRET}`;
+  const token = `${BetterpinsSecrets.pinboardApiUser}:${BetterpinsSecrets.pinboardApiSecret}`;
   console.debug(`Using token: ${token}`);
 
-  const modeText = Config.DATA === 'mock' ? 'mock' : 'production';
+  const modeText = BetterpinsSettings.mode === 'mock' ? 'mock' : 'production';
   const pinboard =
-    Config.DATA === 'mock' ? new FauxPinboard(token) : new Pinboard(token);
+    BetterpinsSettings.mode === 'mock'
+      ? new FauxPinboard(token)
+      : new Pinboard(token);
 
   const getTags = () => {
     setLoading(true);
@@ -106,7 +110,8 @@ const App = () => {
                 This app is running in {modeText} mode.
               </Text>
               <Text style={styles.sectionDescription}>
-                Logging in with an API token for user {Config.PINBOARD_API_USER}
+                Logging in with an API token for user{' '}
+                {BetterpinsSettings.pinboardApiUser}
               </Text>
               <View style={styles.listTagsButtonContainer}>
                 <Button

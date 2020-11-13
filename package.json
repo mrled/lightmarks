@@ -13,8 +13,7 @@
     "node-pinboard": "^2.0.1",
     "querystring": "^0.2.0",
     "react": "16.13.1",
-    "react-native": "0.63.3",
-    "react-native-config": "^1.4.0"
+    "react-native": "0.63.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
