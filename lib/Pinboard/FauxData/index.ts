@@ -1,6 +1,6 @@
-const MockTags = require('./mocks.tags.get.json');
+const MockTags = require('./mocks.api.tags.get.json');
 
-const FauxData: {[key: string]: object} = {
+export const FauxApiData: {[key: string]: object} = {
   'posts/update': {},
   'posts/add': {},
   'posts/delete': {},
@@ -17,4 +17,7 @@ const FauxData: {[key: string]: object} = {
   'notes/list': {},
 };
 
-export default FauxData;
+export const FauxFeedsData: {[key: string]: object} = {
+  recent: {},
+  popular: {},
+};
