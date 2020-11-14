@@ -1,4 +1,4 @@
-const MockTags = require('./mocks.tags.json');
+const MockTags = require('./mocks.tags.get.json');
 
 const FauxData: {[key: string]: object} = {
   'posts/update': {},
