@@ -11,7 +11,7 @@
 import 'react-native-gesture-handler';
 
 import React from 'react';
-import {SafeAreaView, StatusBar, Text, View} from 'react-native';
+import {StatusBar} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -22,7 +22,6 @@ const BetterpinsSettings = require('betterpins.settings.json');
 import About from 'components/About';
 import DumbTagView from 'components/DumbTagView';
 import usePinboard from 'hooks/usePinboard';
-import Styles from 'lib/Styles';
 
 const TabBar = createBottomTabNavigator();
 

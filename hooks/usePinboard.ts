@@ -1,8 +1,6 @@
 import {createContext, useState} from 'react';
 
-import Pinboard from 'node-pinboard';
-
-import FauxPinboard from 'lib/FauxPinboard';
+import {Pinboard, PinboardMode, pinboardToken} from 'lib/Pinboard';
 
 const UnsetPinboardUser = 'UnsetPinboardUser';
 const UnsetPinboardSecret = 'UnsetPinboardSecret';
@@ -11,9 +9,6 @@ const DefaultPinboardDiagData = {
   secret: UnsetPinboardSecret,
   production: false,
   loggedIn: false,
-};
-const pinboardToken = (user: string, secret: string) => {
-  return `${user}:${secret}`;
 };
 
 export const PinboardContext = createContext(null);
@@ -40,8 +35,11 @@ type PinboardLoginType = (
  */
 export default () => {
   // FIXME: should not have Pinboard | FauxPinboard, but I am being lazy now and not finishing the implementation of the Pinboard interface in FauxPinboard
-  const [pinboard, setPinboard] = useState<Pinboard | FauxPinboard>(
-    new FauxPinboard(pinboardToken(UnsetPinboardUser, UnsetPinboardSecret)),
+  const [pinboard, setPinboard] = useState<Pinboard>(
+    new Pinboard(
+      pinboardToken(UnsetPinboardUser, UnsetPinboardSecret),
+      PinboardMode.Mock,
+    ),
   );
   const [diag, setDiag] = useState<PinboardDiagnosticData>(
     DefaultPinboardDiagData,
@@ -53,8 +51,9 @@ export default () => {
     production: boolean,
   ) => {
     const token = pinboardToken(user, secret);
+    const mode = production ? PinboardMode.Production : PinboardMode.Mock;
     console.debug(`Using token: ${token}`);
-    setPinboard(production ? new FauxPinboard(token) : new Pinboard(token));
+    setPinboard(new Pinboard(token, mode));
     setDiag({
       user: user,
       secret: secret,

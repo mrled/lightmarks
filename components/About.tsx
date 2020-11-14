@@ -1,11 +1,10 @@
 import React from 'react';
-import {SafeAreaView, StatusBar, Text, View} from 'react-native';
+import {SafeAreaView, ScrollView, StatusBar, Text, View} from 'react-native';
 
 import usePinboard from 'hooks/usePinboard';
 import Styles from 'lib/Styles';
 
 export default () => {
-  const pinboard = usePinboard();
   const [, , pinboardDiag] = usePinboard();
   const modeText = pinboardDiag.production ? 'production' : 'mock';
 

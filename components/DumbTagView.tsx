@@ -3,10 +3,11 @@ import {Button, SafeAreaView, ScrollView, View} from 'react-native';
 
 import DumbTagList from 'components/DumbTagList';
 import usePinboard from 'hooks/usePinboard';
+import {Pinboard} from 'lib/Pinboard';
 import Styles from 'lib/Styles';
 
 interface DumbTagViewProps {
-  pinboard: any; // TODO: fixme
+  pinboard: Pinboard;
 }
 
 const DumbTagView: React.FC<DumbTagViewProps> = () => {
@@ -16,9 +17,9 @@ const DumbTagView: React.FC<DumbTagViewProps> = () => {
 
   const getTags = () => {
     setLoading(true);
-    pinboard
-      .getTags({})
-      .then((value: Object) => {
+    pinboard.tags
+      .get()
+      .then((value: object) => {
         console.log('Found my result:');
         console.log(value);
         setTags(Object.keys(value));
