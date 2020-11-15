@@ -1,12 +1,11 @@
 import {createContext, useState} from 'react';
 
-import {Pinboard, PinboardMode, pinboardToken} from 'lib/Pinboard';
+import {Pinboard, PinboardMode} from 'lib/Pinboard';
 
 const UnsetPinboardUser = 'UnsetPinboardUser';
-const UnsetPinboardSecret = 'UnsetPinboardSecret';
+// const UnsetPinboardSecret = 'UnsetPinboardSecret';
 const DefaultPinboardDiagData = {
-  user: UnsetPinboardUser,
-  secret: UnsetPinboardSecret,
+  username: UnsetPinboardUser,
   production: false,
   loggedIn: false,
 };
@@ -14,16 +13,16 @@ const DefaultPinboardDiagData = {
 export const PinboardContext = createContext(null);
 
 interface PinboardDiagnosticData {
-  user: string;
-  secret: string;
+  username: string;
   production: boolean;
   loggedIn: boolean;
 }
 
 type PinboardLoginType = (
-  user: string,
-  secret: string,
   production: boolean,
+  username: string,
+  credential: string,
+  credentialIsPassword: boolean,
 ) => void;
 
 /* Hook for logging in and using the Pinboard API
@@ -34,29 +33,29 @@ type PinboardLoginType = (
  *   diag: Diagnostic data to e.g. show the username that is logged in
  */
 export default () => {
-  // FIXME: should not have Pinboard | FauxPinboard, but I am being lazy now and not finishing the implementation of the Pinboard interface in FauxPinboard
   const [pinboard, setPinboard] = useState<Pinboard>(
-    new Pinboard(
-      pinboardToken(UnsetPinboardUser, UnsetPinboardSecret),
-      PinboardMode.Mock,
-    ),
+    new Pinboard(PinboardMode.Mock),
   );
   const [diag, setDiag] = useState<PinboardDiagnosticData>(
     DefaultPinboardDiagData,
   );
 
   const pinboardLogin: PinboardLoginType = (
-    user: string,
-    secret: string,
     production: boolean,
+    username: string,
+    credential: string,
+    credentialIsPassword = false,
   ) => {
-    const token = pinboardToken(user, secret);
     const mode = production ? PinboardMode.Production : PinboardMode.Mock;
-    console.debug(`Using token: ${token}`);
-    setPinboard(new Pinboard(token, mode));
+    setPinboard(new Pinboard(mode));
+    pinboard.api.username = username;
+    if (credentialIsPassword) {
+      pinboard.api.password = credential;
+    } else {
+      pinboard.api.authTokenSecret = credential;
+    }
     setDiag({
-      user: user,
-      secret: secret,
+      username: username,
       production: production,
       loggedIn: true,
     });

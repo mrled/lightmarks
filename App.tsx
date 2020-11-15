@@ -29,9 +29,10 @@ const App = () => {
   const [, pinboardLogin, pinboardDiag] = usePinboard();
   if (!pinboardDiag.loggedIn) {
     pinboardLogin(
+      BetterpinsSettings.mode === 'production',
       BetterpinsSecrets.pinboardApiUser,
       BetterpinsSecrets.pinboardApiSecret,
-      BetterpinsSettings.mode === 'production',
+      false,
     );
   }
 

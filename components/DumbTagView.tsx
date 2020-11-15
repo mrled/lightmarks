@@ -17,7 +17,7 @@ const DumbTagView: React.FC<DumbTagViewProps> = () => {
 
   const getTags = () => {
     setLoading(true);
-    pinboard.tags
+    pinboard.api.tags
       .get()
       .then((value: object) => {
         console.log('Found my result:');

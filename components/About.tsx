@@ -23,7 +23,7 @@ export default () => {
               This app is running in {modeText} mode.
             </Text>
             <Text style={Styles.sectionDescription}>
-              Logging in with an API token for user {pinboardDiag.user}
+              Logging in with an API token for user {pinboardDiag.username}
             </Text>
           </View>
         </View>
