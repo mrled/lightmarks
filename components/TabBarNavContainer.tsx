@@ -2,6 +2,8 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 import About from 'components/About';
 import DiscoverView from 'components/DiscoverView';
 import DumbTagView from 'components/DumbTagView';
@@ -11,7 +13,30 @@ const TabBar = createBottomTabNavigator();
 const TabBarNavContainer = () => {
   return (
     <NavigationContainer>
-      <TabBar.Navigator>
+      <TabBar.Navigator
+        screenOptions={({route}) => ({
+          tabBarIcon: ({color, size}) => {
+            let iconName;
+
+            if (route.name === 'Discover') {
+              iconName = 'ios-compass';
+            } else if (route.name === 'DumbTags') {
+              iconName = 'ios-pricetags';
+            } else if (route.name === 'About') {
+              iconName = 'ios-information-circle';
+            } else {
+              console.error(`Unknown route ${route.name}, showing bug icon`);
+              iconName = 'ios-bug';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'tomato',
+          inactiveTintColor: 'gray',
+        }}>
         <TabBar.Screen name="Discover" component={DiscoverView} />
         <TabBar.Screen name="DumbTags" component={DumbTagView} />
         <TabBar.Screen name="About" component={About} />

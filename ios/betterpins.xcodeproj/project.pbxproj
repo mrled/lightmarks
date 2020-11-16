@@ -56,6 +56,38 @@
 		2D02E47B1E0B4A5D006451C7 /* betterpins-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "betterpins-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* betterpins-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "betterpins-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		303729852E28C66C1341174E /* libPods-betterpins-betterpinsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-betterpins-betterpinsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30D27CA925622BE100BFA466 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
+		30D27CAA25622BE100BFA466 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
+		30D27CAB25622BE100BFA466 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
+		30D27CAC25622BE100BFA466 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
+		30D27CAD25622BE100BFA466 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
+		30D27CAE25622BE100BFA466 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
+		30D27CAF25622BE100BFA466 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
+		30D27CB025622BE100BFA466 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foundation.ttf; sourceTree = "<group>"; };
+		30D27CB125622BE100BFA466 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
+		30D27CB225622BE100BFA466 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
+		30D27CB325622BE100BFA466 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
+		30D27CB425622BE100BFA466 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		30D27CB525622BE100BFA466 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
+		30D27CB625622BE100BFA466 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
+		30D27CB725622BE100BFA466 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
+		30D27CB825622BE100BFA466 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		30D27CB925622BE100BFA466 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
+		30D27CBA25622BE100BFA466 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
+		30D27CBB25622BE100BFA466 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
+		30D27CBC25622BE100BFA466 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
+		30D27CBD25622BE100BFA466 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
+		30D27CBE25622BE100BFA466 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
+		30D27CBF25622BE100BFA466 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		30D27CC025622BE100BFA466 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
+		30D27CC125622BE100BFA466 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
+		30D27CC225622BE100BFA466 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
+		30D27CC325622BE100BFA466 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foundation.ttf; sourceTree = "<group>"; };
+		30D27CC425622BE100BFA466 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
+		30D27CC525622BE100BFA466 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		30D27CC625622BE100BFA466 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
+		30D27CC725622BE100BFA466 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
+		30D27CC825622BE100BFA466 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
 		3EE890BDB768060670CD23AB /* libPods-betterpins.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-betterpins.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB55A762227DA9B63C3DAF3 /* Pods-betterpins-betterpinsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-betterpins-betterpinsTests.debug.xcconfig"; path = "Target Support Files/Pods-betterpins-betterpinsTests/Pods-betterpins-betterpinsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = betterpins/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -149,6 +181,46 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		30D27CA825622BE100BFA466 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				30D27CA925622BE100BFA466 /* Fontisto.ttf */,
+				30D27CBE25622BE100BFA466 /* Fontisto.ttf */,
+				30D27CAA25622BE100BFA466 /* Octicons.ttf */,
+				30D27CBA25622BE100BFA466 /* Octicons.ttf */,
+				30D27CAB25622BE100BFA466 /* Feather.ttf */,
+				30D27CC425622BE100BFA466 /* Feather.ttf */,
+				30D27CAC25622BE100BFA466 /* Entypo.ttf */,
+				30D27CC725622BE100BFA466 /* Entypo.ttf */,
+				30D27CAD25622BE100BFA466 /* FontAwesome5_Brands.ttf */,
+				30D27CBD25622BE100BFA466 /* FontAwesome5_Brands.ttf */,
+				30D27CAE25622BE100BFA466 /* MaterialCommunityIcons.ttf */,
+				30D27CB925622BE100BFA466 /* MaterialCommunityIcons.ttf */,
+				30D27CAF25622BE100BFA466 /* AntDesign.ttf */,
+				30D27CBC25622BE100BFA466 /* AntDesign.ttf */,
+				30D27CB025622BE100BFA466 /* Foundation.ttf */,
+				30D27CC325622BE100BFA466 /* Foundation.ttf */,
+				30D27CB125622BE100BFA466 /* Ionicons.ttf */,
+				30D27CC125622BE100BFA466 /* Ionicons.ttf */,
+				30D27CB225622BE100BFA466 /* FontAwesome5_Solid.ttf */,
+				30D27CC625622BE100BFA466 /* FontAwesome5_Solid.ttf */,
+				30D27CB325622BE100BFA466 /* FontAwesome5_Regular.ttf */,
+				30D27CC825622BE100BFA466 /* FontAwesome5_Regular.ttf */,
+				30D27CB425622BE100BFA466 /* FontAwesome.ttf */,
+				30D27CBF25622BE100BFA466 /* FontAwesome.ttf */,
+				30D27CB525622BE100BFA466 /* Zocial.ttf */,
+				30D27CC225622BE100BFA466 /* Zocial.ttf */,
+				30D27CB625622BE100BFA466 /* EvilIcons.ttf */,
+				30D27CBB25622BE100BFA466 /* EvilIcons.ttf */,
+				30D27CB725622BE100BFA466 /* SimpleLineIcons.ttf */,
+				30D27CC525622BE100BFA466 /* MaterialIcons.ttf */,
+				30D27CC025622BE100BFA466 /* SimpleLineIcons.ttf */,
+				30D27CB825622BE100BFA466 /* MaterialIcons.ttf */,
+			);
+			name = Fonts;
+			path = "../node_modules/react-native-vector-icons/Fonts";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +231,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				30D27CA825622BE100BFA466 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* betterpins */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* betterpinsTests */,
@@ -194,7 +267,6 @@
 				DBFDD912CC9C4290CEABFD0E /* Pods-betterpins-tvOSTests.debug.xcconfig */,
 				A8606CF0AC43831CB8622E8A /* Pods-betterpins-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -287,7 +359,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -674,13 +746,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5FB55A762227DA9B63C3DAF3 /* Pods-betterpins-betterpinsTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = betterpinsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -697,10 +770,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 891607F153B22E9DA0714DD1 /* Pods-betterpins-betterpinsTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = betterpinsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -781,7 +855,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Debug;
 		};
@@ -809,7 +883,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Release;
 		};
@@ -836,7 +910,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/betterpins-tvOS.app/betterpins-tvOS";
-				TVOS_DEPLOYMENT_TARGET = 10.1;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Debug;
 		};
@@ -863,7 +937,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/betterpins-tvOS.app/betterpins-tvOS";
-				TVOS_DEPLOYMENT_TARGET = 10.1;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Release;
 		};
@@ -890,6 +964,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -914,7 +989,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
@@ -950,6 +1025,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -967,7 +1043,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
