@@ -1,12 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {SafeAreaView, StatusBar, Text, View} from 'react-native';
 
-import usePinboard from 'hooks/usePinboard';
+import {PinboardContext} from 'hooks/usePinboard';
 import Styles from 'lib/Styles';
+import {PinboardMode} from 'lib/Pinboard';
 
 export default () => {
-  const [, , pinboardDiag] = usePinboard();
-  const modeText = pinboardDiag.production ? 'production' : 'mock';
+  const {pinboard} = useContext(PinboardContext);
+  const modeText =
+    pinboard.mode === PinboardMode.Production ? 'production' : 'mock';
+  const loggedInText = pinboard.apiCredential
+    ? `Logged in as user ${pinboard.apiCredential.username}`
+    : 'Not logged in';
 
   return (
     <>
@@ -22,9 +27,7 @@ export default () => {
             <Text style={Styles.sectionDescription}>
               This app is running in {modeText} mode.
             </Text>
-            <Text style={Styles.sectionDescription}>
-              Logging in with an API token for user {pinboardDiag.username}
-            </Text>
+            <Text style={Styles.sectionDescription}>{loggedInText}</Text>
           </View>
         </View>
       </SafeAreaView>

@@ -1,6 +1,6 @@
 import {stringify} from 'querystring';
 
-import {PinboardMode} from './index';
+import {PinboardMode} from './types';
 
 /* Return a query string with leading question mark,
  * unless the query parameter is empty, in which case return an empty string

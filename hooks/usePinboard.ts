@@ -1,29 +1,26 @@
 import {createContext, useState} from 'react';
 
-import {Pinboard, PinboardMode} from 'lib/Pinboard';
+import {
+  Pinboard,
+  pinboardCredentialOptionalEq,
+  IPinboardCredential,
+  PinboardMode,
+} from 'lib/Pinboard';
 
-const UnsetPinboardUser = 'UnsetPinboardUser';
-// const UnsetPinboardSecret = 'UnsetPinboardSecret';
-const DefaultPinboardDiagData = {
-  username: UnsetPinboardUser,
-  production: false,
-  loggedIn: false,
+const PinboardDefault = new Pinboard(PinboardMode.Mock);
+
+type PinboardContextType = {
+  pinboard: Pinboard;
+  pinboardLogin: (
+    production: boolean,
+    credential?: IPinboardCredential,
+  ) => void;
 };
-
-export const PinboardContext = createContext(null);
-
-interface PinboardDiagnosticData {
-  username: string;
-  production: boolean;
-  loggedIn: boolean;
-}
-
-type PinboardLoginType = (
-  production: boolean,
-  username: string,
-  credential: string,
-  credentialIsPassword: boolean,
-) => void;
+export const PinboardContext = createContext<PinboardContextType>({
+  pinboard: PinboardDefault,
+  pinboardLogin: (_production, _credential) =>
+    console.error('Pinboard context accessed outside of context provider'),
+});
 
 /* Hook for logging in and using the Pinboard API
  *
@@ -32,34 +29,46 @@ type PinboardLoginType = (
  *   pinboardLogin(): A function that can re-login to Pinboard
  *   diag: Diagnostic data to e.g. show the username that is logged in
  */
-export default () => {
-  const [pinboard, setPinboard] = useState<Pinboard>(
-    new Pinboard(PinboardMode.Mock),
-  );
-  const [diag, setDiag] = useState<PinboardDiagnosticData>(
-    DefaultPinboardDiagData,
-  );
+export function usePinboard() {
+  const [pinboard, setPinboard] = useState<Pinboard>(PinboardDefault);
 
-  const pinboardLogin: PinboardLoginType = (
+  const pinboardLogin: (
     production: boolean,
-    username: string,
-    credential: string,
-    credentialIsPassword = false,
-  ) => {
+    credential?: IPinboardCredential,
+  ) => void = (production, credential?) => {
     const mode = production ? PinboardMode.Production : PinboardMode.Mock;
-    setPinboard(new Pinboard(mode));
-    pinboard.api.username = username;
-    if (credentialIsPassword) {
-      pinboard.api.password = credential;
+    console.debug(
+      `pinboardLogin(): Using credential ${JSON.stringify(credential)}`,
+    );
+    if (
+      mode === pinboard.mode &&
+      pinboardCredentialOptionalEq(credential, pinboard.credential)
+    ) {
+      console.debug(
+        [
+          'Will not log into Pinboard',
+          `new mode: ${mode}`,
+          `old mode: ${pinboard.mode}`,
+          `new credential: ${JSON.stringify(credential)}`,
+          `old credential: ${JSON.stringify(pinboard.credential)}`,
+        ].join('\n'),
+      );
+      console.debug('Will not log into Pinboard');
     } else {
-      pinboard.api.authTokenSecret = credential;
+      console.debug(
+        `pinboardLogin(): Logging in to Pinboard. Mode: ${mode}; credential: ${JSON.stringify(
+          credential,
+        )}`,
+      );
+      const newPinboard = new Pinboard(mode, credential);
+      console.debug(
+        `pinboardLogin(): Created new Pinboard object with credential ${JSON.stringify(
+          newPinboard.credential,
+        )}`,
+      );
+      setPinboard(newPinboard);
     }
-    setDiag({
-      username: username,
-      production: production,
-      loggedIn: true,
-    });
   };
 
-  return [pinboard, pinboardLogin, diag] as const;
-};
+  return {pinboard, pinboardLogin};
+}

@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Button, SafeAreaView, ScrollView, View} from 'react-native';
 
 import DumbTagList from 'components/DumbTagList';
-import usePinboard from 'hooks/usePinboard';
+import {PinboardContext} from 'hooks/usePinboard';
 import {Pinboard} from 'lib/Pinboard';
 import Styles from 'lib/Styles';
 
@@ -11,7 +11,7 @@ interface DumbTagViewProps {
 }
 
 const DumbTagView: React.FC<DumbTagViewProps> = () => {
-  const [pinboard, , ,] = usePinboard();
+  const {pinboard} = useContext(PinboardContext);
   const [loading, setLoading] = useState(false);
   const [tags, setTags] = useState<Array<string>>([]);
 

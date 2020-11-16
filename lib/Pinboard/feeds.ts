@@ -1,16 +1,13 @@
 import {FauxFeedsData} from './FauxData';
 import {fetchOrReturnFaux, optionalQueryStringWithQmark} from './get';
-import {PinboardMode} from './index';
-
-/* Pinboard API supports one, two, or three tags in several places
- */
-type OneToThreeStrings = [string] | [string, string] | [string, string, string];
-
-type PinboardFeedsResult = Promise<object>;
-type PinboardFeedsGet = (
-  endpoint: string,
-  query?: object,
-) => PinboardFeedsResult;
+import {
+  IPinboardFeeds,
+  IPinboardFeedsAuthenticated,
+  IPinboardFeedsUnauthenticated,
+  OneToThreeStrings,
+  PinboardFeedsRssSecretCredential,
+  PinboardMode,
+} from './types';
 
 /* Take a list of tags and return Pinboard-style tag path components
  *
@@ -22,7 +19,9 @@ const tagListToComponents = (tags: string[]) => {
   return tags.map((t) => `t:${t}`).join('/');
 };
 
-class PinboardFeedsUnauthenticated {
+/* Pinboard feeds that don't require authentication
+ */
+class PinboardFeedsUnauthenticated implements IPinboardFeedsUnauthenticated {
   public constructor(readonly feeds: PinboardFeeds) {}
 
   public recent(count = 50) {
@@ -33,7 +32,7 @@ class PinboardFeedsUnauthenticated {
     return this.feeds.getJsonPublic('popular', {count});
   }
 
-  public byUser(user: string, tags?: OneToThreeStrings, count = 50) {
+  public byUser(user: string, count = 50, tags?: OneToThreeStrings) {
     const tagsComponent = tags ? `/${tagListToComponents(tags)}` : '';
     const endpoint = `u:${user}${tagsComponent}/`;
     return this.feeds.getJsonPublic(endpoint, {count});
@@ -45,7 +44,9 @@ class PinboardFeedsUnauthenticated {
   }
 }
 
-class PinboardFeedsAuthenticated {
+/* Pinboard feeds that do require authentication
+ */
+class PinboardFeedsAuthenticated implements IPinboardFeedsAuthenticated {
   public constructor(readonly feeds: PinboardFeeds) {}
 
   public private(count = 50) {
@@ -65,48 +66,48 @@ class PinboardFeedsAuthenticated {
   }
 }
 
-export class PinboardFeeds {
+/* Pinboard feeds
+ * <https://pinboard.in/howto/#rss>
+ */
+export class PinboardFeeds implements IPinboardFeeds {
   public feedsRoot = 'https://feeds.pinboard.in';
-  public username: string = '';
-  public rssSecret: string = '';
 
-  public constructor(readonly mode: PinboardMode) {}
+  public constructor(
+    readonly mode: PinboardMode,
+    readonly auth?: PinboardFeedsRssSecretCredential,
+  ) {}
 
-  //   public getJsonPublic: PinboardFeedsGet = (
-  //     endpoint: string,
-  //     query?: object,
-  //   ) => {
-  //     const queryString = optionalQueryStringWithQmark(query);
-  //     const uri = `${this.feedsRoot}/json/${endpoint}${queryString}`;
-  //     switch (this.mode) {
-  //       case PinboardMode.Mock:
-  //         const mockData = FauxFeedsData[endpoint];
-  //         return fauxFetch(uri, mockData);
-  //       case PinboardMode.Production:
-  //         return fetch(uri).then((result) => result.json());
-  //     }
-  //   };
+  /* True if credentials exist, false otherwise.
+   * Credentials are NOT checked for validity.
+   */
+  public get loggedIn() {
+    return typeof this.auth !== 'undefined';
+  }
 
-  public getJsonPublic: PinboardFeedsGet = (
-    endpoint: string,
-    query?: object,
+  /* Get JSON results from the feeds host without authentication
+   */
+  public getJsonPublic: (endpoint: string, query?: object) => Promise<any> = (
+    endpoint,
+    query?,
   ) => {
     const queryString = optionalQueryStringWithQmark(query);
     const uri = `${this.feedsRoot}/json/${endpoint}${queryString}`;
     return fetchOrReturnFaux(this.mode, FauxFeedsData[endpoint], uri, {});
   };
 
-  public getJsonSecret: PinboardFeedsGet = (
-    endpoint: string,
-    query?: object,
+  /* Get JSON results from the feeds host with authentication
+   */
+  public getJsonSecret: (endpoint: string, query?: object) => Promise<any> = (
+    endpoint,
+    query?,
   ) => {
-    if (!this.username || !this.rssSecret) {
-      return new Promise<object>((resolve, reject) =>
-        reject('Missing username or RSS secret'),
+    if (!this.auth) {
+      return new Promise<object>((_resolve, reject) =>
+        reject('Missing authentication.'),
       );
     }
     const queryString = optionalQueryStringWithQmark(query);
-    const uri = `${this.feedsRoot}/json/secret:${this.rssSecret}/u:${this.username}/${endpoint}${queryString}`;
+    const uri = `${this.feedsRoot}/json/secret:${this.auth.rssSecret}/u:${this.auth.username}/${endpoint}${queryString}`;
     return fetchOrReturnFaux(this.mode, FauxFeedsData[endpoint], uri, {});
   };
 

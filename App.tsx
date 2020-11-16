@@ -21,30 +21,39 @@ const BetterpinsSettings = require('betterpins.settings.json');
 
 import About from 'components/About';
 import DumbTagView from 'components/DumbTagView';
-import usePinboard from 'hooks/usePinboard';
+import {PinboardContext, usePinboard} from 'hooks/usePinboard';
 
 const TabBar = createBottomTabNavigator();
 
 const App = () => {
-  const [, pinboardLogin, pinboardDiag] = usePinboard();
-  if (!pinboardDiag.loggedIn) {
-    pinboardLogin(
-      BetterpinsSettings.mode === 'production',
-      BetterpinsSecrets.pinboardApiUser,
-      BetterpinsSecrets.pinboardApiSecret,
-      false,
-    );
-  }
+  const {pinboard, pinboardLogin} = usePinboard();
+  const credential = {
+    username: BetterpinsSecrets.pinboardApiUser,
+    authTokenSecret: BetterpinsSecrets.pinboardApiSecret,
+  };
+  console.debug(
+    `App(): Before pinboardLogin(), credential is set to: ${JSON.stringify(
+      credential,
+    )}`,
+  );
+  pinboardLogin(BetterpinsSettings.mode === 'production', credential);
+  console.debug(
+    `App(): After pinboardLogin(), credential is set to: ${JSON.stringify(
+      credential,
+    )}`,
+  );
 
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <NavigationContainer>
-        <TabBar.Navigator>
-          <TabBar.Screen name="DumbTags" component={DumbTagView} />
-          <TabBar.Screen name="About" component={About} />
-        </TabBar.Navigator>
-      </NavigationContainer>
+      <PinboardContext.Provider value={{pinboard, pinboardLogin}}>
+        <StatusBar barStyle="dark-content" />
+        <NavigationContainer>
+          <TabBar.Navigator>
+            <TabBar.Screen name="DumbTags" component={DumbTagView} />
+            <TabBar.Screen name="About" component={About} />
+          </TabBar.Navigator>
+        </NavigationContainer>
+      </PinboardContext.Provider>
     </>
   );
 };
