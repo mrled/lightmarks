@@ -15,7 +15,7 @@ const Styles = StyleSheet.create({
   },
   listTagsButtonContainer: {
     marginTop: 32,
-    backgroundColor: '#2196F3',
+    borderWidth: 1,
   },
   sectionContainer: {
     marginTop: 32,
