@@ -14,7 +14,7 @@ Emoji legend:
 ### ⬜️ Add simple filters for the feeds
 
 - Do not show Twitter / show only Twitter
-- Do/don't display tags, user notes, user namee
+- Do/don't display tags, user notes, user name
 - Show only bookmarks with notes / do not show bookmarks with notes
 
 ### ⬜️ Toggle mock/production mode in app
@@ -27,10 +27,23 @@ This is exceptionally lazy, but: see the devnotes I added in ebd6be97e3dd990e9ea
 They contain a link or two and some thoughts.
 (And I reverted that commit right after.)
 
-### ⬜️ When tapping on links, highlight the link
+### ⬜️ Discover tab: add screen for filtering bookmarks in public feed
 
-- Important for links to u:USERNAME and to actual bookmarked links
-- Especially useful for screen recordings
+- Filter by username
+- Filter by up to three tags
+- Search within those results (not sure how to make clear in UI)
+
+### ⬜️ 🔱 Implement a Home/Self/My Bookmarks tab
+
+- See all/public/private/unread/tagged/untagged bookmarks
+- See network
+
+### ⬜️ 🔱 Implement tag management
+
+- See all untagged bookmarks
+- Rename tags
+- Group tags with the same prefix (like my `code:typescript`, `code:python`, etc convention)
+- Show tags with fewer than X or more than Y bookmarks, as a way to surface too generic or too broad tags
 
 ### ⬜️ 🔱 Implement a global API rate limit
 
@@ -44,6 +57,7 @@ Pinboard will rate limit you, and it won't even follow its own docs and use a ra
 
 The share sheet is the most important feature of the app tbh.
 It needs to be perfect.
+And it cannot lose data, ever.
 
 ### ⬜️ 🔱 Perfect data sync
 
@@ -71,6 +85,13 @@ These aren't to do items, they're less defined than that. Just thoughts.
 - Also fandom and Japanese popular pages
 - User pages? (Maybe I can just get this wth feeds)
 - Perhaps most importantly, on-site SEARCH. I can search the title/url/desc/tags of the local copy of my own bookmarks, but will need Pinboard's help to search the full text of my bookmarks or any public bookmarks!
+
+Looks like e.g. Pushpin is just getting all it can of the recent/popular posts and filtering by wikipedia for its wikipedia screen.
+Not sure what it's doing for its fandom screen -- maybe it can tell if a user has fandom enabled, and is just showing posts from those users?
+
+### 🌙 An "On this day" feature, like Day One has
+
+This is a cool feature from Day One; would be pretty cool to have in bookmarks too, I think.
 
 ## ✅ ✅ ✅ ✅ ✅ Completed log, finished tasks
 
@@ -105,3 +126,11 @@ I have not yet done this for Android!! So whenever I get around to testing Andro
 - Show list of bookmarks
 
 The list of bookmarks even looks halfway decent, fuck yeah
+
+### ✅ When tapping on links, highlight the link
+
+- Important for links to u:USERNAME and to actual bookmarked links
+- Especially useful for screen recordings
+
+Done. This was actually already working for regular text with `onPress` events.
+I added a `<Pressable>` for a set of two `<Text>` components I wanted to be part of a single link.
