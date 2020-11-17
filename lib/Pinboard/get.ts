@@ -30,6 +30,10 @@ export const fauxFetch = (uri: string, fauxData: object): Promise<object> => {
   });
 };
 
+// Brutish, vulgar way to enable fetch logging its results
+// TODO: use betterpins.settings.json or an in-app toggle for this
+const ENABLE_FETCH_LOGGING = false;
+
 /* Perform a true fetch or a faux fetch, depending on the mode
  */
 export const fetchOrReturnFaux = (
@@ -42,6 +46,19 @@ export const fetchOrReturnFaux = (
     case PinboardMode.Mock:
       return fauxFetch(uri, fauxData);
     case PinboardMode.Production:
-      return fetch(uri, {headers}).then((result) => result.json());
+      return fetch(uri, {headers})
+        .then((result) => result.json())
+        .then((jsonResult) => {
+          if (ENABLE_FETCH_LOGGING) {
+            console.log(
+              `fetchOrReturnFaux() jsonResult: ${JSON.stringify(jsonResult)}`,
+            );
+          }
+          return jsonResult;
+        })
+        .catch((err) => {
+          console.error(`fetchOrReturnFaux() error: ${err}`);
+          throw err;
+        });
   }
 };
