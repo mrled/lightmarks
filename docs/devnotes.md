@@ -2,6 +2,20 @@
 
 Development notes, whatever.
 
+## Todo
+
+### In-app web links
+
+Version zero is just going to punt to the OS's web browser.
+
+Version one should do it right, in app.
+Of course this is a pain in the ass because both web views and device navigation are not considered core React Native features.
+How do you use them together? google it lol.
+So I fucking googled it.
+Here are some links for later.
+
+- https://egghead.io/lessons/react-native-open-a-webpage-in-react-native-with-linking-and-webview
+
 ## Completed log, finished tasks
 
 ### Icons
