@@ -13,6 +13,19 @@ const Styles = StyleSheet.create({
   body: {
     backgroundColor: Colors.white,
   },
+  listItemView: {
+    backgroundColor: Colors.white,
+    borderBottomWidth: 1,
+    borderBottomColor: 'lightgrey',
+    padding: 18,
+  },
+  listItemText: {
+    fontSize: 18,
+  },
+  listItemTitle: {
+    fontSize: 21,
+    fontWeight: 'bold',
+  },
   listTagsButtonContainer: {
     marginTop: 32,
     borderWidth: 1,

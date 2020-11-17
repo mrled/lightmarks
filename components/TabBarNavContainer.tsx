@@ -5,7 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import About from 'components/About';
-import DiscoverView from 'components/DiscoverView';
+import {DiscoverStackScreen} from 'components/Discover';
 import DumbTagView from 'components/DumbTagView';
 
 const TabBar = createBottomTabNavigator();
@@ -37,7 +37,7 @@ const TabBarNavContainer = () => {
           activeTintColor: 'tomato',
           inactiveTintColor: 'gray',
         }}>
-        <TabBar.Screen name="Discover" component={DiscoverView} />
+        <TabBar.Screen name="Discover" component={DiscoverStackScreen} />
         <TabBar.Screen name="DumbTags" component={DumbTagView} />
         <TabBar.Screen name="About" component={About} />
       </TabBar.Navigator>
