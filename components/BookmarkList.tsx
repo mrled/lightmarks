@@ -15,6 +15,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {AppStyles, BookmarkStyles} from 'style/Styles';
+import {FunctionalColors} from 'style/Colors';
 
 interface BookmarkListItemProps {
   item: any; // FIXME: any
@@ -54,7 +55,8 @@ const BookmarkListItem: React.FC<BookmarkListItemProps> = ({item}) => {
         <></>
       ) : (
         <Text>
-          <Ionicons name="ios-pricetags" color="tomato" /> {item.t.join(', ')}
+          <Ionicons name="ios-pricetags" color={FunctionalColors.TagIcon} />{' '}
+          {item.t.join(', ')}
         </Text>
       )}
     </View>

@@ -1,12 +1,12 @@
 import {StyleSheet} from 'react-native';
 
-import {NamedColors} from 'style/Colors';
+import {FunctionalColors, NamedColors} from 'style/Colors';
 
 /* Application-wide, general styles
  */
 export const AppStyles = StyleSheet.create({
   scrollView: {
-    backgroundColor: '#F3F3F3',
+    backgroundColor: NamedColors.OffWhite,
   },
   engine: {
     position: 'absolute',
@@ -54,17 +54,17 @@ export const BookmarkStyles = StyleSheet.create({
     color: 'gray',
   },
   listItemExtendedDesc: {
-    backgroundColor: 'antiquewhite',
+    backgroundColor: FunctionalColors.BlockquoteBackground,
     margin: 12,
     padding: 4,
   },
   listItemLink: {
-    color: 'blue',
+    color: FunctionalColors.Link,
   },
   listItemView: {
     backgroundColor: 'white',
     borderBottomWidth: 1,
-    borderBottomColor: 'lightgrey',
+    borderBottomColor: FunctionalColors.ListItemBorder,
     padding: 18,
   },
   listItemText: {
