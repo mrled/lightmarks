@@ -9,10 +9,11 @@ export const NamedColors = {
 /* Colors by function, so I can change things globally in one place
  */
 export const FunctionalColors = {
-  BlockquoteBackground: 'antiquewhite',
+  // BlockquoteBackground: 'aliceblue',
+  BlockquoteBorderLeft: 'goldenrod',
   Link: 'blue',
-  ListItemBorder: 'lightgrey',
+  ListItemBorder: 'goldenrod',
   TabBarIconSelected: 'tomato',
   TabBarIconDeselected: 'gray',
-  TagIcon: 'tomato',
+  TagIcon: 'goldenrod',
 };

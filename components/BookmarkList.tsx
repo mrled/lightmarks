@@ -49,7 +49,9 @@ const BookmarkListItem: React.FC<BookmarkListItemProps> = ({item}) => {
       {item.n === '' ? (
         <></>
       ) : (
-        <Text style={BookmarkStyles.listItemExtendedDesc}>{item.n}</Text>
+        <View style={BookmarkStyles.listItemExtendedDescView}>
+          <Text style={BookmarkStyles.listItemExtendedDescText}>{item.n}</Text>
+        </View>
       )}
       {item.t.length === 1 && item.t[0] === '' ? (
         <></>

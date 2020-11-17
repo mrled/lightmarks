@@ -51,20 +51,28 @@ export const AppStyles = StyleSheet.create({
  */
 export const BookmarkStyles = StyleSheet.create({
   listItemAuthorDate: {
+    paddingVertical: 4,
     color: 'gray',
   },
-  listItemExtendedDesc: {
-    backgroundColor: FunctionalColors.BlockquoteBackground,
-    margin: 12,
-    padding: 4,
+  listItemExtendedDescText: {
+    marginLeft: 6,
+  },
+  listItemExtendedDescView: {
+    // backgroundColor: FunctionalColors.BlockquoteBackground,
+    marginVertical: 12,
+    marginLeft: 4,
+    borderLeftWidth: 2,
+    borderLeftColor: FunctionalColors.BlockquoteBorderLeft,
+    borderRightColor: 'black',
   },
   listItemLink: {
+    paddingVertical: 4,
     color: FunctionalColors.Link,
   },
   listItemView: {
     backgroundColor: 'white',
-    borderBottomWidth: 1,
-    borderBottomColor: FunctionalColors.ListItemBorder,
+    // borderBottomWidth: 1,
+    // borderBottomColor: FunctionalColors.ListItemBorder,
     padding: 18,
   },
   listItemText: {
