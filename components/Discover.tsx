@@ -10,6 +10,7 @@ import {AppStyles} from 'lib/Styles';
 type DiscoverStackParamList = {
   Discover: undefined;
   Popular: undefined;
+  Recent: undefined;
 };
 
 const DiscoverStack = createStackNavigator<DiscoverStackParamList>();
@@ -37,6 +38,10 @@ export const DiscoverScreen: React.FC<DiscoverScreenProps> = ({navigation}) => {
                 title="Popular"
                 onPress={() => navigation.navigate('Popular')}
               />
+              <Button
+                title="Recent"
+                onPress={() => navigation.navigate('Recent')}
+              />
               {/* <CommunityBookmarksSection /> */}
             </View>
           </View>
@@ -51,6 +56,7 @@ export const DiscoverStackScreen: React.FC = () => {
     <DiscoverStack.Navigator>
       <DiscoverStack.Screen name="Discover" component={DiscoverScreen} />
       <DiscoverStack.Screen name="Popular" component={PopularScreen} />
+      <DiscoverStack.Screen name="Recent" component={RecentScreen} />
     </DiscoverStack.Navigator>
   );
 };
@@ -66,6 +72,17 @@ const PopularScreen: React.FC<PopularScreenProps> = ({}) => {
     <BookmarkListView
       title="Popular"
       bookmarksGetter={() => pinboard.feeds.unauthenticated.popular(400)}
+    />
+  );
+};
+
+type RecentScreenProps = {};
+const RecentScreen: React.FC<RecentScreenProps> = ({}) => {
+  const {pinboard} = useContext(PinboardContext);
+  return (
+    <BookmarkListView
+      title="Recent"
+      bookmarksGetter={() => pinboard.feeds.unauthenticated.recent(400)}
     />
   );
 };
