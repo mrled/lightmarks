@@ -83,3 +83,10 @@ export const BookmarkStyles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+export const BookmarkDynamicStyles = {
+  listItemPressableLink: ({pressed}) => {
+    // FIXME: 'lightgray' is not the same color as the pressed highlight for a <Text onpress=...>
+    return {backgroundColor: pressed ? 'lightgray' : 'white'};
+  },
+};

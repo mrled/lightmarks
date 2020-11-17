@@ -11,7 +11,7 @@ export const NamedColors = {
 export const FunctionalColors = {
   // BlockquoteBackground: 'aliceblue',
   BlockquoteBorderLeft: 'goldenrod',
-  Link: 'blue',
+  Link: 'cornflowerblue',
   ListItemBorder: 'goldenrod',
   TabBarIconSelected: 'tomato',
   TabBarIconDeselected: 'gray',
