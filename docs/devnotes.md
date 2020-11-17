@@ -2,7 +2,77 @@
 
 Development notes, whatever.
 
-## Completed log, finished tasks
+Emoji legend:
+
+- white large square ⬜️ -- regular to-do item
+- white check mark ✅ -- completed to-do item
+- trident 🔱 -- large or important feature
+- crescent moon 🌙 -- "moonshots", unpolished ideas
+
+## ⬜️ ⬜️ ️⬜️ ️⬜️ ️⬜️ ️️ Todo
+
+### ⬜️ Add simple filters for the feeds
+
+- Do not show Twitter / show only Twitter
+- Do/don't display tags, user notes, user namee
+- Show only bookmarks with notes / do not show bookmarks with notes
+
+### ⬜️ Toggle mock/production mode in app
+
+Maybe even with a visible reminder of what mode I'm in on all screens?
+
+### ⬜️ Build an in-app web view
+
+This is exceptionally lazy, but: see the devnotes I added in ebd6be97e3dd990e9eafbdcae947a71882697ce2.
+They contain a link or two and some thoughts.
+(And I reverted that commit right after.)
+
+### ⬜️ When tapping on links, highlight the link
+
+- Important for links to u:USERNAME and to actual bookmarked links
+- Especially useful for screen recordings
+
+### ⬜️ 🔱 Implement a global API rate limit
+
+Pinboard will rate limit you, and it won't even follow its own docs and use a rate limit message.
+
+- Start by following guidelines in API docs
+- Add a back-off mechanism, where it doubles the wait time
+- How to manage too many tasks filling it up?
+
+### ⬜️ 🔱 Add a share sheet
+
+The share sheet is the most important feature of the app tbh.
+It needs to be perfect.
+
+### ⬜️ 🔱 Perfect data sync
+
+NEVER LOSE DATA
+
+- If I try to save a link and Pinboard is not responding (down/rate limited/no network), save link for later
+- There is no real sync here, because Pinboard API doesn't show me list of events
+- That should be ok for saving bookmarks, as saving it again doesn't hurt anything
+- For situations where both the client and the server have edited bookmark metadata, there is sadly possibility to lose data. I think these situations will be rare, and I can do the best I can by trying not to delete data. Also, generally, missing description is not as bad as missing whole bookmark.
+
+## 🌙 🌙 🌙 🌙 🌙 Longer, less finished ideas
+
+AKA "moonshots"
+
+These aren't to do items, they're less defined than that. Just thoughts.
+
+### 🌙 Fancy filters for the feeds
+
+- Ignore politics / Show only politics
+- Show only long or only short articles
+
+### 🌙 Parse Pinboard HTML for more features
+
+- The /popular/wikipedia page
+- Also fandom and Japanese popular pages
+- User pages? (Maybe I can just get this wth feeds)
+- Perhaps most importantly, on-site SEARCH. I can search the title/url/desc/tags of the local copy of my own bookmarks, but will need Pinboard's help to search the full text of my bookmarks or any public bookmarks!
+
+## ✅ ✅ ✅ ✅ ✅ Completed log, finished tasks
 
 ### Icons
 
@@ -26,3 +96,12 @@ and
 > For anyone else who didn't know this, Copy Bundle Resources can be found under the Build Phases` tab in the target in your project
 
 I have not yet done this for Android!! So whenever I get around to testing Android, I guess it will be a pain in the ass and I hope I remember this note.
+
+### ✅ 🔱 Implement a Discover tab
+
+- View for the popular feed
+- View for the recent feed
+- Navigation with back button
+- Show list of bookmarks
+
+The list of bookmarks even looks halfway decent, fuck yeah
