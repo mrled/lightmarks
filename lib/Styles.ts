@@ -13,7 +13,10 @@ export const AppStyles = StyleSheet.create({
   body: {
     backgroundColor: 'white',
   },
-
+  listTagsButtonContainer: {
+    marginTop: 32,
+    borderWidth: 1,
+  },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
@@ -68,9 +71,5 @@ export const BookmarkStyles = StyleSheet.create({
   listItemTitle: {
     fontSize: 21,
     fontWeight: 'bold',
-  },
-  listTagsButtonContainer: {
-    marginTop: 32,
-    borderWidth: 1,
   },
 });
