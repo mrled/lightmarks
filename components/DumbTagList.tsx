@@ -1,7 +1,7 @@
 import React from 'react';
 import {ActivityIndicator, FlatList, View, Text} from 'react-native';
 
-import Styles from 'lib/Styles';
+import AppStyles from 'lib/Styles';
 
 interface DumbTagListProps {
   tags: Array<string>;
@@ -10,7 +10,7 @@ interface DumbTagListProps {
 
 const DumbTagList: React.FC<DumbTagListProps> = ({tags, loading}) => {
   const header = () => {
-    return <Text style={Styles.sectionTitle}>Tags</Text>;
+    return <Text style={AppStyles.sectionTitle}>Tags</Text>;
   };
   return loading ? (
     <ActivityIndicator />

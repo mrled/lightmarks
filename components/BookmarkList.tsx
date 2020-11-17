@@ -11,7 +11,46 @@ import {
   SafeAreaView,
 } from 'react-native';
 
-import Styles from 'lib/Styles';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import {AppStyles, BookmarkStyles} from 'lib/Styles';
+
+interface BookmarkListItemProps {
+  item: any; // FIXME: any
+}
+const BookmarkListItem: React.FC<BookmarkListItemProps> = ({item}) => {
+  // console.debug(`Rendering bookmark: ${JSON.stringify(item)}`);
+
+  // const itemDate = new Date(item.dt);
+  // console.log(
+  //   `Item date ${item.dt} parses as ${itemDate.toLocaleString('en-US', {
+  //     timeZone: 'CST',
+  //   })}`,
+  // );
+
+  return (
+    <View style={BookmarkStyles.listItemView}>
+      <Text style={BookmarkStyles.listItemTitle}>{item.d}</Text>
+      <Text style={BookmarkStyles.listItemAuthorDate}>
+        {/* from {item.a} on {itemDate} */}
+        from u:{item.a}
+      </Text>
+      <Text style={BookmarkStyles.listItemLink}>{item.u}</Text>
+      {item.n === '' ? (
+        <></>
+      ) : (
+        <Text style={BookmarkStyles.listItemExtendedDesc}>{item.n}</Text>
+      )}
+      {item.t.length === 1 && item.t[0] === '' ? (
+        <></>
+      ) : (
+        <Text>
+          <Ionicons name="ios-pricetags" color="tomato" /> {item.t.join(', ')}
+        </Text>
+      )}
+    </View>
+  );
+};
 
 interface BookmarkListProps {
   bookmarks: Array<any>;
@@ -38,33 +77,8 @@ const BookmarkList: React.FC<BookmarkListProps> = ({
     return (
       <FlatList
         data={bookmarks}
-        renderItem={({item}) => {
-          console.log(`Rendering bookmark: ${JSON.stringify(item)}`);
-          return (
-            <View style={Styles.listItemView}>
-              <Text style={Styles.listItemTitle}>{item.d}</Text>
-              <Text>
-                from {item.a} on {item.dt}
-              </Text>
-              <Text style={{color: 'blue'}}>{item.u}</Text>
-              {item.n === '' ? (
-                <></>
-              ) : (
-                <Text
-                  style={{
-                    backgroundColor: 'antiquewhite',
-                    margin: 12,
-                    padding: 4,
-                  }}>
-                  {item.n}
-                </Text>
-              )}
-              <Text>Tags: {item.t.join(', ')}</Text>
-              {/* <Text>{JSON.stringify(item)}</Text> */}
-            </View>
-          );
-        }}
-        keyExtractor={(item, index) => index.toString()}
+        renderItem={BookmarkListItem}
+        keyExtractor={(_item, index) => index.toString()}
       />
     );
   }
@@ -95,11 +109,11 @@ export const BookmarkListView: React.FC<BookmarkListViewProps> = ({
     setLoading(true);
     bookmarksGetter()
       .then((result) => {
-        console.debug(
-          `BookmarkListView:bookmarksGetter(): got result ${JSON.stringify(
-            result,
-          )}`,
-        );
+        // console.debug(
+        //   `BookmarkListView:bookmarksGetter(): got result ${JSON.stringify(
+        //     result,
+        //   )}`,
+        // );
         setLoadErr('');
         setLoading(false);
         setBookmarks(result);
@@ -120,9 +134,9 @@ export const BookmarkListView: React.FC<BookmarkListViewProps> = ({
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <View style={Styles.body}>
-          <View style={Styles.sectionContainer}>
-            <Text style={Styles.sectionTitle}>{title}</Text>
+        <View style={AppStyles.body}>
+          <View style={AppStyles.sectionContainer}>
+            <Text style={AppStyles.sectionTitle}>{title}</Text>
           </View>
         </View>
       </SafeAreaView>

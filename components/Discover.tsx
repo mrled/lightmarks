@@ -5,7 +5,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 
 import {BookmarkListView} from 'components/BookmarkList';
 import {PinboardContext} from 'hooks/usePinboard';
-import Styles from 'lib/Styles';
+import {AppStyles} from 'lib/Styles';
 
 type DiscoverStackParamList = {
   Discover: undefined;
@@ -24,13 +24,15 @@ export const DiscoverScreen: React.FC<DiscoverScreenProps> = ({navigation}) => {
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
-          style={Styles.scrollView}>
-          <View style={Styles.body}>
-            <View style={Styles.sectionContainer}>
-              <Text style={Styles.sectionTitle}>Discover</Text>
+          style={AppStyles.scrollView}>
+          <View style={AppStyles.body}>
+            <View style={AppStyles.sectionContainer}>
+              <Text style={AppStyles.sectionTitle}>Discover</Text>
             </View>
-            <View style={Styles.sectionContainer}>
-              <Text style={Styles.sectionDescription}>Community bookmarks</Text>
+            <View style={AppStyles.sectionContainer}>
+              <Text style={AppStyles.sectionDescription}>
+                Community bookmarks
+              </Text>
               <Button
                 title="Popular"
                 onPress={() => navigation.navigate('Popular')}

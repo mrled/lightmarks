@@ -4,7 +4,7 @@ import {Button, SafeAreaView, ScrollView, View} from 'react-native';
 import DumbTagList from 'components/DumbTagList';
 import {PinboardContext} from 'hooks/usePinboard';
 import {Pinboard} from 'lib/Pinboard';
-import Styles from 'lib/Styles';
+import {AppStyles} from 'lib/Styles';
 
 interface DumbTagViewProps {
   pinboard: Pinboard;
@@ -36,10 +36,10 @@ const DumbTagView: React.FC<DumbTagViewProps> = () => {
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
-          style={Styles.scrollView}>
-          <View style={Styles.body}>
-            <View style={Styles.sectionContainer}>
-              <View style={Styles.listTagsButtonContainer}>
+          style={AppStyles.scrollView}>
+          <View style={AppStyles.body}>
+            <View style={AppStyles.sectionContainer}>
+              <View style={AppStyles.listTagsButtonContainer}>
                 <Button
                   onPress={() => {
                     getTags();
