@@ -1,8 +1,7 @@
 import React, {useContext} from 'react';
-import {Button, Link, SafeAreaView, ScrollView, Text, View} from 'react-native';
+import {Button, SafeAreaView, ScrollView, Text, View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {WebView} from 'react-native-webview';
 
 import {BookmarkListView} from 'components/BookmarkList';
 import {PinboardContext} from 'hooks/usePinboard';
@@ -11,7 +10,6 @@ import {AppStyles} from 'lib/Styles';
 type DiscoverStackParamList = {
   Discover: undefined;
   Popular: undefined;
-  SimpleWebView: {uri: string};
 };
 
 const DiscoverStack = createStackNavigator<DiscoverStackParamList>();
@@ -53,35 +51,21 @@ export const DiscoverStackScreen: React.FC = () => {
     <DiscoverStack.Navigator>
       <DiscoverStack.Screen name="Discover" component={DiscoverScreen} />
       <DiscoverStack.Screen name="Popular" component={PopularScreen} />
-      <DiscoverStack.Screen
-        name="SimpleWebView"
-        component={SimpleWebViewScreen}
-      />
     </DiscoverStack.Navigator>
   );
 };
 
 type PopularScreenProps = {
-  navigation: StackNavigationProp<DiscoverStackParamList, 'Popular'>;
+  // navigation: StackNavigationProp<DiscoverStackParamList, 'Popular'>;
 };
 
-const PopularScreen: React.FC<PopularScreenProps> = ({navigation}) => {
-  // const PopularScreen: React.FC<PopularScreenProps> = ({}) => {
+// const PopularScreen: React.FC<PopularScreenProps> = ({navigation}) => {
+const PopularScreen: React.FC<PopularScreenProps> = ({}) => {
   const {pinboard} = useContext(PinboardContext);
   return (
     <BookmarkListView
       title="Popular"
       bookmarksGetter={() => pinboard.feeds.unauthenticated.popular(400)}
-      navigation={navigation}
     />
   );
-};
-
-type SimpleWebViewScreenProps = {
-  navigation: StackNavigationProp<DiscoverStackParamList, 'SimpleWebView'>;
-};
-const SimpleWebViewScreen: React.FC<SimpleWebviewScreenProps> = ({
-  navigation,
-}) => {
-  return <WebView />;
 };

@@ -10,75 +10,60 @@ import {
   StatusBar,
   SafeAreaView,
 } from 'react-native';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {WebView} from 'react-native-webview';
 
 import {AppStyles, BookmarkStyles} from 'lib/Styles';
 
 interface BookmarkListItemProps {
   item: any; // FIXME: any
 }
+const BookmarkListItem: React.FC<BookmarkListItemProps> = ({item}) => {
+  // console.debug(`Rendering bookmark: ${JSON.stringify(item)}`);
 
-/* Wrapper function to return a BookmarkListItem component with built in navigation
- */
-const BookmarkListItemWithNav: (navigation: any) => BookmarkListItem = (
-  navigation,
-) => {
-  const BookmarkListItem: React.FC<BookmarkListItemProps> = ({item}) => {
-    // console.debug(`Rendering bookmark: ${JSON.stringify(item)}`);
+  // const itemDate = new Date(item.dt);
+  // console.log(
+  //   `Item date ${item.dt} parses as ${itemDate.toLocaleString('en-US', {
+  //     timeZone: 'CST',
+  //   })}`,
+  // );
 
-    // const itemDate = new Date(item.dt);
-    // console.log(
-    //   `Item date ${item.dt} parses as ${itemDate.toLocaleString('en-US', {
-    //     timeZone: 'CST',
-    //   })}`,
-    // );
-
-    const pbUsername = `u:${item.a}`;
-    const pbUserUri = `https://pinboard.in/${pbUsername}`;
-
-    return (
-      <View style={BookmarkStyles.listItemView}>
-        <Text style={BookmarkStyles.listItemTitle}>{item.d}</Text>
-        <Text
-          style={BookmarkStyles.listItemAuthorDate}
-          onPress={() =>
-            navigation.navigate('WebView', {params: {uri: pbUserUri}})
-          }>
-          from {pbUsername}
+  return (
+    <View style={BookmarkStyles.listItemView}>
+      <Text style={BookmarkStyles.listItemTitle}>{item.d}</Text>
+      <Text style={BookmarkStyles.listItemAuthorDate}>
+        {/* from {item.a} on {itemDate} */}
+        from u:{item.a}
+      </Text>
+      <Text style={BookmarkStyles.listItemLink}>{item.u}</Text>
+      {item.n === '' ? (
+        <></>
+      ) : (
+        <Text style={BookmarkStyles.listItemExtendedDesc}>{item.n}</Text>
+      )}
+      {item.t.length === 1 && item.t[0] === '' ? (
+        <></>
+      ) : (
+        <Text>
+          <Ionicons name="ios-pricetags" color="tomato" /> {item.t.join(', ')}
         </Text>
-        <Text style={BookmarkStyles.listItemLink}>{item.u}</Text>
-        {item.n === '' ? (
-          <></>
-        ) : (
-          <Text style={BookmarkStyles.listItemExtendedDesc}>{item.n}</Text>
-        )}
-        {item.t.length === 1 && item.t[0] === '' ? (
-          <></>
-        ) : (
-          <Text>
-            <Ionicons name="ios-pricetags" color="tomato" /> {item.t.join(', ')}
-          </Text>
-        )}
-      </View>
-    );
-  };
-
-  return BookmarkListItem;
+      )}
+    </View>
+  );
 };
 
 interface BookmarkListProps {
   bookmarks: Array<any>;
   loading: boolean;
   loadErr: string;
-  navigation: any;
+  // navigator: any;
 }
 
 const BookmarkList: React.FC<BookmarkListProps> = ({
   bookmarks,
   loading,
   loadErr,
-  navigation,
+  // navigator,
 }) => {
   if (loading) {
     return <ActivityIndicator />;
@@ -89,7 +74,6 @@ const BookmarkList: React.FC<BookmarkListProps> = ({
       </View>
     );
   } else {
-    const BookmarkListItem = BookmarkListItemWithNav(navigation);
     return (
       <FlatList
         data={bookmarks}
@@ -110,15 +94,11 @@ interface BookmarkListViewProps {
    *  () => pinboard.feeds.unauthenticated.popular(count=1)
    */
   bookmarksGetter: () => Promise<any>;
-
-  // The navigation object
-  navigation: any; // FIXME: type check
 }
 
 export const BookmarkListView: React.FC<BookmarkListViewProps> = ({
   title,
   bookmarksGetter,
-  navigation,
 }) => {
   const [loadErr, setLoadErr] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -160,12 +140,7 @@ export const BookmarkListView: React.FC<BookmarkListViewProps> = ({
           </View>
         </View>
       </SafeAreaView>
-      <BookmarkList
-        bookmarks={bookmarks}
-        loading={loading}
-        loadErr={loadErr}
-        navigation={navigation}
-      />
+      <BookmarkList bookmarks={bookmarks} loading={loading} loadErr={loadErr} />
     </>
   );
 };
