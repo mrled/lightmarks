@@ -5,10 +5,11 @@ import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
-  View,
-  Text,
+  Linking,
   StatusBar,
   SafeAreaView,
+  Text,
+  View,
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -28,14 +29,22 @@ const BookmarkListItem: React.FC<BookmarkListItemProps> = ({item}) => {
   //   })}`,
   // );
 
+  const pbUsername = `u:${item.a}`;
+  const pbUserUri = `https://m.pinboard.in/${pbUsername}`;
+
   return (
     <View style={BookmarkStyles.listItemView}>
       <Text style={BookmarkStyles.listItemTitle}>{item.d}</Text>
-      <Text style={BookmarkStyles.listItemAuthorDate}>
-        {/* from {item.a} on {itemDate} */}
+      <Text
+        style={BookmarkStyles.listItemAuthorDate}
+        onPress={() => Linking.openURL(pbUserUri)}>
         from u:{item.a}
       </Text>
-      <Text style={BookmarkStyles.listItemLink}>{item.u}</Text>
+      <Text
+        style={BookmarkStyles.listItemLink}
+        onPress={() => Linking.openURL(item.u)}>
+        {item.u}
+      </Text>
       {item.n === '' ? (
         <></>
       ) : (
