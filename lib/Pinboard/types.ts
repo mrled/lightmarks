@@ -236,11 +236,27 @@ export interface IPinboardFeeds {
   authenticated: IPinboardFeedsAuthenticated;
 }
 
+/* Bookmark objects retrieved from the JSON feed
+ */
 export type PinboardBookmark = {
+  // The URI
   u: string;
+
+  // The "description", meaning the title for the bookmark (typically the title of the page)
   d: string;
+
+  // The "notes", meaning the "extended description", meaning any notes the user has added
   n: string;
-  dt: string; // FIXME: can I require a string to be a valid date?
+
+  // The date
+  // At least for pinboard.feeds.unauthenticated.popular, this is the date the bookmark was RETRIEVED.
+  // Is this true for other API calls? Requires further investigation
+  dt: string;
+
+  // The user that added the bookmark
   a: string;
+
+  // Tags
+  // If there are no tags, this will be an array containing a single empty string (sigh)
   t: Array<string>;
 };
