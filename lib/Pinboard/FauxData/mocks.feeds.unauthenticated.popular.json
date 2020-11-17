@@ -1,0 +1,840 @@
+[
+  {
+    "u": "https://sneak.berlin/20201112/your-computer-isnt-yours/",
+    "d": "Jeffrey Paul: Your Computer Isn't Yours",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "jchook",
+    "t": [""]
+  },
+  {
+    "u": "https://www.theatlantic.com/health/archive/2020/11/third-surge-breaking-healthcare-workers/617091/",
+    "d": "The Third Surge Is Breaking Health-Care Workers - The Atlantic",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "tamberg",
+    "t": [""]
+  },
+  {
+    "u": "https://www.theatlantic.com/health/archive/2020/11/lock-yourself-down-now/617106/",
+    "d": "Lock Yourself Down, Now - The Atlantic",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "joostvanderborg",
+    "t": [""]
+  },
+  {
+    "u": "https://blog.jacopo.io/en/post/apple-ocsp/",
+    "d": "Does Apple really log every app you run? A technical look – Jacopo Jannone - blog",
+    "n": "\"No, macOS does not send Apple a hash of your apps each time you run them.\"",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "gavin",
+    "t": ["apple", "security"]
+  },
+  {
+    "u": "https://meta.wikimedia.org/wiki/So_you%27ve_made_a_mistake_and_it%27s_public...",
+    "d": "So you've made a mistake and it's public... - Meta",
+    "n": "by Asaf Bartov",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "brainwane",
+    "t": [""]
+  },
+  {
+    "u": "https://tutorial.math.lamar.edu/",
+    "d": "Paul's Online Math Notes",
+    "n": "https://news.ycombinator.com/item?id=11469494\nhttps://news.ycombinator.com/item?id=25081297",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "tdjones",
+    "t": ["education", "math", "reference", "tutorial", "calculus"]
+  },
+  {
+    "u": "https://xkcd.com/2385/",
+    "d": "xkcd: Final Exam",
+    "n": "Final Exam by via xkcd.com https://xkcd.com/2385/",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "david3smith",
+    "t": ["IFTTT", "NewsBlur"]
+  },
+  {
+    "u": "https://www.theatlantic.com/magazine/archive/2020/12/can-history-predict-future/616993/",
+    "d": "Can History Predict the Future? - The Atlantic",
+    "n": "A historian believes he has discovered iron laws that predict the rise and fall of societies. He has bad news. via Pocket",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "nomad93",
+    "t": ["Pocket"]
+  },
+  {
+    "u": "https://jamesallworth.medium.com/intels-disruption-is-now-complete-d4fa771f0f2c",
+    "d": "Untitled (https://jamesallworth.medium.com/intels-disruption-is-now-complete-d4fa771f0f2c)",
+    "n": "Twenty-five years ago, Andy Grove saw a chart by Clay Christensen showing how his company would die. He just didn't know it yet. Apple's announcement yesterday was the last nail on that coffin. Excellent piece from @jamesallworth:\n ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "kevm",
+    "t": [""]
+  },
+  {
+    "u": "https://www.washingtonpost.com/politics/secret-service-coronavirus-outbreak/2020/11/13/610eebcc-2539-11eb-8672-c281c7a2c96e_story.html",
+    "d": "More than 130 Secret Service officers are said to be infected with coronavirus or quarantining in wake of Trump’s campaign travel - The Washington Post",
+    "n": "More than 130 Secret Service officers who help protect the White House and the president when he travels have recently been ordered to isolate or quarantine because they tested positive for the coronavirus or had close contact with infected co-workers, according to three people familiar with agency",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "wfreeland",
+    "t": ["Archive", "instapaper", "tenpla"]
+  },
+  {
+    "u": "https://www.latimes.com/science/story/2020-11-12/covid-19-spread-at-thanksgiving-holiday-gatherings-could-be-like-maine-wedding",
+    "d": "Super-spreader wedding party shows COVID holiday dangers - Los Angeles Times",
+    "n": "A small wedding in Maine: 177 infected with COVID. 7 dead. ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "turkeylurkey",
+    "t": [""]
+  },
+  {
+    "u": "https://www.mcsweeneys.net/articles/the-complete-listing-so-far-atrocities-1-978",
+    "d": "Untitled (https://www.mcsweeneys.net/articles/the-complete-listing-so-far-atrocities-1-978)",
+    "n": "Very soon, you're going to see people start claiming that Trump \"wasn't really that bad.\" I recommend downloading this list and keeping it around. ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "larsonlaidlaw",
+    "t": [""]
+  },
+  {
+    "u": "https://www.wsj.com/articles/charles-koch-says-his-partisanship-was-a-mistake-11605286893",
+    "d": "Charles Koch Says His Partisanship Was a Mistake - WSJ",
+    "n": "Favorite tweet:\n\nOops says Billionaire Political Donor Charles Koch in new book. He now regrets corrupting American democracy, along with the planet. https://t.co/CY8KHalO2B via @WSJ\n\n— Jane Mayer (@JaneMayerNYer) November 13, 2020",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "chetan",
+    "t": ["IFTTT", "Twitter"]
+  },
+  {
+    "u": "https://simonwillison.net/2020/Nov/14/personal-data-warehouses/",
+    "d": "Personal Data Warehouses: Reclaiming Your Data",
+    "n": "I gave a talk yesterday about personal data warehouses for GitHub’s OCTO Speaker Series, focusing on my Datasette and Dogsheep projects.",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "laiuydfoiu1",
+    "t": [""]
+  },
+  {
+    "u": "https://m.xkcd.com/2385/",
+    "d": "xkcd: Final Exam",
+    "n": "Final Exam   ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "brokenrhino",
+    "t": [""]
+  },
+  {
+    "u": "https://www.wsj.com/articles/parler-backed-by-mercer-family-makes-play-for-conservatives-mad-at-facebook-twitter-11605382430",
+    "d": "Parler, Backed by Mercer Family, Makes Play for Conservatives Mad at Facebook, Twitter - WSJ",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "henryfarrell",
+    "t": ["PDKL-Ninety-five", "platforms"]
+  },
+  {
+    "u": "https://covid19risk.biosci.gatech.edu/",
+    "d": "covid19risk.biosci.gatech.edu",
+    "n": null,
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "griffey",
+    "t": [""]
+  },
+  {
+    "u": "https://www.theatlantic.com/science/archive/2020/11/pandemic-coronavirus-hospitalizations-new-record/617061/",
+    "d": "COVID-19 Hospitalizations Are Now at an All-Time High - The Atlantic",
+    "n": "“Today, states reported that 61,964 people were hospitalized with COVID-19, more than at any other time in the pandemic. For context, there are now 40 percent more people hospitalized with COVID-19 than there were two weeks ago.” ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "stealingsand",
+    "t": [""]
+  },
+  {
+    "u": "https://defector.com/virgin-hyperloop-has-invented-the-worlds-crappiest-high-speed-rail/",
+    "d": "Virgin Hyperloop Has Invented The World's Crappiest High-Speed Rail | Defector",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "jbfink",
+    "t": ["trains", "wtf"]
+  },
+  {
+    "u": "https://svgbox.net/",
+    "d": "Web图标的API | SVGBox.net",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "huangjingyun",
+    "t": ["素材"]
+  },
+  {
+    "u": "http://blog.spencermounta.in/2020/should-we-stop/index.html",
+    "d": "•",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "tedw",
+    "t": ["web", "future", "software"]
+  },
+  {
+    "u": "https://gasenate.com/",
+    "d": "(500) https://gasenate.com/",
+    "n": "Georgia, thank you. Together, we have changed the course of our state for the better. But our work is not done. \n\nJoin me in supporting @ReverendWarnock and @ossoff so we can keep up the fight and win the U.S. Senate➡️ \n\n#LetsGetItDoneAgain #gapol ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "divigation",
+    "t": [""]
+  },
+  {
+    "u": "https://ohshitgit.com/",
+    "d": "Oh shit, git (2016)",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "alarm",
+    "t": ["Feedly_-_Saved_For_Later", "Saved_in_2016"]
+  },
+  {
+    "u": "https://linuxcommandlibrary.com/basic/oneliners.html",
+    "d": "One-liners | Basic | Cheat sheet | Linux Command Library",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "der",
+    "t": ["linux"]
+  },
+  {
+    "u": "http://www.jezzamon.com/fourier/index.html",
+    "d": "Fourier Transforms",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "mongus",
+    "t": ["fourier"]
+  },
+  {
+    "u": "https://www.westernsydney.edu.au/newscentre/news_centre/more_news_stories/less_screen_time_and_more_sleep_critical_for_preventing_depression",
+    "d": "Less screen time and more sleep critical for preventing depression | Western Sydney University",
+    "n": "In particular, maintaining optimal sleep and lessening screen time (which is often an issue in youth), while having adequate physical activity and good dietary quality, may reduce the symptoms of depression,” said Professor Sarris.",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "jberkel",
+    "t": [""]
+  },
+  {
+    "u": "https://arstechnica.com/gadgets/2020/11/macos-11-0-big-sur-the-ars-technica-review/",
+    "d": "macOS 11.0 Big Sur: The Ars Technica review | Ars Technica",
+    "n": "macOS 11.0 Big Sur: The Ars Technica review | Ars Technica by via Ars Technica https://ift.tt/36szxDz",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "acdha",
+    "t": ["IFTTT", "NewsBlur"]
+  },
+  {
+    "u": "https://www.washingtonpost.com/dc-md-va/2020/11/14/million-maga-march-dc-protests/",
+    "d": "(500) https://www.washingtonpost.com/dc-md-va/2020/11/14/million-maga-march-dc-protests/?utm_source=twitter&utm_campaign=wp_main&utm_medium=social",
+    "n": "D.C. braces for rallies by Trump supporters who falsely claim he won election ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "tbony",
+    "t": [""]
+  },
+  {
+    "u": "https://amitness.com/regex/",
+    "d": "A Visual Guide to Regular Expression",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "maryan",
+    "t": ["regex"]
+  },
+  {
+    "u": "https://www.slowboring.com/p/welcome-to-slow-boring",
+    "d": "Welcome to Slow Boring - Slow Boring (Matthew Iglesias)",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "richgor",
+    "t": ["voxmedia", "blogging", "newsletters", "bizmodel", "email"]
+  },
+  {
+    "u": "https://wizardzines.com/zines/css/",
+    "d": "Hell Yes! CSS!",
+    "n": "delighted to announce that my new zine \"Hell Yes! CSS!\" is out today! \n\nYou can get it here for $12:  ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "brittanmcg",
+    "t": [""]
+  },
+  {
+    "u": "https://www.washingtonpost.com/politics/secret-service-coronavirus-outbreak/2020/11/13/610eebcc-2539-11eb-8672-c281c7a2c96e_story.html?tid=ss_tw",
+    "d": "(500) https://www.washingtonpost.com/politics/secret-service-coronavirus-outbreak/2020/11/13/610eebcc-2539-11eb-8672-c281c7a2c96e_story.html?tid=ss_tw",
+    "n": "More than 130 Secret Service officers are said to be infected with coronavirus or quarantining in wake of Trump’s campaign travel ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "bjtitus",
+    "t": [""]
+  },
+  {
+    "u": "https://www.nytimes.com/2020/11/13/world/middleeast/al-masri-abdullah-qaeda-dead.html",
+    "d": "Al Qaeda's Abu Muhammad al-Masri Secretly Killed in Iran - The New York Times",
+    "n": "via Israel https://nyti.ms/3dUFaxq",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "scopee",
+    "t": []
+  },
+  {
+    "u": "https://drumbit.app/",
+    "d": "drumbit | Online drum machine",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "regrant79",
+    "t": [""]
+  },
+  {
+    "u": "https://betterexplained.com/",
+    "d": "BetterExplained - Explanations for everyone",
+    "n": "https://news.ycombinator.com/item?id=10777638\nhttps://news.ycombinator.com/item?id=25100241",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "tdjones",
+    "t": ["math", "programming", "algorithms", "interesting"]
+  },
+  {
+    "u": "https://pgstats.dev/",
+    "d": "Postgres Observability",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "fileformat",
+    "t": ["postgresql"]
+  },
+  {
+    "u": "https://www.ksl.com/article/50047970/conspiracy-theorists-try-to-get-into-utah-valley-hospital-icu",
+    "d": "(500) https://www.ksl.com/article/50047970/conspiracy-theorists-try-to-get-into-utah-valley-hospital-icu",
+    "n": "I can’t believe I’m telling you this but Utah county anti-maskers tried to break into a hospital ICU wing to prove it wasn’t as full as the media and health department claimed.\n\n",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "nowthis",
+    "t": [""]
+  },
+  {
+    "u": "https://www.propublica.org/article/the-enraging-deja-vu-of-a-third-coronavirus-wave",
+    "d": "The Enraging Deja Vu of a Third Coronavirus Wave",
+    "n": null,
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "thebestsophist",
+    "t": ["Reading.am"]
+  },
+  {
+    "u": "https://www.washingtonpost.com/politics/trump-white-house-purge/2020/11/13/2af12c94-25ca-11eb-8672-c281c7a2c96e_story.html",
+    "d": "In Trump’s final days, a 30-year-old aide purges officials seen as insufficiently loyal - The Washington Post",
+    "n": "Over the past week, President Trump has axed his defense secretary and other top Pentagon aides, his second-in-command at the U.S. Agency for International Development, two top Homeland Security officials, a senior climate scientist and the leader of the agency that safeguards nuclear weapons.",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "wfreeland",
+    "t": ["Archive", "instapaper", "tenpla"]
+  },
+  {
+    "u": "https://frantic.im/back-to-rails",
+    "d": "Moving my serverless project to Ruby on Rails / frantic.im",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "taufik",
+    "t": [""]
+  },
+  {
+    "u": "https://github.com/orf/gping",
+    "d": "orf/gping · GitHub",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "dahlin",
+    "t": ["Other_Bookmarks"]
+  },
+  {
+    "u": "https://github.com/solemnwarning/rehex",
+    "d": "solemnwarning/rehex: Reverse Engineers' Hex Editor",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "fileformat",
+    "t": ["hexeditor"]
+  },
+  {
+    "u": "https://funkwhale.audio/",
+    "d": "Funkwhale",
+    "n": "Self-hosted streaming server with slick web UI.",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "mjlassila",
+    "t": ["music", "streaming", "server", "diy", "hosting", "spotify"]
+  },
+  {
+    "u": "https://slate.com/news-and-politics/2020/11/alito-federalist-society-speech-insane.html",
+    "d": "Justice Alito delivers ultra-partisan Federalist Society speech attacking progressives and COVID restrictions.",
+    "n": "As @danepps pointed out, Alito inadvertently made a very strong argument for court reform this evening.  @Slate",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "fkbarrett",
+    "t": [""]
+  },
+  {
+    "u": "https://ottverse.com/create-vintage-videos-using-ffmpeg/",
+    "d": "Create vintage videos using ffmpeg",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "jazwiecki",
+    "t": ["ffmpeg"]
+  },
+  {
+    "u": "https://jordan-wright.com/blog/post/2020-11-12-hunting-for-malicious-packages-on-pypi/",
+    "d": "Hunting for Malicious Packages on PyPI",
+    "n": "RT @jw_sec: I installed every package on PyPI to look for malicious activity. I've published the results here: \n\nI'd like to talk a little about how this all works and why it's important: 🧵",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "aslakr",
+    "t": [""]
+  },
+  {
+    "u": "https://www.aldailynews.com/in-the-weeds-w-tommy-tuberville-alabamas-next-senator/",
+    "d": "(500) https://www.aldailynews.com/in-the-weeds-w-tommy-tuberville-alabamas-next-senator/",
+    "n": "If you thought Tommy Tuberville was going to stop saying dumb things after being elected, I have bad news. His interview with Alabama Daily News is filled with utter nonsense, including this childlike rewrite of the 2000 election. \n ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "akalin",
+    "t": [""]
+  },
+  {
+    "u": "https://landshark.io/2020/11/13/saas-needs-a-single-point-of-purchase.html",
+    "d": "SaaS Needs a Single Point of Purchase",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "toddje",
+    "t": ["business", "ideas"]
+  },
+  {
+    "u": "https://daniel.haxx.se/blog/2020/11/09/this-is-how-i-git/",
+    "d": "This is how I git | daniel.haxx.se",
+    "n": "This is how I git  - a peek behind the curtains of my every day git use when doing curl development. ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "blowery",
+    "t": [""]
+  },
+  {
+    "u": "https://www.huffpost.com/entry/usps-missing-ballots-election_n_5fab206dc5b635e9de9ce657?zgq",
+    "d": "\"Everything we hear is that the individual postal workers have been working hard and working overtime, doing everything they could to follow their instructions and do everything they could to deliver ballots on time,”",
+    "n": "Hope DeJoy gets to spend some time in front of investigations.",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "jgordon",
+    "t": ["s"]
+  },
+  {
+    "u": "https://www.cdc.gov/mmwr/volumes/69/wr/mm6945a5.htm?s_cid=mm6945a5_w",
+    "d": "Multiple COVID-19 Outbreaks Linked to a Wedding Reception in Rural Maine — August 7–September 14, 2020  | MMWR",
+    "n": "RT @DrTomFrieden: 177 Covid cases and 7 deaths linked to a wedding reception in rural Maine which caused extensive spread in the community, at a long-term care facility, and at a correctional facility. Our actions affect others. ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "srslyjosh",
+    "t": [""]
+  },
+  {
+    "u": "https://www.vox.com/21562116/anne-applebaum-twilight-of-democracy-gop-trump-election-fraud-2020-biden-the-ezra-klein-show",
+    "d": "The crisis isn’t Trump. It’s the Republican Party. - Vox",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "souldoubt",
+    "t": ["resistance"]
+  },
+  {
+    "u": "https://www.washingtonpost.com/politics/trump-ignores-duties/2020/11/12/02bfbc36-2507-11eb-a688-5298ad5d580a_story.html",
+    "d": "As Trump stews over election, he mostly ignores the public duties of the presidency - The Washington Post",
+    "n": null,
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "mmayers",
+    "t": [""]
+  },
+  {
+    "u": "https://nymag.com/intelligencer/2020/11/david-shor-analysis-2020-election-autopsy-democrats-polls.html",
+    "d": "David Shor’s Postmortem of the 2020 Election",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "vaguelysteamy",
+    "t": [""]
+  },
+  {
+    "u": "https://github.com/stephank/lazyssh",
+    "d": "GitHub - stephank/lazyssh: A jump-host SSH server that starts machines on-demand",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "jhealy",
+    "t": ["SSH", "networking"]
+  },
+  {
+    "u": "https://www.cnn.com/2020/11/12/politics/trump-pardons-loom-defeat/index.html",
+    "d": "As Trump wrestles with defeat, pardons loom for allies -- and himself - CNNPolitics",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "rwhe",
+    "t": [""]
+  },
+  {
+    "u": "https://www.11alive.com/article/news/politics/elections/2-georgians-accused-of-being-dead-and-voting-are-alive/85-88dff3c1-8e78-4ac2-ae9c-96838e5b02a8",
+    "d": "Mrs. James Blalock, Linda Kesler voted legally, aren't dead | 11alive.com",
+    "n": "President Donald Trump’s campaign tweeted accusations claiming that James Blalock of Covington, who is deceased, voted in the election. \r\n “The only problem? He passed away 14 years ago. Sadly, Mr. Blalock is a victim of voter fraud,” the tweet reads.\r\nThe accusations were amplified on national television.\r\n“Mr. Blalock was a mailman for 33 years until he passed away in 2006. Fourteen years later, according to state records, he was still mailing things. James Blalock cast a ballot in last week’s election,” Tucker Carlson said in a clip and story labeled on Fox News' website as an opinion piece. \r\nHowever, 11Alive was able to find out that James Blalock did not vote in last week’s election. Mrs. James Blalock did vote.",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "sandykoe",
+    "t": ["funny", "election2020", "politics"]
+  },
+  {
+    "u": "https://www.independent.co.uk/life-style/gadgets-and-tech/apple-m1-interview-macbook-release-specs-ports-reviews-b1721844.html",
+    "d": "How Apple made its new M1 chip, the latest MacBooks – and used its past to decide its future • The Independent",
+    "n": "Andrew Griffin: <blockquote><p>it’s still the case that fans repeatedly speculated that Apple was going to do something more profound to the Mac: turn it into something like the iPad, for instance, or use the transition to radically alter how its laptops work. Apple has repeatedly insisted that it thinks the laptop form factor is valuable and distinct from touchscreens like the iPad, but people haven’t always believed them.\r\n\r\nThis has led to ideas including the theory that Apple had redesigned its new macOS to make way for touch screen Macs. The Big Sur aesthetic borrows from the iPhone and iPad – buttons are bigger, with more space, which numerous commentators pointed out would make them perfect for manipulating with your fingers – but not because of some secret plan to change the way the Mac works, [Apple software chief Craig] Federighi says.\r\n\r\n“I gotta tell you when we released Big Sur, and these articles started coming out saying, ‘Oh my God, look, Apple is preparing for touch’. I was thinking like, ‘Whoa, why?’\r\n\r\n“We had designed and evolved the look for macOS in a way that felt most comfortable and natural to us, not remotely considering something about touch.\r\n\r\n“We're living with iPads, we're living with phones, our own sense of the aesthetic – the sort of openness and airiness of the interface – the fact that these devices have large retina displays now. All of these things led us to the design for the Mac, that felt to us most comfortable, actually in no way related to touch.\r\n\r\n“I've never felt more comfortable moving across our family of devices as a user, which I do hundreds of times a day than I do now, moving between iOS 14, iPadOS 14, and macOS Big Sur. They all just feel of a family – there's just less cognitive load to the switching process.\r\n\r\n“It's just they all feel like the natural instantiation of the experience for that device. And that's what you're seeing not some signaling of a future change in input methods.”</p></blockquote>\r\n\r\nThat seems pretty specific that Apple's not going to make the Mac touchable. But what does that mean for iOS apps running on it? And you know too that when they decide that they <em>are</em> going to make it touch-based - well, the time was just right. A couple of years off at least though.",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "charlesarthur",
+    "t": ["apple", "touch", "mac"]
+  },
+  {
+    "u": "https://peterhdiamandis.medium.com/metatrends-shaping-the-next-decade-d09718144961",
+    "d": "Metatrends shaping the next decade | by Peter Diamandis | Nov, 2020 | Medium",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "bmacauley",
+    "t": ["trends", "technology"]
+  },
+  {
+    "u": "https://www.theatlantic.com/ideas/archive/2020/11/substack-and-medias-groupthink-problem/617102/",
+    "d": "Why Matthew Yglesias Left Vox - The Atlantic",
+    "n": "Yglesias felt that he could no longer speak his mind without riling his colleagues. His managers wanted him to maintain a “restrained, institutional, statesmanlike voice,” he told me in a phone interview, in part because he was a co-founder of Vox. But as a relative moderate at the publication, he felt at times that it was important to challenge what he called the “dominant sensibility” in the “young-college-graduate bubble” that now sets the tone at many digital-media organizations.",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "sandykoe",
+    "t": ["politics", "media"]
+  },
+  {
+    "u": "https://michaelbach.de/ot/",
+    "d": "134 Visual Phenomena & Optical Illusions",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "calandra",
+    "t": ["Synssansen", "Sjov"]
+  },
+  {
+    "u": "https://www.cisa.gov/news/2020/11/12/joint-statement-elections-infrastructure-government-coordinating-council-election",
+    "d": "Joint Statement from Elections Infrastructure Government Coordinating Council & the Election Infrastructure Sector Coordinating Executive Committees | CISA",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "hoboyobo",
+    "t": [""]
+  },
+  {
+    "u": "https://www.politico.com/news/2020/11/13/trump-legal-team-cases-dropped-436492",
+    "d": "Trump's legal results",
+    "n": "Making a complete mockery of the justice process, just like everything. He's 1 for 19 in cases so far.",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "nelson",
+    "t": [
+      "trump",
+      "politics",
+      "election",
+      "legal",
+      "court",
+      "judicial",
+      "corruption",
+      "giuliani"
+    ]
+  },
+  {
+    "u": "https://www.nbcnews.com/news/us-news/federal-judge-rules-acting-dhs-head-chad-wolf-unlawfully-appointed-n1247848",
+    "d": "Federal judge rules acting DHS head Chad Wolf unlawfully appointed, invalidates DACA suspension",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "peony43",
+    "t": [
+      "DHS",
+      "chad-wolf",
+      "trump-admin-deception",
+      "trump-illegal-acts",
+      "trump-lawsuits",
+      "trump-rule-of-law",
+      "rule-of-law",
+      "trump-appointees-acting",
+      "DACA",
+      "trump-immigration"
+    ]
+  },
+  {
+    "u": "https://aws.amazon.com/builders-library/fairness-in-multi-tenant-systems/",
+    "d": "Fairness in multi-tenant systems",
+    "n": "📣Finally published!📣My magnum opus about building multi-tenant services at Amazon:  .\n\nThis started out as a simple article about API rate-limiting, but the really interesting bits ended up being about how we think about multi-tenancy. ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "nicksieger",
+    "t": [""]
+  },
+  {
+    "u": "https://pabloinsente.github.io/intro-linear-algebra",
+    "d": "Introduction to Linear Algebra for Applied Machine Learning with Python",
+    "n": "It's done! I completed my \"Intro to Linear Algebra for Applied Machine Learning with Python\". Hard to believe I actually did it: ~25,000 words, 22 images, and a ton of code. It will remain posted at @madewithml \n\nNew contents 👇🏾: \n\n\nNow to the next thing... ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "kucingaudio",
+    "t": [""]
+  },
+  {
+    "u": "https://alexanderklopping.medium.com/an-updated-daily-front-page-of-the-new-york-times-as-artwork-on-your-wall-3b28c3261478",
+    "d": "Untitled (https://alexanderklopping.medium.com/an-updated-daily-front-page-of-the-new-york-times-as-artwork-on-your-wall-3b28c3261478)",
+    "n": "An updated daily front page of The New York Times as artwork on your wall ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "jpkoudstaal",
+    "t": [""]
+  },
+  {
+    "u": "https://www.startribune.com/memo-warned-that-minnesota-senators-staff-had-covid-19/573072342/",
+    "d": "Minnesota GOP sent virus alert only to its side of the aisle - StarTribune.com",
+    "n": "Favorite tweet:\n\nThis is sociopathic https://t.co/HBkRq6LXhm\n\n— Sam Stein (@samstein) November 14, 2020",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "ryanvlower",
+    "t": ["IFTTT", "Twitter"]
+  },
+  {
+    "u": "https://www.theatlantic.com/ideas/archive/2020/11/barack-obama-i-still-believe-america/617073/",
+    "d": "Barack Obama: I Still Believe in America - The Atlantic",
+    "n": null,
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "amy",
+    "t": [""]
+  },
+  {
+    "u": "https://www.washingtonpost.com/technology/2020/11/12/test-monitoring-student-revolt/",
+    "d": "Students rebel over remote test monitoring during the pandemic angers - The Washington Post",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "dsalo",
+    "t": ["covid", "highered", "surveillance"]
+  },
+  {
+    "u": "https://www.ktsm.com/local/el-paso-news/inmates-help-move-bodies-as-they-pile-up-at-el-paso-medical-examiners-office/",
+    "d": "(500) https://www.ktsm.com/local/el-paso-news/inmates-help-move-bodies-as-they-pile-up-at-el-paso-medical-examiners-office/",
+    "n": "People caged in El Paso, TX have been enlisted to move hundreds of dead bodies at the morgue. Unclear if they’re getting paid anything. Under other work release programs, people often have to pay doe the privilege to work. This is modern day slavery. ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "spikeheap",
+    "t": [""]
+  },
+  {
+    "u": "https://daringfireball.net/linked/2020/11/13/wedding-party-covid-spread",
+    "d": "Daring Fireball: Super-Spreader Wedding Party Shows COVID Holiday Dangers",
+    "n": "\"If you’re planning a “small” family get-together for Thanksgiving, it’s every bit as irresponsible as planning a “short” drunk drive.\"",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "ddribin",
+    "t": ["covid-19"]
+  },
+  {
+    "u": "https://www.nytimes.com/2020/11/12/us/politics/trump-future.html",
+    "d": "Trump Floats Improbable Survival Scenarios as He Ponders His Future - The New York Times",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "briandrum",
+    "t": [""]
+  },
+  {
+    "u": "https://blog.metaobject.com/2020/11/m1-memory-and-performance.html",
+    "d": "metablog: M1 Memory and Performance",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "sysprv",
+    "t": [
+      "apple",
+      "cupertino",
+      "silicon",
+      "m1",
+      "memory",
+      "performance",
+      "garbage",
+      "collection",
+      "tracing",
+      "reference",
+      "counting",
+      "blog"
+    ]
+  },
+  {
+    "u": "https://www.washingtonpost.com/national-security/william-barr-election-memo/2020/11/13/6ed06d20-25e4-11eb-a688-5298ad5d580a_story.html?tid=ss_tw",
+    "d": "Prosecutors to Barr: No evidence of substantial election irregularities - The Washington Post",
+    "n": "The Justice Department lawyers objected to the attorney generalâs recent move giving prosecutors more leeway to investigate fraud before election results are certified.",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "bryanheinz",
+    "t": ["politics"]
+  },
+  {
+    "u": "https://www.washingtonpost.com/politics/2020/11/13/daily-202-charles-koch-congratulates-biden-says-he-wants-work-together-many-issues-possible/",
+    "d": "The Daily 202: Charles Koch congratulates Biden and says he wants to work together on ‘as many issues as possible’ - The Washington Post",
+    "n": "Billionaire industrialist Charles Koch expressed hope that President-elect Joe Biden and Vice President-elect Kamala Harris will roll back President Trump’s tariffs, restore protections for “Dreamers” and enact policing reform that addresses systemic racism.",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "wfreeland",
+    "t": ["Archive", "instapaper", "tenpla"]
+  },
+  {
+    "u": "https://www.washingtonpost.com/business/2020/11/12/republican-party-trump-authoritarian-data/",
+    "d": "GOP embrace of Trump refusal to concede is part of authoritarian trend, data shows - The Washington Post",
+    "n": "Note to self: clean up and create better tags. ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "rvenkat",
+    "t": [
+      "us_politics",
+      "asymmetric_polarization",
+      "authoritarianism",
+      "crises_of_democracy"
+    ]
+  },
+  {
+    "u": "https://www.naut.ca/blog/2020/11/13/forbidden-commands-to-liberate-macos/",
+    "d": "Forbidden Commands to Speed Up macOS",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "gbilder",
+    "t": ["osx"]
+  },
+  {
+    "u": "https://medium.com/p/c2d3fd567af?source=linkShare-12e0d8bb41fb-1605407353&_branch_match_id=link-856347381994331361",
+    "d": "Untitled (https://medium.com/p/c2d3fd567af?source=linkShare-12e0d8bb41fb-1605407353&_branch_match_id=link-856347381994331361)",
+    "n": "My (biased) guide to tech jobs in the federal government ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "corychainsman",
+    "t": [""]
+  },
+  {
+    "u": "https://play-with-go.dev/guides.html",
+    "d": "play-with-go.dev",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "audiodude",
+    "t": ["Programming", "language"]
+  },
+  {
+    "u": "https://www.washingtonpost.com/health/2020/11/12/covid-social-gatherings/",
+    "d": "(500) https://www.washingtonpost.com/health/2020/11/12/covid-social-gatherings/",
+    "n": "I love it when I'm inside for nine fucking months because people can't stop having *checks notes* game nights.  ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "barronwebster",
+    "t": [""]
+  },
+  {
+    "u": "https://www.politico.com/news/magazine/2020/11/12/2020-election-analysis-democrats-future-david-shor-interview-436334",
+    "d": "How 2020 Killed Off Democrats’ Demographic Hopes - POLITICO",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "maciej",
+    "t": ["politics", "shor"]
+  },
+  {
+    "u": "https://www.meetleet.com/blog/what-a-great-technical-resume-can-do-for-you",
+    "d": "What a great technical resume can do for you",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "tknvbe",
+    "t": ["resume", "hr", "jobs", "tips"]
+  },
+  {
+    "u": "https://www.nytimes.com/2020/11/11/climate/fti-consulting.html",
+    "d": "How One Firm Drove Influence Campaigns Nationwide for Big Oil",
+    "n": "Favorite tweet:\n\nThe story of \"Susan\" the fake facebook user, who likes ice cream, the movie Annie, her local farmers’ market and promoting fossil fuels…",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "lou31",
+    "t": [""]
+  },
+  {
+    "u": "https://soatok.blog/2020/11/14/going-bark-a-furrys-guide-to-end-to-end-encryption/",
+    "d": "Going Bark: A Furry’s Guide to End-to-End Encryption – Dhole Moments",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "maryan",
+    "t": ["security"]
+  },
+  {
+    "u": "https://www.cisa.gov/rumorcontrol",
+    "d": "Untitled (https://www.cisa.gov/rumorcontrol)",
+    "n": "New #RUMOR: An election-related email says it was sent from a certain organization, so that organization must have sent it.\n\nREALITY: Cyber actors can forge emails, also known as spoofing. Use this resource for more disinformation tips: \n #Protect2020 ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "andriak",
+    "t": ["RUMOR", "Protect2020"]
+  },
+  {
+    "u": "https://daringfireball.net/linked/2020/11/14/macos-trustd-bug",
+    "d": "Daring Fireball: MacOS Big Sur Launch Overwhelmed Apple's CDN, Which in Turn Triggered a Bug in 'trustd' That Ground App Launching to a Halt",
+    "n": "MacOS Big Sur Launch Overwhelmed Apple’s CDN, Which in Turn Triggered a Bug in ‘trustd’ That Ground App Launching to a Halt\n",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "richardy",
+    "t": [""]
+  },
+  {
+    "u": "https://ballotrequest.sos.ga.gov/",
+    "d": "Georgia Absentee Ballot Request",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "fsteele",
+    "t": ["voting"]
+  },
+  {
+    "u": "https://sneak.berlin/20201112/your-computer-isnt-yours",
+    "d": "Your Computer Isn't Yours 12 November 2020 ( 1122 words, approximately 6 minutes reading time. )",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "padrury",
+    "t": ["Unread"]
+  },
+  {
+    "u": "https://www.nytimes.com/2020/11/11/technology/parler-rumble-newsmax.html",
+    "d": "How Some Conservatives Have Switched to Parler, Rumble and Newsmax - The New York Times",
+    "n": "Since the election, millions have migrated to alternative social media and media sites like Parler, Rumble and Newsmax. Corey Adam, a political comedian from Minneapolis, joined a mass social media switcheroo last week.",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "odelano",
+    "t": ["Archive", "ifttt", "nyt", "op-ed", "opinion"]
+  },
+  {
+    "u": "https://www.nytimes.com/2020/11/13/us/tommy-tuberville-fact-check.html",
+    "d": "Untitled (https://www.nytimes.com/2020/11/13/us/tommy-tuberville-fact-check.html)",
+    "n": "RT @GregJaffe: One helluva lede:\nIn his first interview as a senator-elect, Tommy Tuberville misidentified the 3 branches of government, claimed erroneously that WW2 was a battle against socialism and wrongly asserted that Al Gore was president-elect for 30 days.\n\n",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "baysontheroad",
+    "t": [""]
+  },
+  {
+    "u": "https://www.theatlantic.com/ideas/archive/2020/11/gop-has-two-paths-forward/617105/",
+    "d": "“deft gerrymanders have combined with geographic concentration to create near-permanent Republican majorities in Pennsylvania”",
+    "n": "Dems win popular vote regularly. We need to win rural votes.",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "jgordon",
+    "t": [""]
+  },
+  {
+    "u": "https://zwbetz.com/attention-is-my-most-valuable-asset-for-productivity-as-a-software-developer/",
+    "d": "Attention Is My Most Valuable Asset for Productivity as a Software Developer | zwbetz",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "sprice",
+    "t": ["deepwork"]
+  },
+  {
+    "u": "https://www.washingtonpost.com/politics/obama-book-biden-trump-palin/2020/11/13/36c4828a-25b8-11eb-8599-406466ad1b8e_story.html",
+    "d": "(500) https://www.washingtonpost.com/politics/obama-book-biden-trump-palin/2020/11/13/36c4828a-25b8-11eb-8599-406466ad1b8e_story.html",
+    "n": "RT @jonmladd: Today in horrible but unsurprising quotes: in Obama's memoir, he recalls he and Biden trying to explain the policy merits of a bill to Mitch McConnell, who responds \"You must be under the mistaken impression that I care” ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "sjenkins",
+    "t": [""]
+  },
+  {
+    "u": "https://www.vox.com/2020/11/6/21550979/senate-malapportionment-20-million-democrats-republicans-supreme-court",
+    "d": "2020 election: America’s anti-democratic Senate, by the numbers - Vox",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "ajdavis",
+    "t": ["politics"]
+  },
+  {
+    "u": "https://www.kansascity.com/opinion/readers-opinion/guest-commentary/article247144404.html",
+    "d": "(500) https://www.kansascity.com/opinion/readers-opinion/guest-commentary/article247144404.html",
+    "n": "Thank you, Kansas! ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "andrewfarah",
+    "t": [""]
+  },
+  {
+    "u": "https://github.com/logseq/logseq",
+    "d": "GitHub - logseq/logseq: A local-only knowledge base which syncs using Github",
+    "n": "bjtitus starred logseq/logseq",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "bjtitus",
+    "t": ["from:ifttt", "github"]
+  },
+  {
+    "u": "https://www.codastory.com/authoritarian-tech/spyware-in-libraries/",
+    "d": "Scientific publishers propose installing spyware in university libraries to protect copyrights - Coda Story",
+    "n": "here the open access article on that topic with more details\" ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "rafguns",
+    "t": [""]
+  },
+  {
+    "u": "https://chris-said.io/2016/05/11/optimizing-things-in-the-ussr/",
+    "d": "Optimizing things in the USSR · Chris Said",
+    "n": "",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "martz",
+    "t": ["süsteemiteooria"]
+  },
+  {
+    "u": "https://xkcd.com/2384/",
+    "d": "xkcd: Set in the Present",
+    "n": "Set in the Present   ",
+    "dt": "2020-11-16T05:47:01Z",
+    "a": "richardy",
+    "t": [""]
+  }
+]

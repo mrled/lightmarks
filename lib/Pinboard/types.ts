@@ -206,7 +206,7 @@ export interface IPinboardApiNotes {
  */
 export interface IPinboardFeedsUnauthenticated {
   readonly feeds: IPinboardFeeds;
-  recent(count: number): Promise<any>;
+  recent(count: number): Promise<PinboardBookmark>;
   popular(count: number): Promise<any>;
   byUser(user: string, count: number, tags?: OneToThreeStrings): Promise<any>;
   byTags(tags: OneToThreeStrings, count: number): Promise<any>;
@@ -235,3 +235,12 @@ export interface IPinboardFeeds {
   unauthenticated: IPinboardFeedsUnauthenticated;
   authenticated: IPinboardFeedsAuthenticated;
 }
+
+export type PinboardBookmark = {
+  u: string;
+  d: string;
+  n: string;
+  dt: string; // FIXME: can I require a string to be a valid date?
+  a: string;
+  t: Array<string>;
+};

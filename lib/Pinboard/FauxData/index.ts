@@ -1,4 +1,5 @@
 const MockTags = require('./mocks.api.tags.get.json');
+const FeedsUnauthenticatedPopular = require('./mocks.feeds.unauthenticated.popular');
 
 export const FauxApiData: {[key: string]: object} = {
   'posts/update': {},
@@ -17,7 +18,9 @@ export const FauxApiData: {[key: string]: object} = {
   'notes/list': {},
 };
 
-export const FauxFeedsData: {[key: string]: object} = {
+export const FauxFeedsAuthenticatedData: {[key: string]: object} = {};
+
+export const FauxFeedsUnauthenticatedData: {[key: string]: object} = {
   recent: {},
-  popular: {},
+  popular: FeedsUnauthenticatedPopular,
 };

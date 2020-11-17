@@ -1,10 +1,14 @@
-import {FauxFeedsData} from './FauxData';
+import {
+  FauxFeedsAuthenticatedData,
+  FauxFeedsUnauthenticatedData,
+} from './FauxData';
 import {fetchOrReturnFaux, optionalQueryStringWithQmark} from './get';
 import {
   IPinboardFeeds,
   IPinboardFeedsAuthenticated,
   IPinboardFeedsUnauthenticated,
   OneToThreeStrings,
+  PinboardBookmark,
   PinboardFeedsRssSecretCredential,
   PinboardMode,
 } from './types';
@@ -92,7 +96,12 @@ export class PinboardFeeds implements IPinboardFeeds {
   ) => {
     const queryString = optionalQueryStringWithQmark(query);
     const uri = `${this.feedsRoot}/json/${endpoint}${queryString}`;
-    return fetchOrReturnFaux(this.mode, FauxFeedsData[endpoint], uri, {});
+    return fetchOrReturnFaux(
+      this.mode,
+      FauxFeedsUnauthenticatedData[endpoint],
+      uri,
+      {},
+    );
   };
 
   /* Get JSON results from the feeds host with authentication
@@ -108,7 +117,12 @@ export class PinboardFeeds implements IPinboardFeeds {
     }
     const queryString = optionalQueryStringWithQmark(query);
     const uri = `${this.feedsRoot}/json/secret:${this.auth.rssSecret}/u:${this.auth.username}/${endpoint}${queryString}`;
-    return fetchOrReturnFaux(this.mode, FauxFeedsData[endpoint], uri, {});
+    return fetchOrReturnFaux(
+      this.mode,
+      FauxFeedsAuthenticatedData[endpoint],
+      uri,
+      {},
+    );
   };
 
   public unauthenticated = new PinboardFeedsUnauthenticated(this);
