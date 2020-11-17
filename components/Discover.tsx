@@ -5,7 +5,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 
 import {BookmarkListView} from 'components/BookmarkList';
 import {PinboardContext} from 'hooks/usePinboard';
-import {AppStyles} from 'lib/Styles';
+import {AppStyles} from 'style/Styles';
 
 type DiscoverStackParamList = {
   Discover: undefined;

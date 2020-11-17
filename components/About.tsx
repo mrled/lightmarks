@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {SafeAreaView, StatusBar, Text, View} from 'react-native';
 
 import {PinboardContext} from 'hooks/usePinboard';
-import {AppStyles} from 'lib/Styles';
+import {AppStyles} from 'style/Styles';
 import {PinboardMode} from 'lib/Pinboard';
 
 export default () => {

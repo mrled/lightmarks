@@ -1,5 +1,7 @@
 import {StyleSheet} from 'react-native';
 
+import {NamedColors} from 'style/Colors';
+
 /* Application-wide, general styles
  */
 export const AppStyles = StyleSheet.create({
@@ -30,13 +32,13 @@ export const AppStyles = StyleSheet.create({
     marginTop: 8,
     fontSize: 18,
     fontWeight: '400',
-    color: '#444',
+    color: NamedColors.DarkGray,
   },
   highlight: {
     fontWeight: '700',
   },
   footer: {
-    color: '#444',
+    color: NamedColors.DarkGray,
     fontSize: 12,
     fontWeight: '600',
     padding: 4,

@@ -4,7 +4,7 @@ import {Button, SafeAreaView, ScrollView, View} from 'react-native';
 import DumbTagList from 'components/DumbTagList';
 import {PinboardContext} from 'hooks/usePinboard';
 import {Pinboard} from 'lib/Pinboard';
-import {AppStyles} from 'lib/Styles';
+import {AppStyles} from 'style/Styles';
 
 interface DumbTagViewProps {
   pinboard: Pinboard;

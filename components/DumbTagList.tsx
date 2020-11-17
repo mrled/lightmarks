@@ -1,7 +1,7 @@
 import React from 'react';
 import {ActivityIndicator, FlatList, View, Text} from 'react-native';
 
-import {AppStyles} from 'lib/Styles';
+import {AppStyles} from 'style/Styles';
 
 interface DumbTagListProps {
   tags: Array<string>;

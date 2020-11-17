@@ -14,7 +14,7 @@ import {
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {AppStyles, BookmarkStyles} from 'lib/Styles';
+import {AppStyles, BookmarkStyles} from 'style/Styles';
 
 interface BookmarkListItemProps {
   item: any; // FIXME: any
