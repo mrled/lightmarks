@@ -39,6 +39,10 @@ They contain a link or two and some thoughts.
 - Expose all of the rest of the API
 - See network
 
+### ⬜️ Finish typing the Pinboard library
+
+Make sure all the API calls are properly typed
+
 ### ⬜️ 🔱 Implement tag management
 
 - See all untagged bookmarks
