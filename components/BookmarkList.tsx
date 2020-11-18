@@ -17,57 +17,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {AppStyles, BookmarkDynamicStyles, BookmarkStyles} from 'style/Styles';
 import {FunctionalColors} from 'style/Colors';
-
-interface BookmarkListItemProps {
-  item: any; // FIXME: any
-}
-const BookmarkListItem: React.FC<BookmarkListItemProps> = ({item}) => {
-  // console.debug(`Rendering bookmark: ${JSON.stringify(item)}`);
-
-  // const itemDate = new Date(item.dt);
-  // console.log(
-  //   `Item date ${item.dt} parses as ${itemDate.toLocaleString('en-US', {
-  //     timeZone: 'CST',
-  //   })}`,
-  // );
-
-  const pbUsername = `u:${item.a}`;
-  const pbUserUri = `https://m.pinboard.in/${pbUsername}`;
-
-  return (
-    <View style={BookmarkStyles.listItemView}>
-      <Pressable
-        style={BookmarkDynamicStyles.listItemPressableLink}
-        onPress={() => Linking.openURL(item.u)}>
-        <Text style={BookmarkStyles.listItemTitle}>{item.d}</Text>
-        <Text style={BookmarkStyles.listItemLink}>{item.u}</Text>
-      </Pressable>
-      <Text
-        style={BookmarkStyles.listItemAuthorDate}
-        onPress={() => Linking.openURL(pbUserUri)}>
-        from u:{item.a}
-      </Text>
-      {item.n === '' ? (
-        <></>
-      ) : (
-        <View style={BookmarkStyles.listItemExtendedDescView}>
-          <Text style={BookmarkStyles.listItemExtendedDescText}>{item.n}</Text>
-        </View>
-      )}
-      {item.t.length === 1 && item.t[0] === '' ? (
-        <></>
-      ) : (
-        <Text>
-          <Ionicons name="ios-pricetags" color={FunctionalColors.TagIcon} />{' '}
-          {item.t.join(', ')}
-        </Text>
-      )}
-    </View>
-  );
-};
+import {PinboardBookmark} from 'lib/Pinboard/types';
 
 interface BookmarkListProps {
-  bookmarks: Array<any>;
+  bookmarks: Array<PinboardBookmark>;
   loading: boolean;
   loadErr: string;
   // navigator: any;
@@ -91,11 +44,65 @@ const BookmarkList: React.FC<BookmarkListProps> = ({
     return (
       <FlatList
         data={bookmarks}
-        renderItem={BookmarkListItem}
+        renderItem={(item) => BookmarkListItemView({bookmark: item.item})}
         keyExtractor={(_item, index) => index.toString()}
       />
     );
   }
+};
+
+interface BookmarkListItemViewProps {
+  bookmark: PinboardBookmark;
+}
+const BookmarkListItemView: React.FC<BookmarkListItemViewProps> = ({
+  bookmark,
+}) => {
+  // console.debug(`Rendering bookmark: ${JSON.stringify(item)}`);
+
+  // const itemDate = new Date(item.dt);
+  // console.log(
+  //   `Item date ${item.dt} parses as ${itemDate.toLocaleString('en-US', {
+  //     timeZone: 'CST',
+  //   })}`,
+  // );
+
+  const pbUsername = `u:${bookmark.user}`;
+  const pbUserUri = `https://m.pinboard.in/${pbUsername}`;
+
+  console.log(`BookmarkListItemView(): ${JSON.stringify(bookmark)}`);
+
+  return (
+    <View style={BookmarkStyles.listItemView}>
+      <Pressable
+        style={BookmarkDynamicStyles.listItemPressableLink}
+        onPress={() => Linking.openURL(bookmark.uri)}>
+        <Text style={BookmarkStyles.listItemTitle}>{bookmark.title}</Text>
+        <Text style={BookmarkStyles.listItemLink}>{bookmark.uri}</Text>
+      </Pressable>
+      <Text
+        style={BookmarkStyles.listItemAuthorDate}
+        onPress={() => Linking.openURL(pbUserUri)}>
+        from {pbUsername}
+      </Text>
+      {bookmark.extendedDescription === '' ? (
+        <></>
+      ) : (
+        <View style={BookmarkStyles.listItemExtendedDescView}>
+          <Text style={BookmarkStyles.listItemExtendedDescText}>
+            {bookmark.extendedDescription}
+          </Text>
+        </View>
+      )}
+      {bookmark.tags === undefined ? (
+        <></>
+      ) : (
+        <Text>
+          <Ionicons name="ios-pricetags" color={FunctionalColors.TagIcon} />{' '}
+          {bookmark.tags.join(', ')}
+        </Text>
+      )}
+    </View>
+  );
 };
 
 interface BookmarkListViewProps {
@@ -133,7 +140,7 @@ export const BookmarkListView: React.FC<BookmarkListViewProps> = ({
         setBookmarks(result);
       })
       .catch((err) => {
-        console.debug(
+        console.error(
           `BookmarkListView:bookmarksGetter(): got error ${JSON.stringify(
             err,
           )}`,

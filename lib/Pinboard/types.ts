@@ -135,7 +135,7 @@ export interface IPinboardApi {
   loggedIn: boolean;
   mode: PinboardMode;
   credential?: PinboardApiPasswordCredential | PinboardApiTokenSecretCredential;
-  getJson(endpoint: string, query?: object): Promise<any>;
+  getJson<ResultT>(endpoint: string, query?: object): Promise<ResultT>;
 
   posts: IPinboardApiPosts;
   tags: IPinboardApiTags;
@@ -164,9 +164,9 @@ export interface IPinboardApiPosts {
     dt?: string;
     url?: string;
     meta?: string;
-  }): Promise<any>;
+  }): Promise<PinboardBookmark[]>;
   dates(params: {tag?: string[]}): Promise<any>;
-  recent(params: {tag?: string[]}): Promise<any>;
+  recent(params: {tag?: string[]}): Promise<PinboardBookmark[]>;
   all(params: {
     tag?: string;
     start?: string;
@@ -206,8 +206,8 @@ export interface IPinboardApiNotes {
  */
 export interface IPinboardFeedsUnauthenticated {
   readonly feeds: IPinboardFeeds;
-  recent(count: number): Promise<PinboardBookmark>;
-  popular(count: number): Promise<any>;
+  recent(count: number): Promise<Array<PinboardBookmark>>;
+  popular(count: number): Promise<Array<PinboardBookmark>>;
   byUser(user: string, count: number, tags?: OneToThreeStrings): Promise<any>;
   byTags(tags: OneToThreeStrings, count: number): Promise<any>;
 }
@@ -230,7 +230,7 @@ export interface IPinboardFeeds {
   mode: PinboardMode;
   auth?: PinboardFeedsRssSecretCredential;
   loggedIn: boolean;
-  getJsonPublic(endpoint: string, query?: object): Promise<any>;
+  getJsonPublic<ResultT>(endpoint: string, query?: object): Promise<any>;
   getJsonSecret(endpoint: string, query?: object): Promise<any>;
   unauthenticated: IPinboardFeedsUnauthenticated;
   authenticated: IPinboardFeedsAuthenticated;
@@ -238,7 +238,7 @@ export interface IPinboardFeeds {
 
 /* Bookmark objects retrieved from the JSON feed
  */
-export type PinboardBookmark = {
+export type TPinboardFeedsBookmark = {
   // The URI
   u: string;
 
@@ -260,3 +260,154 @@ export type PinboardBookmark = {
   // If there are no tags, this will be an array containing a single empty string (sigh)
   t: Array<string>;
 };
+
+/* Response from the API
+ */
+export type TPinboardApiBookmarkResultPost = {
+  href: string;
+  description: string;
+  extended: string;
+  meta: string;
+  hash: string;
+  time: string;
+  shared: YesOrNo;
+  toread: YesOrNo;
+  tags: string; // Space separated
+};
+export type TPinboardApiBookmarkResult = {
+  user: string;
+  date: string;
+  posts: Array<TPinboardApiBookmarkResultPost>;
+};
+
+interface IPinboardBookmark {
+  uri: string;
+  user: string;
+  title: string;
+  dateRetrieved: Date;
+  dateBookmarked?: Date;
+  extendedDescription?: string;
+  tags?: Array<string>;
+}
+export class PinboardBookmark implements IPinboardBookmark {
+  public constructor(
+    readonly uri: string,
+    readonly user: string,
+    readonly title: string,
+    readonly dateRetrieved: Date,
+    readonly dateBookmarked?: Date,
+    readonly extendedDescription?: string,
+    readonly tags?: Array<string>,
+    readonly metaChangeDetection?: string,
+    readonly hash?: string,
+    readonly shared?: boolean,
+    readonly toread?: boolean,
+  ) {}
+}
+
+/* Pinboard thinks that a on-item array containing a single zero-length string means "no tags".
+ * We cannot fix this brokenness, we can only do our best to cope with it.
+ */
+function emptyTagsArrayToEmptyArray(arr: Array<string>): Array<string> {
+  return arr.filter((tag) => tag !== '');
+}
+
+/* Convert a TPinboardFeedsBookmark to a real PinboardBookmark
+ */
+export function PinboardBookmarkFromTPinboardFeedsBookmark(
+  obj: TPinboardFeedsBookmark,
+): PinboardBookmark {
+  try {
+    const bookmark = new PinboardBookmark(
+      obj.u,
+      obj.a,
+      obj.d,
+      new Date(obj.dt),
+      undefined,
+      obj.n,
+      emptyTagsArrayToEmptyArray(obj.t),
+      undefined,
+      undefined,
+      undefined,
+      false,
+    );
+    // console.log(
+    //   `PinboardBookmarkFromTPinboardFeedsBookmark(): Created new bookmark from ${obj.u}`,
+    // );
+    return bookmark;
+  } catch (err) {
+    const msg = [
+      'PinboardBookmarkFromTPinboardFeedsBookmark(): Failed to convert PinboardFeedsBookmark (1) to PinboardBookmark because of error: (2):',
+      `1) ${JSON.stringify(obj).slice(0, 512)}`,
+      `2) ${JSON.stringify(err)}`,
+    ].join('\n');
+    console.error(msg);
+    throw msg;
+  }
+}
+
+/* Convert an array of TPinboardFeedsBookmark objects to an array of real PinboardBookmark objects
+ */
+export function TPinboardFeedsBookmarkListToPinboardBookmarkList(
+  arr: Array<TPinboardFeedsBookmark>,
+): Array<PinboardBookmark> {
+  try {
+    const bookmarks = arr.map((bookmark) => {
+      return PinboardBookmarkFromTPinboardFeedsBookmark(bookmark);
+    });
+    // console.log(
+    //   `TPinboardFeedsBookmarkListToPinboardBookmarkList(): bookmarks: ${JSON.stringify(
+    //     bookmarks,
+    //   ).slice(0, 512)}`,
+    // );
+    return bookmarks;
+  } catch (error) {
+    const msg = [
+      'TPinboardFeedsBookmarkListToPinboardBookmarkList(): Failed to convert PinboardFeedsBookmark array (1) to PinboardBookmark array because of error: (2):',
+      `1) ${JSON.stringify(arr).slice(0, 512)}`,
+      `2) ${JSON.stringify(error)}`,
+    ].join('\n');
+    console.error(msg);
+    throw msg;
+  }
+}
+
+/* Convert a TPinboardApiBookmark to a real PinboardBookmark
+ */
+export function TPinboardApiBookmarkResultPostToPinboardBookmark(
+  post: TPinboardApiBookmarkResultPost,
+  user: string,
+  dateRetrieved: string,
+): PinboardBookmark {
+  return new PinboardBookmark(
+    post.href,
+    user,
+    post.description,
+    new Date(dateRetrieved),
+    new Date(post.time),
+    post.extended,
+    emptyTagsArrayToEmptyArray(post.tags.split(' ')),
+    post.meta,
+    post.hash,
+    post.shared === 'yes',
+    post.toread === 'yes',
+  );
+}
+
+/* Convert a TPinboardApiBookmarkResult to an array of real PinboardBookmark objects
+ */
+export function TPinboardApiBookmarkResultToPinboardBookmarkArr(
+  apiResult: TPinboardApiBookmarkResult,
+): Array<PinboardBookmark> {
+  const bookmarks = apiResult.posts.map((post) =>
+    TPinboardApiBookmarkResultPostToPinboardBookmark(
+      post,
+      apiResult.user,
+      apiResult.date,
+    ),
+  );
+  console.log(
+    `TPinboardApiBookmarkResultToPinboardBookmarkArr(): bookmarks: ${bookmarks}`,
+  );
+  return bookmarks;
+}

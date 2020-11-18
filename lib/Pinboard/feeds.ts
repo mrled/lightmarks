@@ -8,9 +8,10 @@ import {
   IPinboardFeedsAuthenticated,
   IPinboardFeedsUnauthenticated,
   OneToThreeStrings,
-  PinboardBookmark,
+  TPinboardFeedsBookmark,
   PinboardFeedsRssSecretCredential,
   PinboardMode,
+  TPinboardFeedsBookmarkListToPinboardBookmarkList,
 } from './types';
 
 /* Take a list of tags and return Pinboard-style tag path components
@@ -29,11 +30,15 @@ class PinboardFeedsUnauthenticated implements IPinboardFeedsUnauthenticated {
   public constructor(readonly feeds: PinboardFeeds) {}
 
   public recent(count = 50) {
-    return this.feeds.getJsonPublic('recent', {count});
+    return this.feeds
+      .getJsonPublic<Array<TPinboardFeedsBookmark>>('recent', {count})
+      .then(TPinboardFeedsBookmarkListToPinboardBookmarkList);
   }
 
   public popular(count = 50) {
-    return this.feeds.getJsonPublic('popular', {count});
+    return this.feeds
+      .getJsonPublic<Array<TPinboardFeedsBookmark>>('popular', {count})
+      .then(TPinboardFeedsBookmarkListToPinboardBookmarkList);
   }
 
   public byUser(user: string, count = 50, tags?: OneToThreeStrings) {
@@ -90,10 +95,10 @@ export class PinboardFeeds implements IPinboardFeeds {
 
   /* Get JSON results from the feeds host without authentication
    */
-  public getJsonPublic: (endpoint: string, query?: object) => Promise<any> = (
-    endpoint,
-    query?,
-  ) => {
+  public getJsonPublic<ResultT>(
+    endpoint: string,
+    query?: object,
+  ): Promise<ResultT> {
     const queryString = optionalQueryStringWithQmark(query);
     const uri = `${this.feedsRoot}/json/${endpoint}${queryString}`;
     return fetchOrReturnFaux(
@@ -101,8 +106,23 @@ export class PinboardFeeds implements IPinboardFeeds {
       FauxFeedsUnauthenticatedData[endpoint],
       uri,
       {},
-    );
-  };
+    ).then((result) => {
+      // console.log(
+      //   `pinboard.feeds.getJsonPublic(): result before typing: ${JSON.stringify(
+      //     result,
+      //   ).slice(0, 512)}`,
+      // );
+      return result as ResultT;
+    });
+    // .then((result) => {
+    //   console.log(
+    //     `pinboard.feeds.getJsonPublic(): result after typing: ${JSON.stringify(
+    //       result,
+    //     ).slice(0, 512)}`,
+    //   );
+    //   return result;
+    // });
+  }
 
   /* Get JSON results from the feeds host with authentication
    */

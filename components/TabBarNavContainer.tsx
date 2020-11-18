@@ -6,6 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import About from 'components/About';
 import {DiscoverStackScreen} from 'components/Discover';
+import {ProfileStackScreen} from 'components/Profile';
 import DumbTagView from 'components/DumbTagView';
 import {FunctionalColors} from 'style/Colors';
 
@@ -25,6 +26,8 @@ const TabBarNavContainer = () => {
               iconName = 'ios-pricetags';
             } else if (route.name === 'About') {
               iconName = 'ios-information-circle';
+            } else if (route.name === 'Profile') {
+              iconName = 'ios-person';
             } else {
               console.error(`Unknown route ${route.name}, showing bug icon`);
               iconName = 'ios-bug';
@@ -40,6 +43,7 @@ const TabBarNavContainer = () => {
         }}>
         <TabBar.Screen name="Discover" component={DiscoverStackScreen} />
         <TabBar.Screen name="DumbTags" component={DumbTagView} />
+        <TabBar.Screen name="Profile" component={ProfileStackScreen} />
         <TabBar.Screen name="About" component={About} />
       </TabBar.Navigator>
     </NavigationContainer>

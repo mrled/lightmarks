@@ -1,0 +1,160 @@
+{
+  "date": "2020-11-18T03:00:35Z",
+  "user": "mrled",
+  "posts": [
+    {
+      "href": "https://time.com/5912705/covid-19-stop-spread-christmas/",
+      "description": "How We Can Stop the Spread of Coronavirus by Christmas | Time",
+      "extended": "",
+      "meta": "bf7e164ad445a0920bf1ad83d866d450",
+      "hash": "23f939724851b40aae982103b1163ed1",
+      "time": "2020-11-18T03:00:35Z",
+      "shared": "yes",
+      "toread": "no",
+      "tags": "covid19"
+    },
+    {
+      "href": "https://github.com/alexvanyo/hid-synergy",
+      "description": "alexvanyo/hid-synergy: Fork of Synergy that allows for support of Chrome OS/Android using an HID",
+      "extended": "",
+      "meta": "73dff63bd820671925ffdb05399bba45",
+      "hash": "da5b9bcb42396c98dcd8d8e149327c79",
+      "time": "2020-11-17T23:13:08Z",
+      "shared": "yes",
+      "toread": "no",
+      "tags": ""
+    },
+    {
+      "href": "https://thingofthings.wordpress.com/2020/11/16/hermeneutical-injustice-not-gaslighting/",
+      "description": "Hermeneutical Injustice, Not Gaslighting",
+      "extended": "",
+      "meta": "7f9d4d3581c48c8e916e5dc91bc06994",
+      "hash": "812b7629a79b5fe3104a6a8a47dc5719",
+      "time": "2020-11-17T14:02:41Z",
+      "shared": "yes",
+      "toread": "no",
+      "tags": ""
+    },
+    {
+      "href": "https://epicreact.dev/css-variables/",
+      "description": "Use CSS Variables instead of React Context | Epic React by Kent C. Dodds",
+      "extended": "",
+      "meta": "66f3da204c7e47836aed2b01c2bc5e0e",
+      "hash": "4ec9b671f62d8bfe5650223208dd6ed4",
+      "time": "2020-11-17T06:39:03Z",
+      "shared": "yes",
+      "toread": "no",
+      "tags": "code:react"
+    },
+    {
+      "href": "https://www.webfx.com/tools/emoji-cheat-sheet/",
+      "description": "🎁 Emoji cheat sheet for GitHub, Basecamp, Slack & more",
+      "extended": "Useful with espanso",
+      "meta": "0bc56308ced1602097bedbd0f6689d53",
+      "hash": "5c2a38f7cadd54712406e78e827c9648",
+      "time": "2020-11-17T05:17:56Z",
+      "shared": "yes",
+      "toread": "no",
+      "tags": ""
+    },
+    {
+      "href": "https://www.flickr.com/photos/nasa2explore/albums/72157680091012838/",
+      "description": "Stars | Flickr",
+      "extended": "",
+      "meta": "5c91485ce0fee39796adba962b306bed",
+      "hash": "f34e15496735920c0b7dd0cd3f4ecbce",
+      "time": "2020-11-17T05:15:50Z",
+      "shared": "yes",
+      "toread": "no",
+      "tags": "space"
+    },
+    {
+      "href": "https://sarunw.com/posts/take-screenshot-and-record-video-in-ios-simulator/",
+      "description": "Take a screenshot and record a video in iOS Simulator | Sarun",
+      "extended": "",
+      "meta": "5ace23c542e8ef963ae51185fb65f6c5",
+      "hash": "9796049ebf6d2935ce70181b44c84c4f",
+      "time": "2020-11-17T04:08:24Z",
+      "shared": "yes",
+      "toread": "no",
+      "tags": "code:xcode"
+    },
+    {
+      "href": "https://github.com/ventoy/Ventoy",
+      "description": "GitHub - ventoy/Ventoy: A new bootable USB solution.",
+      "extended": "",
+      "meta": "8689e0951ed86dbb3a4df7d8c7cd426a",
+      "hash": "072b06e4864c0bee6c99be3dcdc99c2c",
+      "time": "2020-11-17T02:53:29Z",
+      "shared": "yes",
+      "toread": "no",
+      "tags": ""
+    },
+    {
+      "href": "https://duckduckgo.com/?q=knife+prty+purity+ring+remix&ia=web",
+      "description": "knife prty purity ring remix at DuckDuckGo",
+      "extended": "",
+      "meta": "43fe729c37114029c51da4061eb4e7e5",
+      "hash": "1cbb661df8e8bf78efe403b0f16cba17",
+      "time": "2020-11-16T23:01:33Z",
+      "shared": "yes",
+      "toread": "no",
+      "tags": "musictodo"
+    },
+    {
+      "href": "https://github.com/facebook/react-native/issues/23313",
+      "description": "☂️ Lean Core · Issue #23313 · facebook/react-native",
+      "extended": "",
+      "meta": "7e312bef6c24847f11bd1e944702787f",
+      "hash": "f98a08f7cf55841bab3046cbd5c40aea",
+      "time": "2020-11-16T23:00:47Z",
+      "shared": "yes",
+      "toread": "no",
+      "tags": "code:reactnative"
+    },
+    {
+      "href": "https://medium.com/wesionary-team/combining-stack-navigator-with-tab-navigator-in-react-native-react-navigation-253656f45181",
+      "description": "Combining Stack Navigation with Tab Navigation in React Native: React Navigation | by Sudeep Timalsina | WesionaryTEAM | Medium",
+      "extended": "",
+      "meta": "bcdfa68e99424c008b8835d665c2afee",
+      "hash": "9c9da7ba86fa2ae5995139942430acb8",
+      "time": "2020-11-16T23:00:22Z",
+      "shared": "yes",
+      "toread": "no",
+      "tags": "code:reactnative"
+    },
+    {
+      "href": "https://medium.com/better-programming/react-navigation-5-stack-tab-drawer-all-in-one-ead723188056",
+      "description": "React Navigation 5: Stack, Tab, and Drawer All in One | by Natalie Mclaren | Better Programming | Medium",
+      "extended": "",
+      "meta": "798b58305a15f0aa753376c1fb67a47f",
+      "hash": "a1e772b2177ac2841c3765fd7f9eba21",
+      "time": "2020-11-16T22:59:50Z",
+      "shared": "yes",
+      "toread": "no",
+      "tags": "code:reactnative"
+    },
+    {
+      "href": "https://reactnavigation.org/docs/typescript/",
+      "description": "Type checking with TypeScript | React Navigation",
+      "extended": "",
+      "meta": "0c64ae974b185016e369d68bfb745f96",
+      "hash": "d3bca39c3f1438cce64a2587c9421877",
+      "time": "2020-11-16T22:59:40Z",
+      "shared": "yes",
+      "toread": "no",
+      "tags": "code:reactnative code:typescript"
+    },
+    {
+      "href": "https://jordan-wright.com/blog/post/2020-11-12-hunting-for-malicious-packages-on-pypi/",
+      "description": "Hunting for Malicious Packages on PyPI",
+      "extended": "",
+      "meta": "24057c3548a89fa43689c8a31e1a30f2",
+      "hash": "92ddae51344185e3f98c802a77f7c195",
+      "time": "2020-11-16T14:01:30Z",
+      "shared": "yes",
+      "toread": "no",
+      "tags": ""
+    }
+  ]
+}

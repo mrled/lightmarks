@@ -9,6 +9,8 @@ import {
   PinboardApiPasswordCredential,
   PinboardApiTokenSecretCredential,
   PinboardMode,
+  TPinboardApiBookmarkResult,
+  TPinboardApiBookmarkResultToPinboardBookmarkArr,
   YesOrNo,
   isApiTokenSecretCredential,
 } from './types';
@@ -49,7 +51,9 @@ class PinboardApiPosts implements IPinboardApiPosts {
    * If no date or url is given, date of most recent bookmark will be used.
    */
   public get(params: {tag?: string; dt?: string; url?: string; meta?: string}) {
-    return this.api.getJson('posts/get', params);
+    return this.api
+      .getJson<TPinboardApiBookmarkResult>('posts/get', params)
+      .then(TPinboardApiBookmarkResultToPinboardBookmarkArr);
   }
 
   /* Returns a list of dates with the number of posts at each date.
@@ -61,7 +65,15 @@ class PinboardApiPosts implements IPinboardApiPosts {
   /* Returns a list of the user's most recent posts, filtered by tag.
    */
   public recent(params: {tag?: string[]}) {
-    return this.api.getJson('posts/recent', params);
+    return this.api
+      .getJson<TPinboardApiBookmarkResult>('posts/recent', params)
+      .then((result) => {
+        console.log(
+          `pinboard.api.posts.recent(): result: ${JSON.stringify(result)}`,
+        );
+        return result;
+      })
+      .then(TPinboardApiBookmarkResultToPinboardBookmarkArr);
   }
 
   /* Returns all bookmarks in the user's account.
@@ -193,36 +205,99 @@ export class PinboardApi implements IPinboardApi {
     return typeof this.credential !== 'undefined';
   }
 
-  public getJson: (endpoint: string, query?: object) => Promise<any> = (
-    endpoint,
-    query?,
-  ) => {
+  /* Make requests with some type of credentials and convert the result to JSON
+   */
+  private getJsonWithTokenSecretCredential(
+    credential: PinboardApiTokenSecretCredential,
+    endpoint: string,
+    fauxData: object,
+    query?: object,
+  ): Promise<any> {
+    const authToken = `${credential.username}:${credential.authTokenSecret}`;
+    console.log(`Logging in with API token ${authToken}`);
+    const qs = optionalQueryStringWithQmark(
+      Object.assign({}, {auth_token: authToken, format: 'json'}, query),
+    );
+    const apiRoot = `${this.apiMethod}://${this.apiHost}/${this.apiPathPrefix}`;
+    const uri = `${apiRoot}/${endpoint}${qs}`;
+    const headers = {'Content-Type': 'application/json'};
+    const result = fetchOrReturnFaux(this.mode, fauxData, uri, headers);
+    console.log(
+      `pinboard.api.getJsonWithApiTokenSecretCredential(): result: ${JSON.stringify(
+        result,
+      )}`,
+    );
+    return result;
+  }
+  private getJsonWithPasswordCredential(
+    credential: PinboardApiPasswordCredential,
+    endpoint: string,
+    fauxData: object,
+    query?: object,
+  ): Promise<any> {
+    console.log(
+      `Logging in with username/password ${credential.username}:${credential.password}`,
+    );
+    const qs = optionalQueryStringWithQmark(
+      Object.assign({}, {format: 'json'}, query),
+    );
+    const apiRoot = `${this.apiMethod}://${credential.username}:${credential.password}@${this.apiHost}/${this.apiPathPrefix}`;
+    const uri = `${apiRoot}/${endpoint}${qs}`;
+    const headers = {'Content-Type': 'application/json'};
+    const result = fetchOrReturnFaux(this.mode, fauxData, uri, headers);
+    console.log(
+      `pinboard.api.getJsonWithPasswordCredential(): result: ${JSON.stringify(
+        result,
+      )}`,
+    );
+    return result;
+  }
+  private getJsonWithAnyCredential(
+    endpoint: string,
+    fauxData: object,
+    query?: object,
+  ) {
     if (!this.credential) {
-      return new Promise<object>((_resolve, reject) =>
+      return new Promise<any>((_resolve, reject) =>
         reject(
           `Missing authentication. auth: ${JSON.stringify(this.credential)}`,
         ),
       );
     } else if (isApiTokenSecretCredential(this.credential)) {
-      const qs = optionalQueryStringWithQmark(
-        Object.assign(
-          {},
-          {auth_token: this.credential.authTokenSecret, format: 'json'},
-          query,
-        ),
+      return this.getJsonWithTokenSecretCredential(
+        this.credential,
+        endpoint,
+        fauxData,
+        query,
       );
-      const apiRoot = `${this.apiMethod}://${this.apiHost}/${this.apiPathPrefix}`;
-      const uri = `${apiRoot}/${endpoint}${qs}`;
-      const headers = {'Content-Type': 'application/json'};
-      return fetchOrReturnFaux(this.mode, FauxApiData[endpoint], uri, headers);
     } else {
-      const qs = optionalQueryStringWithQmark(
-        Object.assign({}, {format: 'json'}, query),
+      return this.getJsonWithPasswordCredential(
+        this.credential,
+        endpoint,
+        fauxData,
+        query,
       );
-      const apiRoot = `${this.apiMethod}://${this.credential.username}:${this.credential.password}@${this.apiHost}/${this.apiPathPrefix}`;
-      const uri = `${apiRoot}/${endpoint}${qs}`;
-      const headers = {'Content-Type': 'application/json'};
-      return fetchOrReturnFaux(this.mode, FauxApiData[endpoint], uri, headers);
     }
-  };
+  }
+
+  /* Call into backend functions to retrieve data from the API and convert it to a type.
+   * Relies on backend functions to determine credential type,
+   * retrieve data from the API using our credential,
+   * return real data from the API or faux data from this project, etc.
+   */
+  // TODO: rename 'endpoint' to something more correct like 'apiPath'
+  public getJson<ResultT>(endpoint: string, query?: object): Promise<ResultT> {
+    return this.getJsonWithAnyCredential(
+      endpoint,
+      FauxApiData[endpoint],
+      query,
+    ).then((result) => {
+      console.log(
+        `pinboard.api.getJson(): result for ${JSON.stringify(
+          endpoint,
+        )} before typing: ${JSON.stringify(result)}`,
+      );
+      return result as ResultT;
+    });
+  }
 }
