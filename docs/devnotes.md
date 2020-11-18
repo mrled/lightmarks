@@ -33,9 +33,10 @@ They contain a link or two and some thoughts.
 - Filter by up to three tags
 - Search within those results (not sure how to make clear in UI)
 
-### ⬜️ 🔱 Implement a Home/Self/My Bookmarks tab
+### ⬜️ Profile tab: add features
 
 - See all/public/private/unread/tagged/untagged bookmarks
+- Expose all of the rest of the API
 - See network
 
 ### ⬜️ 🔱 Implement tag management
@@ -134,3 +135,8 @@ The list of bookmarks even looks halfway decent, fuck yeah
 
 Done. This was actually already working for regular text with `onPress` events.
 I added a `<Pressable>` for a set of two `<Text>` components I wanted to be part of a single link.
+
+### ✅ 🔱 Implement a Profile tab
+
+- Show recent posts
+- Requires understanding separate API results from feeds vs API
