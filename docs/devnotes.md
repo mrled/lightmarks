@@ -64,6 +64,9 @@ The share sheet is the most important feature of the app tbh.
 It needs to be perfect.
 And it cannot lose data, ever.
 
+- Extremely fast, single view. No animations shifting over to the right to edit the description or add tags.
+- Never lose data. If it can't post to the server, must save operation and try again later.
+
 ### ⬜️ 🔱 Perfect data sync
 
 NEVER LOSE DATA
@@ -72,6 +75,19 @@ NEVER LOSE DATA
 - There is no real sync here, because Pinboard API doesn't show me list of events
 - That should be ok for saving bookmarks, as saving it again doesn't hurt anything
 - For situations where both the client and the server have edited bookmark metadata, there is sadly possibility to lose data. I think these situations will be rare, and I can do the best I can by trying not to delete data. Also, generally, missing description is not as bad as missing whole bookmark.
+
+### ⬜️ 🔱 Excellent PDF support
+
+- Pull titles from PDF metadata
+- Can I make the app doing anything useful while a PDF is loading? Is there a way to asynchronously load?
+- Some kind of sane tag suggestion, even if it's just local
+
+### ⬜️ 🔱 On-device read-later
+
+- Add a reader mode
+- Automatically strip garbage from webpages
+- Option to pull archive version from Pinboard
+- Keep reading progress perfectly - never lose your place, even if the app is force quit or the device reboots, goddamit.
 
 ## 🌙 🌙 🌙 🌙 🌙 Longer, less finished ideas
 
