@@ -53,6 +53,10 @@ export class NavigationListDestination {
     // Override the <Pressable> style
     public pressableStyleOverride?: object,
   ) {}
+
+  public toString() {
+    return `${this.title}${this.ionicon}${this.go.toString}${this.iconColorOverride}${this.pressableStyleOverride}`;
+  }
 }
 
 /* A single item in a navigation list
@@ -68,17 +72,15 @@ const NavigationListDestinationPressable: React.FC<{
     ? dest.pressableStyleOverride
     : DynamicStyles.pressed;
   return (
-    <>
-      <Pressable style={pressableStyle} onPress={dest.go}>
-        <Ionicons
-          style={Styles.itemIcon}
-          name={dest.ionicon}
-          color={iconColor}
-          size={18}
-        />
-        <Text style={Styles.itemTitle}>{dest.title}</Text>
-      </Pressable>
-    </>
+    <Pressable style={pressableStyle} onPress={dest.go}>
+      <Ionicons
+        style={Styles.itemIcon}
+        name={dest.ionicon}
+        color={iconColor}
+        size={18}
+      />
+      <Text style={Styles.itemTitle}>{dest.title}</Text>
+    </Pressable>
   );
 };
 
@@ -95,7 +97,10 @@ export const NavigationList: React.FC<{
           <Text style={Styles.sectionDescriptionText}>{title}</Text>
         </View>
         {destinations.map((dest) => (
-          <NavigationListDestinationPressable dest={dest} />
+          <NavigationListDestinationPressable
+            dest={dest}
+            key={dest.toString()}
+          />
         ))}
       </View>
     </>
