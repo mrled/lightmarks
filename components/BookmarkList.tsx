@@ -11,6 +11,7 @@ import {
   Text,
   View,
   Pressable,
+  StyleSheet,
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -18,6 +19,14 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {AppStyles, BookmarkDynamicStyles, BookmarkStyles} from 'style/Styles';
 import {FunctionalColors} from 'style/Colors';
 import {PinboardBookmark} from 'lib/Pinboard/types';
+
+const Styles = StyleSheet.create({
+  flexDirectionRow: {flexDirection: 'row'},
+  tagIconCell: {
+    marginRight: 7,
+    transform: [{translateY: 2}], // The icon looks off when its not moved down a bit
+  },
+});
 
 interface BookmarkListProps {
   bookmarks: Array<PinboardBookmark>;
@@ -49,6 +58,23 @@ const BookmarkList: React.FC<BookmarkListProps> = ({
       />
     );
   }
+};
+
+interface TagsListProps {
+  tags: string[];
+}
+const TagsListView: React.FC<TagsListProps> = ({tags}) => {
+  return (
+    <View style={Styles.flexDirectionRow}>
+      {/* <View style={[AppStyles.flex, adjustIconYPos.s]}> */}
+      <View style={Styles.tagIconCell}>
+        <Ionicons name="ios-pricetags" color={FunctionalColors.TagIcon} />
+      </View>
+      <View>
+        <Text>{tags.join(', ')}</Text>
+      </View>
+    </View>
+  );
 };
 
 interface BookmarkListItemViewProps {
@@ -93,14 +119,7 @@ const BookmarkListItemView: React.FC<BookmarkListItemViewProps> = ({
           </Text>
         </View>
       )}
-      {bookmark.tags.length < 1 ? (
-        <></>
-      ) : (
-        <Text>
-          <Ionicons name="ios-pricetags" color={FunctionalColors.TagIcon} />{' '}
-          {bookmark.tags.join(', ')}
-        </Text>
-      )}
+      {bookmark.tags.length < 1 ? <></> : <TagsListView tags={bookmark.tags} />}
     </View>
   );
 };

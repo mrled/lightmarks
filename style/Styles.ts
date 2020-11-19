@@ -15,6 +15,12 @@ export const AppStyles = StyleSheet.create({
   body: {
     backgroundColor: 'white',
   },
+  flex: {
+    flex: 1,
+  },
+  flexDirectionRow: {
+    flexDirection: 'row',
+  },
   listTagsButtonContainer: {
     marginTop: 32,
     borderWidth: 1,
