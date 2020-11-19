@@ -93,7 +93,7 @@ const BookmarkListItemView: React.FC<BookmarkListItemViewProps> = ({
           </Text>
         </View>
       )}
-      {bookmark.tags === undefined ? (
+      {bookmark.tags.length < 1 ? (
         <></>
       ) : (
         <Text>
