@@ -280,29 +280,44 @@ export type TPinboardApiBookmarkResult = {
   posts: Array<TPinboardApiBookmarkResultPost>;
 };
 
-interface IPinboardBookmark {
+type PinboardBookmarkParams = {
   uri: string;
   user: string;
   title: string;
+  tags: Array<string>;
   dateRetrieved: Date;
   dateBookmarked?: Date;
   extendedDescription?: string;
-  tags?: Array<string>;
-}
-export class PinboardBookmark implements IPinboardBookmark {
-  public constructor(
-    readonly uri: string,
-    readonly user: string,
-    readonly title: string,
-    readonly dateRetrieved: Date,
-    readonly dateBookmarked?: Date,
-    readonly extendedDescription?: string,
-    readonly tags?: Array<string>,
-    readonly metaChangeDetection?: string,
-    readonly hash?: string,
-    readonly shared?: boolean,
-    readonly toread?: boolean,
-  ) {}
+  metaChangeDetection?: string;
+  hash?: string;
+  shared?: boolean;
+  toread?: boolean;
+};
+export class PinboardBookmark {
+  public readonly uri: string;
+  public readonly user: string;
+  public readonly title: string;
+  public readonly tags: Array<string>;
+  public readonly dateRetrieved: Date;
+  public readonly dateBookmarked?: Date;
+  public readonly extendedDescription?: string;
+  public readonly metaChangeDetection?: string;
+  public readonly hash?: string;
+  public readonly shared?: boolean;
+  public readonly toread?: boolean;
+  public constructor(params: PinboardBookmarkParams) {
+    this.uri = params.uri;
+    this.user = params.user;
+    this.title = params.title;
+    this.tags = params.tags;
+    this.dateRetrieved = params.dateRetrieved;
+    this.dateBookmarked = params.dateBookmarked;
+    this.extendedDescription = params.extendedDescription;
+    this.metaChangeDetection = params.metaChangeDetection;
+    this.hash = params.hash;
+    this.shared = params.shared;
+    this.toread = params.toread;
+  }
 }
 
 /* Pinboard thinks that a on-item array containing a single zero-length string means "no tags".
@@ -318,19 +333,15 @@ export function PinboardBookmarkFromTPinboardFeedsBookmark(
   obj: TPinboardFeedsBookmark,
 ): PinboardBookmark {
   try {
-    const bookmark = new PinboardBookmark(
-      obj.u,
-      obj.a,
-      obj.d,
-      new Date(obj.dt),
-      undefined,
-      obj.n,
-      emptyTagsArrayToEmptyArray(obj.t),
-      undefined,
-      undefined,
-      undefined,
-      false,
-    );
+    const bookmark = new PinboardBookmark({
+      uri: obj.u,
+      user: obj.a,
+      title: obj.d,
+      dateRetrieved: new Date(obj.dt),
+      extendedDescription: obj.n,
+      tags: emptyTagsArrayToEmptyArray(obj.t),
+      toread: false,
+    });
     // console.log(
     //   `PinboardBookmarkFromTPinboardFeedsBookmark(): Created new bookmark from ${obj.u}`,
     // );
@@ -379,19 +390,19 @@ export function TPinboardApiBookmarkResultPostToPinboardBookmark(
   user: string,
   dateRetrieved: string,
 ): PinboardBookmark {
-  return new PinboardBookmark(
-    post.href,
+  return new PinboardBookmark({
+    uri: post.href,
     user,
-    post.description,
-    new Date(dateRetrieved),
-    new Date(post.time),
-    post.extended,
-    emptyTagsArrayToEmptyArray(post.tags.split(' ')),
-    post.meta,
-    post.hash,
-    post.shared === 'yes',
-    post.toread === 'yes',
-  );
+    title: post.description,
+    dateRetrieved: new Date(dateRetrieved),
+    dateBookmarked: new Date(post.time),
+    extendedDescription: post.extended,
+    tags: emptyTagsArrayToEmptyArray(post.tags.split(' ')),
+    metaChangeDetection: post.meta,
+    hash: post.hash,
+    shared: post.shared === 'yes',
+    toread: post.toread === 'yes',
+  });
 }
 
 /* Convert a TPinboardApiBookmarkResult to an array of real PinboardBookmark objects
