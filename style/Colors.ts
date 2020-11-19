@@ -13,6 +13,7 @@ export const FunctionalColors = {
   BlockquoteBorderLeft: 'goldenrod',
   Link: 'cornflowerblue',
   ListItemBorder: 'goldenrod',
+  NavigationListItemIcon: 'tomato',
   TabBarIconSelected: 'tomato',
   TabBarIconDeselected: 'gray',
   TagIcon: 'goldenrod',
