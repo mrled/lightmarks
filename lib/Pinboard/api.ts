@@ -13,6 +13,8 @@ import {
   TPinboardApiBookmarkResultToPinboardBookmarkArr,
   YesOrNo,
   isApiTokenSecretCredential,
+  TPinboardApiBookmark,
+  TPinboardApiBookmarkToPinboardBookmark,
 } from './types';
 
 /* The /posts/* routes for the Pinboard API
@@ -85,7 +87,20 @@ class PinboardApiPosts implements IPinboardApiPosts {
     fromdt?: string;
     meta?: string;
   }) {
-    return this.api.getJson('posts/all', params);
+    // Note that this endpoint gets a list of TPinboardApiBookmark objects,
+    // NOT wrapped in a TPinboardApiBookmarkResult object.
+    const dateRetrieved = new Date();
+    return this.api
+      .getJson<TPinboardApiBookmark[]>('posts/all', params)
+      .then((result) =>
+        result.map((bookmark) =>
+          TPinboardApiBookmarkToPinboardBookmark(
+            bookmark,
+            this.api.credential ? this.api.credential.username : '(NONE)',
+            dateRetrieved,
+          ),
+        ),
+      );
   }
 
   /* Returns a list of popular tags and recommended tags for a given URL.

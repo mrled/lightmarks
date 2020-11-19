@@ -263,7 +263,7 @@ export type TPinboardFeedsBookmark = {
 
 /* Response from the API
  */
-export type TPinboardApiBookmarkResultPost = {
+export type TPinboardApiBookmark = {
   href: string;
   description: string;
   extended: string;
@@ -277,7 +277,7 @@ export type TPinboardApiBookmarkResultPost = {
 export type TPinboardApiBookmarkResult = {
   user: string;
   date: string;
-  posts: Array<TPinboardApiBookmarkResultPost>;
+  posts: Array<TPinboardApiBookmark>;
 };
 
 type PinboardBookmarkParams = {
@@ -385,16 +385,17 @@ export function TPinboardFeedsBookmarkListToPinboardBookmarkList(
 
 /* Convert a TPinboardApiBookmark to a real PinboardBookmark
  */
-export function TPinboardApiBookmarkResultPostToPinboardBookmark(
-  post: TPinboardApiBookmarkResultPost,
+export function TPinboardApiBookmarkToPinboardBookmark(
+  post: TPinboardApiBookmark,
   user: string,
-  dateRetrieved: string,
+  dateRetrieved: string | Date,
 ): PinboardBookmark {
   return new PinboardBookmark({
     uri: post.href,
     user,
     title: post.description,
-    dateRetrieved: new Date(dateRetrieved),
+    dateRetrieved:
+      dateRetrieved instanceof Date ? dateRetrieved : new Date(dateRetrieved),
     dateBookmarked: new Date(post.time),
     extendedDescription: post.extended,
     tags: emptyTagsArrayToEmptyArray(post.tags.split(' ')),
@@ -411,7 +412,7 @@ export function TPinboardApiBookmarkResultToPinboardBookmarkArr(
   apiResult: TPinboardApiBookmarkResult,
 ): Array<PinboardBookmark> {
   const bookmarks = apiResult.posts.map((post) =>
-    TPinboardApiBookmarkResultPostToPinboardBookmark(
+    TPinboardApiBookmarkToPinboardBookmark(
       post,
       apiResult.user,
       apiResult.date,

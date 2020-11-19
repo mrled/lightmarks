@@ -1,3 +1,4 @@
+const ApiPostsAll = require('./mocks.api.posts.all.json');
 const ApiPostsGetMultiple = require('./mocks.api.posts.get.multiple.json');
 const ApiPostsRecent = require('./mocks.api.posts.recent.json');
 const ApiTagsGet = require('./mocks.api.tags.get.json');
@@ -11,7 +12,7 @@ export const FauxApiData: {[key: string]: object} = {
   'posts/dates': {},
   'posts/recent': ApiPostsRecent,
   'posts/get': ApiPostsGetMultiple,
-  'posts/all': {},
+  'posts/all': ApiPostsAll,
   'posts/suggest': {},
   'tags/get': ApiTagsGet,
   'tags/delete': {},
