@@ -2,13 +2,14 @@
  */
 
 import React, {useContext} from 'react';
-import {Button, SafeAreaView, ScrollView, Text, View} from 'react-native';
+import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 import {BookmarkListView} from 'components/BookmarkList';
 import {PinboardContext} from 'hooks/usePinboard';
 import {AppStyles} from 'style/Styles';
+import {NavigationList, NavigationListDestination} from './NavigationList';
 
 const ProfileStack = createStackNavigator<ProfileStackParamList>();
 
@@ -45,14 +46,20 @@ export const ProfileRootScreen: React.FC<ProfileRootScreenProps> = ({
               <Text style={AppStyles.sectionTitle}>Profile</Text>
             </View>
             <View style={AppStyles.sectionContainer}>
-              <Text style={AppStyles.sectionDescription}>Your bookmarks</Text>
-              <Button
-                title="Most recent bookmarks"
-                onPress={() => navigation.navigate('MostRecent')}
-              />
-              <Button
-                title="All bookmarks"
-                onPress={() => navigation.navigate('AllBookmarks')}
+              <NavigationList
+                title="Your bookmarks"
+                destinations={[
+                  new NavigationListDestination(
+                    'All bookmarks',
+                    'bookmarks',
+                    () => navigation.navigate('AllBookmarks'),
+                  ),
+                  new NavigationListDestination(
+                    'Most recent bookmarks',
+                    'time',
+                    () => navigation.navigate('MostRecent'),
+                  ),
+                ]}
               />
             </View>
           </View>
