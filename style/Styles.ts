@@ -75,10 +75,12 @@ export const BookmarkStyles = StyleSheet.create({
     paddingVertical: 4,
     color: FunctionalColors.Link,
   },
-  listItemView: {
+  listItemPrivateView: {
+    backgroundColor: 'lightgray',
+    padding: 18,
+  },
+  listItemPublicView: {
     backgroundColor: 'white',
-    // borderBottomWidth: 1,
-    // borderBottomColor: FunctionalColors.ListItemBorder,
     padding: 18,
   },
   listItemText: {
@@ -88,11 +90,17 @@ export const BookmarkStyles = StyleSheet.create({
     fontSize: 21,
     fontWeight: 'bold',
   },
+  unreadBadgeText: {
+    color: 'white',
+    alignSelf: 'flex-start',
+    backgroundColor: 'darkorchid',
+    padding: 4,
+  },
 });
 
 export const BookmarkDynamicStyles = {
-  listItemPressableLink: ({pressed}) => {
-    // FIXME: 'lightgray' is not the same color as the pressed highlight for a <Text onpress=...>
-    return {backgroundColor: pressed ? 'lightgray' : 'white'};
+  listItemPressableLink: ({pressed}: {pressed: boolean}) => {
+    // FIXME: 'gray' is not the same color as the pressed highlight for a <Text onpress=...>
+    return pressed ? {backgroundColor: 'gray'} : {};
   },
 };

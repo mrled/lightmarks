@@ -77,6 +77,14 @@ const TagsListView: React.FC<TagsListProps> = ({tags}) => {
   );
 };
 
+const UnreadBadge = () => {
+  return (
+    <>
+      <Text style={BookmarkStyles.unreadBadgeText}>Unread</Text>
+    </>
+  );
+};
+
 interface BookmarkListItemViewProps {
   bookmark: PinboardBookmark;
 }
@@ -94,11 +102,15 @@ const BookmarkListItemView: React.FC<BookmarkListItemViewProps> = ({
 
   const pbUsername = `u:${bookmark.user}`;
   const pbUserUri = `https://m.pinboard.in/${pbUsername}`;
+  const outerViewStyle =
+    typeof bookmark.shared !== undefined && bookmark.shared
+      ? BookmarkStyles.listItemPublicView
+      : BookmarkStyles.listItemPrivateView;
 
   console.log(`BookmarkListItemView(): ${JSON.stringify(bookmark)}`);
 
   return (
-    <View style={BookmarkStyles.listItemView}>
+    <View style={outerViewStyle}>
       <Pressable
         style={BookmarkDynamicStyles.listItemPressableLink}
         onPress={() => Linking.openURL(bookmark.uri)}>
@@ -120,6 +132,7 @@ const BookmarkListItemView: React.FC<BookmarkListItemViewProps> = ({
         </View>
       )}
       {bookmark.tags.length < 1 ? <></> : <TagsListView tags={bookmark.tags} />}
+      {bookmark.toread ? <UnreadBadge /> : <></>}
     </View>
   );
 };
