@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -9,10 +9,29 @@ import {DiscoverStackScreen} from 'components/Discover';
 import {ProfileStackScreen} from 'components/Profile';
 import DumbTagView from 'components/DumbTagView';
 import {FunctionalColors} from 'style/Colors';
+import {PinboardContext} from 'hooks/usePinboard';
+import {PinboardMode} from 'lib/Pinboard';
+import {StyleSheet} from 'react-native';
+
+const Styles = StyleSheet.create({
+  mockBadgeStyle: {
+    backgroundColor: 'purple',
+  },
+});
 
 const TabBar = createBottomTabNavigator();
 
 const TabBarNavContainer = () => {
+  const {pinboard} = useContext(PinboardContext);
+
+  const mockModeBadgeOpts =
+    pinboard.mode === PinboardMode.Production
+      ? {}
+      : {
+          tabBarBadge: 'mock',
+          tabBarBadgeStyle: Styles.mockBadgeStyle,
+        };
+
   return (
     <NavigationContainer>
       <TabBar.Navigator
@@ -44,7 +63,11 @@ const TabBarNavContainer = () => {
         <TabBar.Screen name="Discover" component={DiscoverStackScreen} />
         <TabBar.Screen name="DumbTags" component={DumbTagView} />
         <TabBar.Screen name="Profile" component={ProfileStackScreen} />
-        <TabBar.Screen name="About" component={About} />
+        <TabBar.Screen
+          name="About"
+          component={About}
+          options={mockModeBadgeOpts}
+        />
       </TabBar.Navigator>
     </NavigationContainer>
   );
