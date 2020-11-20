@@ -7,7 +7,7 @@
     "hash": "3d54dcec371d1bb21a55f1d23165ea1a",
     "time": "2020-11-16T05:47:01Z",
     "shared": "yes",
-    "toread": "no",
+    "toread": "yes",
     "tags": ""
   },
   {
@@ -17,7 +17,7 @@
     "meta": "6335caf0a3b4e6e5874c8aaea0fbddd1",
     "hash": "ffe20a9ec94dcd5c3087ab97179baf0b",
     "time": "2020-11-16T05:47:01Z",
-    "shared": "yes",
+    "shared": "no",
     "toread": "no",
     "tags": ""
   },
@@ -39,8 +39,8 @@
     "meta": "85f5c7afa852a2041a00e05498f4619d",
     "hash": "7f8109f71bbe2d16e2512b97a39348b7",
     "time": "2020-11-16T05:47:01Z",
-    "shared": "yes",
-    "toread": "no",
+    "shared": "no",
+    "toread": "yes",
     "tags": "apple security"
   },
   {
