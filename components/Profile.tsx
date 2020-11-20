@@ -23,7 +23,10 @@ export const ProfileStackScreen: React.FC = () => {
   return (
     <ProfileStack.Navigator>
       <ProfileStack.Screen name="Profile" component={ProfileRootScreen} />
-      <ProfileStack.Screen name="AllBookmarks" component={AllBookmarksScreen} />
+      <ProfileStack.Screen
+        name="All Bookmarks"
+        component={AllBookmarksScreen}
+      />
       <ProfileStack.Screen name="MostRecent" component={MostRecentScreen} />
     </ProfileStack.Navigator>
   );
@@ -52,7 +55,7 @@ export const ProfileRootScreen: React.FC<ProfileRootScreenProps> = ({
                   new NavigationListDestination(
                     'All bookmarks',
                     'bookmarks',
-                    () => navigation.navigate('AllBookmarks'),
+                    () => navigation.navigate('All Bookmarks'),
                   ),
                   new NavigationListDestination(
                     'Most recent bookmarks',
