@@ -14,6 +14,9 @@ const Styles = StyleSheet.create({
   itemTitle: {
     fontSize: 18,
   },
+  navListOuterView: {
+    paddingBottom: 24,
+  },
   sectionDescriptionText: {
     marginTop: 8,
     fontSize: 14,
@@ -92,7 +95,7 @@ export const NavigationList: React.FC<{
 }> = ({title, destinations}) => {
   return (
     <>
-      <View>
+      <View style={Styles.navListOuterView}>
         <View style={Styles.sectionDescriptionView}>
           <Text style={Styles.sectionDescriptionText}>{title}</Text>
         </View>
