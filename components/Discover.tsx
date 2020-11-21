@@ -25,7 +25,7 @@ export const DiscoverScreen: React.FC<DiscoverScreenProps> = ({navigation}) => {
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
-          style={AppStyles.scrollView}>
+          style={AppStyles.screenRootScrollView}>
           <View style={AppStyles.body}>
             <View style={AppStyles.sectionContainer}>
               <Text style={AppStyles.sectionTitle}>Discover</Text>

@@ -36,7 +36,7 @@ const DumbTagView: React.FC<DumbTagViewProps> = () => {
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
-          style={AppStyles.scrollView}>
+          style={AppStyles.screenRootScrollView}>
           <View style={AppStyles.body}>
             <View style={AppStyles.sectionContainer}>
               <View style={AppStyles.listTagsButtonContainer}>

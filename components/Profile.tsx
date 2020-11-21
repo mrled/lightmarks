@@ -50,7 +50,7 @@ export const ProfileRootScreen: React.FC<ProfileRootScreenProps> = ({
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
-          style={AppStyles.scrollView}>
+          style={AppStyles.screenRootScrollView}>
           <View style={AppStyles.body}>
             <View style={AppStyles.sectionContainer}>
               <Text style={AppStyles.sectionTitle}>Profile</Text>

@@ -5,7 +5,7 @@ import {FunctionalColors, NamedColors} from 'style/Colors';
 /* Application-wide, general styles
  */
 export const AppStyles = StyleSheet.create({
-  scrollView: {
+  screenRootScrollView: {
     backgroundColor: NamedColors.OffWhite,
   },
   engine: {
