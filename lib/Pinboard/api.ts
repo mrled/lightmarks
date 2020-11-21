@@ -1,5 +1,9 @@
 import {FauxApiData} from './FauxData';
-import {fetchOrReturnFaux, optionalQueryStringWithQmark} from './get';
+import {
+  QueueName,
+  optionalQueryStringWithQmark,
+  queuedFetchOrReturnFaux,
+} from './get';
 import {
   IPinboardApi,
   IPinboardApiNotes,
@@ -15,6 +19,9 @@ import {
   isApiTokenSecretCredential,
   TPinboardApiBookmark,
   TPinboardApiBookmarkToPinboardBookmark,
+  isApiPasswordCredential,
+  TPinboardApiPostsUpdateResult,
+  OneToThreeStrings,
 } from './types';
 
 /* The /posts/* routes for the Pinboard API
@@ -25,7 +32,9 @@ class PinboardApiPosts implements IPinboardApiPosts {
   /* The most recent time any bookmark was added, updated or deleted.
    */
   public update = () => {
-    return this.api.getJson('posts/update');
+    return this.api
+      .getJson<TPinboardApiPostsUpdateResult>('common', 'posts/update')
+      .then((result) => new Date(result.update_time));
   };
 
   /* Add a bookmark.
@@ -40,13 +49,13 @@ class PinboardApiPosts implements IPinboardApiPosts {
     shared?: YesOrNo;
     toread?: boolean;
   }) => {
-    return this.api.getJson('posts/add', params);
+    return this.api.getJson('common', 'posts/add', params);
   };
 
   /* Delete a bookmark.
    */
   public delete(params: {url: string}) {
-    return this.api.getJson('posts/delete', params);
+    return this.api.getJson('common', 'posts/delete', params);
   }
 
   /* Returns one or more posts on a single day matching the arguments.
@@ -54,21 +63,27 @@ class PinboardApiPosts implements IPinboardApiPosts {
    */
   public get(params: {tag?: string; dt?: string; url?: string; meta?: string}) {
     return this.api
-      .getJson<TPinboardApiBookmarkResult>('posts/get', params)
+      .getJson<TPinboardApiBookmarkResult>('common', 'posts/get', params)
       .then(TPinboardApiBookmarkResultToPinboardBookmarkArr);
   }
 
   /* Returns a list of dates with the number of posts at each date.
    */
   public dates(params: {tag?: string[]}) {
-    return this.api.getJson('posts/dates', params);
+    return this.api.getJson('common', 'posts/dates', params);
   }
 
   /* Returns a list of the user's most recent posts, filtered by tag.
+   * tag: up to 3 tags
+   * count: default is 15, max is 100
    */
-  public recent(params: {tag?: string[]}) {
+  public recent(params: {tag?: OneToThreeStrings; count?: number}) {
     return this.api
-      .getJson<TPinboardApiBookmarkResult>('posts/recent', params)
+      .getJson<TPinboardApiBookmarkResult>(
+        'apiPostsRecent',
+        'posts/recent',
+        params,
+      )
       .then((result) => {
         console.log(
           `pinboard.api.posts.recent(): result: ${JSON.stringify(result)}`,
@@ -91,7 +106,7 @@ class PinboardApiPosts implements IPinboardApiPosts {
     // NOT wrapped in a TPinboardApiBookmarkResult object.
     const dateRetrieved = new Date();
     return this.api
-      .getJson<TPinboardApiBookmark[]>('posts/all', params)
+      .getJson<TPinboardApiBookmark[]>('apiPostsAll', 'posts/all', params)
       .then((result) =>
         result.map((bookmark) =>
           TPinboardApiBookmarkToPinboardBookmark(
@@ -107,7 +122,7 @@ class PinboardApiPosts implements IPinboardApiPosts {
    * Popular tags are tags used site-wide for the url; recommended tags are drawn from the user's own tags.
    */
   public suggest(params: {url: string}) {
-    return this.api.getJson('posts/suggest', params);
+    return this.api.getJson('common', 'posts/suggest', params);
   }
 }
 
@@ -119,19 +134,19 @@ class PinboardApiTags implements IPinboardApiTags {
   /* Returns a full list of the user's tags along with the number of times they were used.
    */
   public get() {
-    return this.api.getJson('tags/get');
+    return this.api.getJson('common', 'tags/get');
   }
 
   /* Delete an existing tag.
    */
   public delete(params: {tag: string}) {
-    return this.api.getJson('tags/delete', params);
+    return this.api.getJson('common', 'tags/delete', params);
   }
 
   /* Rename an tag, or fold it in to an existing tag
    */
   public rename(params: {old: string; new: string}) {
-    return this.api.getJson('tags/rename', params);
+    return this.api.getJson('common', 'tags/rename', params);
   }
 }
 
@@ -143,14 +158,14 @@ class PinboardApiUser implements IPinboardApiUser {
   /* Returns the user's secret RSS key (for viewing private feeds)
    */
   public secret() {
-    return this.api.getJson('user/secret');
+    return this.api.getJson('common', 'user/secret');
   }
 
   /* Returns the secret part of the user's API token
    * (for making API calls without a password)
    */
   public apiToken() {
-    return this.api.getJson('user/api_token');
+    return this.api.getJson('common', 'user/api_token');
   }
 }
 
@@ -162,14 +177,14 @@ class PinboardApiNotes implements IPinboardApiNotes {
   /* Returns a list of the user's notes
    */
   public list() {
-    return this.api.getJson('notes/list');
+    return this.api.getJson('common', 'notes/list');
   }
 
   /* Returns an individual user note. The hash property is a 20 character long sha1 hash of the note text.
    */
   public byId(id: string) {
     const endpoint = `notes/${id}`;
-    return this.api.getJson(endpoint);
+    return this.api.getJson('common', endpoint);
   }
 }
 
@@ -223,8 +238,9 @@ export class PinboardApi implements IPinboardApi {
   /* Make requests with some type of credentials and convert the result to JSON
    */
   private getJsonWithTokenSecretCredential(
+    queueName: QueueName,
+    apiPath: string,
     credential: PinboardApiTokenSecretCredential,
-    endpoint: string,
     fauxData: object,
     query?: object,
   ): Promise<any> {
@@ -234,9 +250,15 @@ export class PinboardApi implements IPinboardApi {
       Object.assign({}, {auth_token: authToken, format: 'json'}, query),
     );
     const apiRoot = `${this.apiMethod}://${this.apiHost}/${this.apiPathPrefix}`;
-    const uri = `${apiRoot}/${endpoint}${qs}`;
+    const uri = `${apiRoot}/${apiPath}${qs}`;
     const headers = {'Content-Type': 'application/json'};
-    const result = fetchOrReturnFaux(this.mode, fauxData, uri, headers);
+    const result = queuedFetchOrReturnFaux(
+      queueName,
+      this.mode,
+      fauxData,
+      uri,
+      headers,
+    );
     console.log(
       `pinboard.api.getJsonWithApiTokenSecretCredential(): result: ${JSON.stringify(
         result,
@@ -245,8 +267,9 @@ export class PinboardApi implements IPinboardApi {
     return result;
   }
   private getJsonWithPasswordCredential(
+    queueName: QueueName,
+    apiPath: string,
     credential: PinboardApiPasswordCredential,
-    endpoint: string,
     fauxData: object,
     query?: object,
   ): Promise<any> {
@@ -257,9 +280,15 @@ export class PinboardApi implements IPinboardApi {
       Object.assign({}, {format: 'json'}, query),
     );
     const apiRoot = `${this.apiMethod}://${credential.username}:${credential.password}@${this.apiHost}/${this.apiPathPrefix}`;
-    const uri = `${apiRoot}/${endpoint}${qs}`;
+    const uri = `${apiRoot}/${apiPath}${qs}`;
     const headers = {'Content-Type': 'application/json'};
-    const result = fetchOrReturnFaux(this.mode, fauxData, uri, headers);
+    const result = queuedFetchOrReturnFaux(
+      queueName,
+      this.mode,
+      fauxData,
+      uri,
+      headers,
+    );
     console.log(
       `pinboard.api.getJsonWithPasswordCredential(): result: ${JSON.stringify(
         result,
@@ -267,30 +296,35 @@ export class PinboardApi implements IPinboardApi {
     );
     return result;
   }
-  private getJsonWithAnyCredential(
-    endpoint: string,
+  public getJsonWithAnyAuth<ResultT>(
+    queueName: QueueName,
+    apiPath: string,
     fauxData: object,
     query?: object,
-  ) {
+  ): Promise<ResultT> {
     if (!this.credential) {
       return new Promise<any>((_resolve, reject) =>
-        reject(
-          `Missing authentication. auth: ${JSON.stringify(this.credential)}`,
-        ),
+        reject('API credential is undefined'),
       );
     } else if (isApiTokenSecretCredential(this.credential)) {
       return this.getJsonWithTokenSecretCredential(
+        queueName,
+        apiPath,
         this.credential,
-        endpoint,
+        fauxData,
+        query,
+      );
+    } else if (isApiPasswordCredential(this.credential)) {
+      return this.getJsonWithPasswordCredential(
+        queueName,
+        apiPath,
+        this.credential,
         fauxData,
         query,
       );
     } else {
-      return this.getJsonWithPasswordCredential(
-        this.credential,
-        endpoint,
-        fauxData,
-        query,
+      return new Promise<any>((_resolve, reject) =>
+        reject('API credential of unknown type))'),
       );
     }
   }
@@ -300,16 +334,20 @@ export class PinboardApi implements IPinboardApi {
    * retrieve data from the API using our credential,
    * return real data from the API or faux data from this project, etc.
    */
-  // TODO: rename 'endpoint' to something more correct like 'apiPath'
-  public getJson<ResultT>(endpoint: string, query?: object): Promise<ResultT> {
-    return this.getJsonWithAnyCredential(
-      endpoint,
-      FauxApiData[endpoint],
+  public getJson<ResultT>(
+    queueName: QueueName,
+    apiPath: string,
+    query?: object,
+  ): Promise<ResultT> {
+    return this.getJsonWithAnyAuth(
+      queueName,
+      apiPath,
+      FauxApiData[apiPath],
       query,
     ).then((result) => {
       console.log(
         `pinboard.api.getJson(): result for ${JSON.stringify(
-          endpoint,
+          apiPath,
         )} before typing: ${JSON.stringify(result)}`,
       );
       return result as ResultT;

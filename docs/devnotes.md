@@ -41,7 +41,39 @@ They contain a link or two and some thoughts.
 
 ### ⬜️ Finish typing the Pinboard library
 
-Make sure all the API calls are properly typed
+- Type return values
+- Use a generic `.getJson<ReturnType>()` -like function to set `ReturnType` so I know what to expect the raw API results to be. See the stuff I just did in the PinboardApi for examples.
+- Use `OneToThreeStrings` or `YesOrNo` as appropriate
+- While I'm there, make sure all HTTP calls (API, Feeds, anything) are going in to a named queue.
+
+### ⬜️ Cache results of API calls
+
+- Cache results of API calls
+- Always show when data was last updated
+- If the data is new enough, don't bother contacting API at all
+- What's new enough? Probably depends on the API call.
+- If data is too old, show cached data and note that it's loading newer data in the background
+- If data is nonexistent, just note that it's loading
+
+Should we let users force request new data from API?
+
+- Maybe a pull to refresh mechanism
+- Brute force: delete local caches button in settings
+
+One idea: a `Local cache` control panel that pops up or over or something
+
+- Anything that holes cached data has a panel like this
+- "Force refresh now" button
+- Displays info on when item was last cached etc
+
+### ⬜️ Cancel outstanding tasks on unmounting a component
+
+If I request data from the network, and then navigate away before it returns and updates the view,
+I need to cancel that task or else I will get an error on the console like this:
+
+```
+[Fri Nov 20 2020 22:24:52.770]  ERROR    Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+```
 
 ### ⬜️ 🔱 Implement tag management
 
@@ -49,14 +81,6 @@ Make sure all the API calls are properly typed
 - Rename tags
 - Group tags with the same prefix (like my `code:typescript`, `code:python`, etc convention)
 - Show tags with fewer than X or more than Y bookmarks, as a way to surface too generic or too broad tags
-
-### ⬜️ 🔱 Implement a global API rate limit
-
-Pinboard will rate limit you, and it won't even follow its own docs and use a rate limit message.
-
-- Start by following guidelines in API docs
-- Add a back-off mechanism, where it doubles the wait time
-- How to manage too many tasks filling it up?
 
 ### ⬜️ 🔱 Add a share sheet
 
@@ -160,3 +184,18 @@ I added a `<Pressable>` for a set of two `<Text>` components I wanted to be part
 
 - Show recent posts
 - Requires understanding separate API results from feeds vs API
+
+### ✅ 🔱 Implement a global API rate limit
+
+Pinboard will rate limit you, and it won't even follow its own docs and use a rate limit message.
+
+- Start by following guidelines in API docs
+- Add a back-off mechanism, where it doubles the wait time
+- How to manage too many tasks filling it up?
+
+Used `smart-request-balancer` for this, we'll see how it goes.
+No plan yet for dealing with too many tasks filling it up...
+I expect I'll need to get more sophisticated with time.
+Biggest weakness currently is lack of cached data --
+loading same data over and over again will result in a queue that's full of reloading the same stuff.
+Added task for caching old results.

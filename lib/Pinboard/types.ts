@@ -1,3 +1,5 @@
+import {QueueName} from './get';
+
 /* Are we running in production?
  */
 export enum PinboardMode {
@@ -135,7 +137,11 @@ export interface IPinboardApi {
   loggedIn: boolean;
   mode: PinboardMode;
   credential?: PinboardApiPasswordCredential | PinboardApiTokenSecretCredential;
-  getJson<ResultT>(endpoint: string, query?: object): Promise<ResultT>;
+  getJson<ResultT>(
+    queueName: QueueName,
+    endpoint: string,
+    query?: object,
+  ): Promise<ResultT>;
 
   posts: IPinboardApiPosts;
   tags: IPinboardApiTags;
@@ -166,7 +172,10 @@ export interface IPinboardApiPosts {
     meta?: string;
   }): Promise<PinboardBookmark[]>;
   dates(params: {tag?: string[]}): Promise<any>;
-  recent(params: {tag?: string[]}): Promise<PinboardBookmark[]>;
+  recent(params: {
+    tag?: OneToThreeStrings;
+    count?: number;
+  }): Promise<PinboardBookmark[]>;
   all(params: {
     tag?: string;
     start?: string;
@@ -278,6 +287,9 @@ export type TPinboardApiBookmarkResult = {
   user: string;
   date: string;
   posts: Array<TPinboardApiBookmark>;
+};
+export type TPinboardApiPostsUpdateResult = {
+  update_time: string;
 };
 
 type PinboardBookmarkParams = {
