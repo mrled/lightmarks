@@ -14,6 +14,7 @@ export const AppStyles = StyleSheet.create({
   },
   body: {
     backgroundColor: 'white',
+    paddingBottom: 24,
   },
   flex: {
     flex: 1,
