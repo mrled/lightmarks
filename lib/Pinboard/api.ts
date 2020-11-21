@@ -43,7 +43,7 @@ class PinboardApiPosts implements IPinboardApiPosts {
     url: string;
     description: string;
     extended?: string;
-    tags?: OneToThreeStrings;
+    tags?: string[];
     dt?: string;
     replace?: YesOrNo;
     shared?: YesOrNo;
