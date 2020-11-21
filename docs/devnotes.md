@@ -199,3 +199,6 @@ I expect I'll need to get more sophisticated with time.
 Biggest weakness currently is lack of cached data --
 loading same data over and over again will result in a queue that's full of reloading the same stuff.
 Added task for caching old results.
+
+- <https://github.com/energizer91/smart-request-balancer>
+- <https://hackernoon.com/limiting-your-api-requests-the-right-way-9608b661a0ce>
