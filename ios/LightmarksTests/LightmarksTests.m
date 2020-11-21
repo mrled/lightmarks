@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface betterpinsTests : XCTestCase
+@interface LightmarksTests : XCTestCase
 
 @end
 
-@implementation betterpinsTests
+@implementation LightmarksTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

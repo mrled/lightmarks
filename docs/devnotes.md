@@ -1,4 +1,4 @@
-# betterpins
+# Lightmarks
 
 Development notes, whatever.
 
@@ -227,3 +227,20 @@ At least a prelim one
 - Used <http://easyappicon.com/> to convert it to Android and iOS icons
 - Add to iOS: Open xcworkspace (or xcproj if you don't have a workspace), go to project name -> Image Assets -> AppIcon, add the right sizes one by one
 - Add to Android: not sure yet, Android build is broken and I'm over it
+
+### ✅️ Rename to Lightmarks
+
+- Rename all the stuff in Xcode that I could
+- Move folders to new names
+- `rg -i betterpins` and replace with `Lightmarks` everywhere, even in Xcode files
+- Don't forget to `find -name '*betterpins*'` too
+- And `rg` will not find text matches in the `.gitignore` file, AND will ignore items listed in `.gitignore`,
+  so look at that file separately.
+
+Also during this
+
+- Change the bundle identifier to be `com.micarhl.me` rather than `org.reactjs.native.example` --
+  `rg -i org.reactjs.native.example` and change from there
+- Remove everything related to tvOS, first in Xcode and then with `rg` and `rm`
+
+How to do this for Android? No idea, that's for later I guess.
