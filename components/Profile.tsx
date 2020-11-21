@@ -2,14 +2,27 @@
  */
 
 import React, {useContext, useEffect, useState} from 'react';
-import {SafeAreaView, ScrollView, StatusBar, Text, View} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {StackNavigationProp} from '@react-navigation/stack';
+import {
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  View,
+} from 'react-native';
+import {
+  StackNavigationProp,
+  createStackNavigator,
+} from '@react-navigation/stack';
 
 import {BookmarkListView} from 'components/BookmarkList';
 import {PinboardContext} from 'hooks/usePinboard';
 import {AppStyles} from 'style/Styles';
 import {NavigationList, NavigationListDestination} from './NavigationList';
+
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
+import {AddBookmarkScreen} from './AddBookmark';
 
 const ProfileStack = createStackNavigator<ProfileStackParamList>();
 
@@ -19,12 +32,30 @@ type ProfileStackParamList = {
   'Most Recent': undefined;
   'Bookmarks from Recent Day': undefined;
   'Last Update': undefined;
+  'Add Bookmark': undefined;
+};
+
+const AddBookmarkHeaderButton: React.FC = () => {
+  const navigation = useNavigation();
+  return (
+    <Pressable
+      style={AppStyles.headerRightIconButton}
+      onPress={() => navigation.navigate('Add Bookmark')}>
+      <Ionicons name="add" color="tomato" size={32} />
+    </Pressable>
+  );
 };
 
 export const ProfileStackScreen: React.FC = () => {
   return (
     <ProfileStack.Navigator>
-      <ProfileStack.Screen name="Profile" component={ProfileRootScreen} />
+      <ProfileStack.Screen
+        name="Profile"
+        component={ProfileRootScreen}
+        options={{
+          headerRight: () => <AddBookmarkHeaderButton />,
+        }}
+      />
       <ProfileStack.Screen
         name="All Bookmarks"
         component={AllBookmarksScreen}
@@ -35,6 +66,7 @@ export const ProfileStackScreen: React.FC = () => {
         component={MostRecentDayScreen}
       />
       <ProfileStack.Screen name="Last Update" component={LastUpdateScreen} />
+      <ProfileStack.Screen name="Add Bookmark" component={AddBookmarkScreen} />
     </ProfileStack.Navigator>
   );
 };

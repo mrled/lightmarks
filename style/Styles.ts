@@ -2,6 +2,22 @@ import {StyleSheet} from 'react-native';
 
 import {FunctionalColors, NamedColors} from 'style/Colors';
 
+const styleBases = {
+  textInputBox_L: {
+    borderBottomWidth: 1,
+    borderLeftWidth: 1,
+    // borderWidth: 1,
+    borderColor: NamedColors.DarkGray,
+    padding: 4,
+  },
+  textInputBox: {
+    borderWidth: 1,
+    borderColor: 'lightgray',
+    padding: 4,
+    borderRadius: 4,
+  },
+};
+
 /* Application-wide, general styles
  */
 export const AppStyles = StyleSheet.create({
@@ -22,6 +38,10 @@ export const AppStyles = StyleSheet.create({
   flexDirectionRow: {
     flexDirection: 'row',
   },
+  headerRightIconButton: {
+    marginRight: 12,
+    color: 'tomato',
+  },
   listTagsButtonContainer: {
     marginTop: 32,
     borderWidth: 1,
@@ -40,6 +60,17 @@ export const AppStyles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     color: NamedColors.DarkGray,
+  },
+  textInputBox: {
+    ...styleBases.textInputBox,
+    fontSize: 24,
+  },
+  textInputBoxUrl: {
+    ...styleBases.textInputBox,
+  },
+  textInputLabel: {
+    color: NamedColors.DarkGray,
+    margin: 4,
   },
   highlight: {
     fontWeight: '700',
