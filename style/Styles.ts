@@ -21,13 +21,6 @@ const styleBases = {
 /* Application-wide, general styles
  */
 export const AppStyles = StyleSheet.create({
-  screenRootScrollView: {
-    backgroundColor: NamedColors.OffWhite,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
   body: {
     backgroundColor: 'white',
     paddingBottom: 24,
@@ -45,6 +38,9 @@ export const AppStyles = StyleSheet.create({
   listTagsButtonContainer: {
     marginTop: 32,
     borderWidth: 1,
+  },
+  screenRootScrollView: {
+    backgroundColor: NamedColors.OffWhite,
   },
   sectionContainer: {
     marginTop: 32,
@@ -71,17 +67,6 @@ export const AppStyles = StyleSheet.create({
   textInputLabel: {
     color: NamedColors.DarkGray,
     margin: 4,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: NamedColors.DarkGray,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
   },
 });
 
