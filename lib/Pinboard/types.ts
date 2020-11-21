@@ -158,30 +158,31 @@ export interface IPinboardApiPosts {
     url: string;
     description: string;
     extended?: string;
-    tags?: string[];
+    tags?: OneToThreeStrings;
     dt?: string;
     replace?: YesOrNo;
     shared?: YesOrNo;
-    toread?: boolean;
+    toread?: YesOrNo;
   }): Promise<any>;
   delete(params: {url: string}): Promise<any>;
   get(params: {
-    tag?: string;
+    tag?: OneToThreeStrings;
     dt?: string;
     url?: string;
-    meta?: string;
+    meta?: YesOrNo;
   }): Promise<PinboardBookmark[]>;
-  dates(params: {tag?: string[]}): Promise<any>;
+  dates(params: {tag?: OneToThreeStrings}): Promise<any>;
   recent(params: {
     tag?: OneToThreeStrings;
     count?: number;
   }): Promise<PinboardBookmark[]>;
   all(params: {
-    tag?: string;
-    start?: string;
-    results?: string;
-    fromdt?: string;
-    meta?: string;
+    tag?: OneToThreeStrings;
+    start?: number; // Offset value
+    results?: number; // Number of results to return
+    fromdt?: string; // Return only bookmarks created after this time
+    todt?: string; // Return only bookmarks created before this time
+    meta?: YesOrNo;
   }): Promise<any>;
   suggest(params: {url: string}): Promise<any>;
 }

@@ -43,11 +43,11 @@ class PinboardApiPosts implements IPinboardApiPosts {
     url: string;
     description: string;
     extended?: string;
-    tags?: string[];
+    tags?: OneToThreeStrings;
     dt?: string;
     replace?: YesOrNo;
     shared?: YesOrNo;
-    toread?: boolean;
+    toread?: YesOrNo;
   }) => {
     return this.api.getJson('common', 'posts/add', params);
   };
@@ -61,7 +61,12 @@ class PinboardApiPosts implements IPinboardApiPosts {
   /* Returns one or more posts on a single day matching the arguments.
    * If no date or url is given, date of most recent bookmark will be used.
    */
-  public get(params: {tag?: string; dt?: string; url?: string; meta?: string}) {
+  public get(params: {
+    tag?: OneToThreeStrings;
+    dt?: string;
+    url?: string;
+    meta?: YesOrNo;
+  }) {
     return this.api
       .getJson<TPinboardApiBookmarkResult>('common', 'posts/get', params)
       .then(TPinboardApiBookmarkResultToPinboardBookmarkArr);
@@ -69,7 +74,7 @@ class PinboardApiPosts implements IPinboardApiPosts {
 
   /* Returns a list of dates with the number of posts at each date.
    */
-  public dates(params: {tag?: string[]}) {
+  public dates(params: {tag?: OneToThreeStrings}) {
     return this.api.getJson('common', 'posts/dates', params);
   }
 
@@ -96,11 +101,12 @@ class PinboardApiPosts implements IPinboardApiPosts {
   /* Returns all bookmarks in the user's account.
    */
   public all(params: {
-    tag?: string;
-    start?: string;
-    results?: string;
+    tag?: OneToThreeStrings;
+    start?: number;
+    results?: number;
     fromdt?: string;
-    meta?: string;
+    todt?: string;
+    meta?: YesOrNo;
   }) {
     // Note that this endpoint gets a list of TPinboardApiBookmark objects,
     // NOT wrapped in a TPinboardApiBookmarkResult object.
