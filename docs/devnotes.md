@@ -218,3 +218,12 @@ Added task for caching old results.
 
 - <https://github.com/energizer91/smart-request-balancer>
 - <https://hackernoon.com/limiting-your-api-requests-the-right-way-9608b661a0ce>
+
+### ✅️ Get an icon
+
+At least a prelim one
+
+- Got `collections_bookmark` from Material Design icons
+- Used <http://easyappicon.com/> to convert it to Android and iOS icons
+- Add to iOS: Open xcworkspace (or xcproj if you don't have a workspace), go to project name -> Image Assets -> AppIcon, add the right sizes one by one
+- Add to Android: not sure yet, Android build is broken and I'm over it
