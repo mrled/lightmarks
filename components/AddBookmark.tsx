@@ -1,8 +1,29 @@
+import {useNavigation} from '@react-navigation/native';
 import {PinboardContext} from 'hooks/usePinboard';
 import React, {useContext, useState} from 'react';
-import {SafeAreaView, ScrollView, Text, View} from 'react-native';
+import {
+  Button,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {Switch, TextInput} from 'react-native-gesture-handler';
 import {AppStyles} from 'style/Styles';
+
+const Styles = StyleSheet.create({
+  cancelSubmitButtonsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  cancelSubmitButtons: {
+    paddingLeft: 18,
+    paddingRight: 18,
+    paddingTop: 18,
+  },
+});
 
 export type AddBookmarksParams = {
   initialUri?: string;
@@ -14,6 +35,7 @@ export const AddBookmarkScreen: React.FC<AddBookmarksParams> = ({
   initialTitle,
   initialDesc,
 }) => {
+  const navigation = useNavigation();
   const [uri, setUri] = useState(initialUri ? initialUri : '');
   const [title, setTitle] = useState(initialTitle ? initialTitle : '');
   const [desc, setDesc] = useState(initialDesc ? initialDesc : '');
@@ -22,6 +44,9 @@ export const AddBookmarkScreen: React.FC<AddBookmarksParams> = ({
   const [priv, setPriv] = useState(false);
   const {pinboard} = useContext(PinboardContext);
 
+  const cancel = () => {
+    navigation.goBack();
+  };
   const submit = () => {
     pinboard.api.posts.add({
       url: uri,
@@ -32,6 +57,7 @@ export const AddBookmarkScreen: React.FC<AddBookmarksParams> = ({
       shared: priv ? 'no' : 'yes',
       toread: readLater ? 'yes' : 'no',
     });
+    navigation.goBack();
   };
 
   return (
@@ -41,6 +67,14 @@ export const AddBookmarkScreen: React.FC<AddBookmarksParams> = ({
           contentInsetAdjustmentBehavior="automatic"
           style={AppStyles.screenRootScrollView}>
           <View style={AppStyles.body}>
+            <View style={Styles.cancelSubmitButtonsContainer}>
+              <View style={Styles.cancelSubmitButtons}>
+                <Button title="Cancel" onPress={cancel} color="goldenrod" />
+              </View>
+              <View style={Styles.cancelSubmitButtons}>
+                <Button title="Submit" onPress={submit} color="tomato" />
+              </View>
+            </View>
             {/* <View style={AppStyles.sectionContainer}>
               <Text style={AppStyles.sectionTitle}>Add Bookmark</Text>
             </View> */}
@@ -76,7 +110,7 @@ export const AddBookmarkScreen: React.FC<AddBookmarksParams> = ({
                 autoCapitalize="none"
                 multiline={true}
                 textAlignVertical="top"
-                onChangeText={(newText) => setTags(newText.split())}
+                onChangeText={(newText) => setTags(newText.split(' '))}
                 value={tags.join(' ')}
               />
               <Text style={AppStyles.textInputLabel}>Read Later</Text>
