@@ -66,6 +66,22 @@ One idea: a `Local cache` control panel that pops up or over or something
 - "Force refresh now" button
 - Displays info on when item was last cached etc
 
+### ⬜️ Do I need a UI kit?
+
+- NativeBase seems like a decent default. It has a lot of components. (Maybe some are paid only?)
+- UI Kitten might look pretty good, but has way fewer components.
+- react-native-paper is Material Design, so I don't think it'll look right on iOS
+- Lots of other ones, but these seem to be the biggest?
+
+I have to say, discovering this stuff is hard when you're starting from absolute scratch like me.
+I literally only even found these because I was searching all of github for how to set a React Navigation stack nav top bar... and the results were all from people using paper or UI Kitten or similar.
+
+### ⬜️ Work perfectly offline
+
+This is part of caching results and perfect data sync.
+
+Maybe with this? <https://github.com/rgommezz/react-native-offline>
+
 ### ⬜️ Cancel outstanding tasks on unmounting a component
 
 If I request data from the network, and then navigate away before it returns and updates the view,
