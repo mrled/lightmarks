@@ -1,106 +1,48 @@
+/* The entrypoint for the share extension
+ *
+ * The share extension doesn't load your app through App.tsx, but through this file.
+ * Be careful with the components you mount in this file.
+ * I had weird errors when using components from a file that included
+ * Switch and TextInput components wrapped by react-native-gesture-handler.
+ * See the AddBookmark component for details.
+ */
+
 import React, {useEffect, useState} from 'react';
-import {View, Text, Pressable, Image, StyleSheet} from 'react-native';
+import {ActivityIndicator, Text, View} from 'react-native';
+
 import {ShareMenuReactView} from 'react-native-share-menu';
 
-const Button = ({onPress, title, style}) => (
-  <Pressable onPress={onPress}>
-    <Text style={[{fontSize: 16, margin: 16}, style]}>{title}</Text>
-  </Pressable>
-);
+import {AddBookmarkScreen} from 'components/AddBookmark';
 
 const Share = () => {
-  const [sharedData, setSharedData] = useState('');
-  const [sharedMimeType, setSharedMimeType] = useState('');
-  const [sending, setSending] = useState(false);
+  const [sharedData, setSharedData] = useState<string>('');
+  const [sharedMimeType, setSharedMimeType] = useState<string>('');
+  const [received, setReceived] = useState<boolean>(false);
 
   useEffect(() => {
-    ShareMenuReactView.data().then(({mimeType, data}) => {
-      setSharedData(data);
-      setSharedMimeType(mimeType);
+    ShareMenuReactView.data().then((receivedData: any) => {
+      console.log(`Share(): receivedData: ${JSON.stringify(receivedData)}`);
+      setSharedData(receivedData.data);
+      setSharedMimeType(receivedData.mimeType);
+      setReceived(true);
     });
   }, []);
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Button
-          title="Dismiss"
-          onPress={() => {
-            ShareMenuReactView.dismissExtension();
-          }}
-          style={styles.destructive}
-        />
-        <Button
-          title={sending ? 'Sending...' : 'Send'}
-          onPress={() => {
-            setSending(true);
-
-            setTimeout(() => {
-              ShareMenuReactView.dismissExtension();
-            }, 3000);
-          }}
-          disabled={sending}
-          style={sending ? styles.sending : styles.send}
-        />
+  if (!received) {
+    return (
+      <View>
+        <Text>Receiving...</Text>
+        <ActivityIndicator />
       </View>
-      {sharedMimeType === 'text/plain' && <Text>{sharedData}</Text>}
-      {sharedMimeType.startsWith('image/') && (
-        <Image
-          style={styles.image}
-          resizeMode="contain"
-          source={{uri: sharedData}}
-        />
-      )}
-      <View style={styles.buttonGroup}>
-        <Button
-          title="Dismiss with Error"
-          onPress={() => {
-            ShareMenuReactView.dismissExtension('Dismissed with error');
-          }}
-          style={styles.destructive}
-        />
-        <Button
-          title="Continue In App"
-          onPress={() => {
-            ShareMenuReactView.continueInApp();
-          }}
-        />
-        <Button
-          title="Continue In App With Extra Data"
-          onPress={() => {
-            ShareMenuReactView.continueInApp({hello: 'from the other side'});
-          }}
-        />
-      </View>
-    </View>
-  );
+    );
+  } else {
+    return (
+      <AddBookmarkScreen
+        dismiss={() => ShareMenuReactView.dismissExtension()}
+        initialUri={sharedData}
+      />
+    );
+  }
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  destructive: {
-    color: 'red',
-  },
-  send: {
-    color: 'blue',
-  },
-  sending: {
-    color: 'grey',
-  },
-  image: {
-    width: '100%',
-    height: 200,
-  },
-  buttonGroup: {
-    alignItems: 'center',
-  },
-});
 
 export default Share;

@@ -6,10 +6,25 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
+  Switch,
   Text,
+  TextInput,
   View,
 } from 'react-native';
-import {Switch, TextInput} from 'react-native-gesture-handler';
+
+/* Warning: this module is imported from the Share entrypoint,
+ * and react-native-gesture-handler does NOT play well with it.
+ *
+ * If you use RNGH's Switch and TextInput classes, this component will work fine from within the app,
+ * but if you open the share sheet (which mounts this component) you will get errors like
+ *
+ * [Mon Nov 23 2020 00:03:37.568]  ERROR    TypeError: null is not an object (evaluating '_RNGestureHandlerModule.default.Direction')
+ * [Mon Nov 23 2020 00:03:37.568]  ERROR    Invariant Violation: Module AppRegistry is not a registered callable module (calling runApplication)
+ * [Mon Nov 23 2020 00:03:38.585]  ERROR    Invariant Violation: Module AppRegistry is not a registered callable module (calling runApplication)
+ *
+ */
+// import {Switch, TextInput} from 'react-native-gesture-handler';
+
 import {AppStyles} from 'style/Styles';
 
 const Styles = StyleSheet.create({
@@ -25,17 +40,19 @@ const Styles = StyleSheet.create({
   },
 });
 
-export type AddBookmarksParams = {
+type AddBookmarkScreenParams = {
+  dismiss: () => void;
   initialUri?: string;
   initialTitle?: string;
   initialDesc?: string;
 };
-export const AddBookmarkScreen: React.FC<AddBookmarksParams> = ({
+
+export const AddBookmarkScreen: React.FC<AddBookmarkScreenParams> = ({
+  dismiss,
   initialUri,
   initialTitle,
   initialDesc,
 }) => {
-  const navigation = useNavigation();
   const [uri, setUri] = useState(initialUri ? initialUri : '');
   const [title, setTitle] = useState(initialTitle ? initialTitle : '');
   const [desc, setDesc] = useState(initialDesc ? initialDesc : '');
@@ -44,8 +61,12 @@ export const AddBookmarkScreen: React.FC<AddBookmarksParams> = ({
   const [priv, setPriv] = useState(false);
   const {pinboard} = useContext(PinboardContext);
 
+  console.log(
+    `Got params: uri ${initialUri}, title ${initialTitle}, desc ${initialDesc}`,
+  );
+
   const cancel = () => {
-    navigation.goBack();
+    dismiss();
   };
   const submit = () => {
     pinboard.api.posts.add({
@@ -57,7 +78,7 @@ export const AddBookmarkScreen: React.FC<AddBookmarksParams> = ({
       shared: priv ? 'no' : 'yes',
       toread: readLater ? 'yes' : 'no',
     });
-    navigation.goBack();
+    dismiss();
   };
 
   return (
@@ -85,7 +106,7 @@ export const AddBookmarkScreen: React.FC<AddBookmarksParams> = ({
                 autoCapitalize="none"
                 multiline={true}
                 textAlignVertical="top"
-                onChangeText={(newText) => setUri(newText)}
+                onChangeText={(newText: string) => setUri(newText)}
                 value={uri}
               />
               <Text style={AppStyles.textInputLabel}>Title</Text>
@@ -93,7 +114,7 @@ export const AddBookmarkScreen: React.FC<AddBookmarksParams> = ({
                 style={AppStyles.textInputBox}
                 multiline={true}
                 textAlignVertical="top"
-                onChangeText={(newText) => setTitle(newText)}
+                onChangeText={(newText: string) => setTitle(newText)}
                 value={title}
               />
               <Text style={AppStyles.textInputLabel}>Description</Text>
@@ -101,7 +122,7 @@ export const AddBookmarkScreen: React.FC<AddBookmarksParams> = ({
                 style={AppStyles.textInputBox}
                 multiline={true}
                 textAlignVertical="top"
-                onChangeText={(newText) => setDesc(newText)}
+                onChangeText={(newText: string) => setDesc(newText)}
                 value={desc}
               />
               <Text style={AppStyles.textInputLabel}>Tags</Text>
@@ -110,7 +131,7 @@ export const AddBookmarkScreen: React.FC<AddBookmarksParams> = ({
                 autoCapitalize="none"
                 multiline={true}
                 textAlignVertical="top"
-                onChangeText={(newText) => setTags(newText.split(' '))}
+                onChangeText={(newText: string) => setTags(newText.split(' '))}
                 value={tags.join(' ')}
               />
               <Text style={AppStyles.textInputLabel}>Read Later</Text>
@@ -132,5 +153,28 @@ export const AddBookmarkScreen: React.FC<AddBookmarksParams> = ({
         </ScrollView>
       </SafeAreaView>
     </>
+  );
+};
+
+type AddBookmarkScreenWithBackParams = {
+  initialUri?: string;
+  initialTitle?: string;
+  initialDesc?: string;
+};
+
+export const AddBookmarkScreenWithBack: React.FC<AddBookmarkScreenWithBackParams> = ({
+  initialUri,
+  initialTitle,
+  initialDesc,
+}) => {
+  const navigation = useNavigation();
+  const dismiss = () => navigation.goBack();
+  return (
+    <AddBookmarkScreen
+      dismiss={dismiss}
+      initialUri={initialUri}
+      initialTitle={initialTitle}
+      initialDesc={initialDesc}
+    />
   );
 };

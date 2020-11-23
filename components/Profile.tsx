@@ -22,7 +22,7 @@ import {NavigationList, NavigationListDestination} from './NavigationList';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
-import {AddBookmarkScreen} from './AddBookmark';
+import {AddBookmarkScreenWithBack} from './AddBookmark';
 
 const ProfileStack = createStackNavigator<ProfileStackParamList>();
 
@@ -66,7 +66,10 @@ export const ProfileStackScreen: React.FC = () => {
         component={MostRecentDayScreen}
       />
       <ProfileStack.Screen name="Last Update" component={LastUpdateScreen} />
-      <ProfileStack.Screen name="Add Bookmark" component={AddBookmarkScreen} />
+      <ProfileStack.Screen
+        name="Add Bookmark"
+        component={AddBookmarkScreenWithBack}
+      />
     </ProfileStack.Navigator>
   );
 };
