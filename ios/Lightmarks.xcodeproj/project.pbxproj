@@ -13,7 +13,12 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		27103F99AB45D0E5825D14A4 /* libPods-Lightmarks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADF6EA20C1257B5365C11A4 /* libPods-Lightmarks.a */; };
+		30951387256B637D0039A5A1 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30951385256B637D0039A5A1 /* MainInterface.storyboard */; };
+		3095138C256B637D0039A5A1 /* LightmarksShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30951381256B637D0039A5A1 /* LightmarksShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		309513A0256B64A40039A5A1 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095139F256B64A40039A5A1 /* ShareViewController.swift */; };
+		30951429256B69070039A5A1 /* ReactShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30951428256B69070039A5A1 /* ReactShareViewController.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		FE1D866BB40DC7B52B1C351F /* libPods-LightmarksShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3B490BF6F047C49232406E /* libPods-LightmarksShare.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,7 +29,28 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = Lightmarks;
 		};
+		30951389256B637D0039A5A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30951380256B637D0039A5A1;
+			remoteInfo = LightmarksShare;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3095138B256B637D0039A5A1 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3095138C256B637D0039A5A1 /* LightmarksShare.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
@@ -37,6 +63,17 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Lightmarks/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Lightmarks/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Lightmarks/main.m; sourceTree = "<group>"; };
+		15A4101B5E0A4D6E9E6BA4E3 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		16043E14975645E8A0DA9510 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		1B3B490BF6F047C49232406E /* libPods-LightmarksShare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LightmarksShare.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30951381256B637D0039A5A1 /* LightmarksShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LightmarksShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		30951386256B637D0039A5A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		30951388256B637D0039A5A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3095139F256B64A40039A5A1 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareViewController.swift; path = "../../node_modules/react-native-share-menu/ios/ShareViewController.swift"; sourceTree = "<group>"; };
+		309513D9256B653D0039A5A1 /* Lightmarks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Lightmarks.entitlements; path = Lightmarks/Lightmarks.entitlements; sourceTree = "<group>"; };
+		309513DD256B65470039A5A1 /* LightmarksShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LightmarksShare.entitlements; sourceTree = "<group>"; };
+		3095141F256B68D20039A5A1 /* LightmarksShare-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LightmarksShare-Bridging-Header.h"; sourceTree = "<group>"; };
+		30951428256B69070039A5A1 /* ReactShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactShareViewController.swift; path = "../../node_modules/react-native-share-menu/ios/ReactShareViewController.swift"; sourceTree = "<group>"; };
 		30D27CA925622BE100BFA466 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		30D27CAA25622BE100BFA466 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		30D27CAB25622BE100BFA466 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -70,13 +107,29 @@
 		30D27CC725622BE100BFA466 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
 		30D27CC825622BE100BFA466 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
 		35D4C2BEA5F774943DA15E86 /* Pods-Lightmarks-LightmarksTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lightmarks-LightmarksTests.release.xcconfig"; path = "Target Support Files/Pods-Lightmarks-LightmarksTests/Pods-Lightmarks-LightmarksTests.release.xcconfig"; sourceTree = "<group>"; };
+		576B0D1F50E24A5DB6E75E54 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		579ACB3F85AD4440A3991BE1 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		58146DE42772FEBBFB8DEEDB /* Pods-Lightmarks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lightmarks.release.xcconfig"; path = "Target Support Files/Pods-Lightmarks/Pods-Lightmarks.release.xcconfig"; sourceTree = "<group>"; };
+		599B06AE2C4B4201832C2006 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		5EDC49ED3A5F4E8C8A39C8CF /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		628C2FF897534F838AD58143 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		629B80950E90880DBE191285 /* Pods-Lightmarks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lightmarks.debug.xcconfig"; path = "Target Support Files/Pods-Lightmarks/Pods-Lightmarks.debug.xcconfig"; sourceTree = "<group>"; };
+		6BF454685AFA41DC93434336 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		73AEDAB0800EF0CAE307B335 /* libPods-Lightmarks-LightmarksTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lightmarks-LightmarksTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		746C16965FF04235918487F0 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		780756F4E2A7431DBD193D84 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		7E2D634677F74D3684341394 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Lightmarks/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		88CFF5E975B4411A9B8F1D8F /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		8ADF6EA20C1257B5365C11A4 /* libPods-Lightmarks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lightmarks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AED0F0D5A37F45D8B7B90A13 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		B33166F259A74905BDABAE51 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		C201FB322E1E7EDFBD634E23 /* Pods-LightmarksShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightmarksShare.debug.xcconfig"; path = "Target Support Files/Pods-LightmarksShare/Pods-LightmarksShare.debug.xcconfig"; sourceTree = "<group>"; };
+		D2446B91CEE451EFC0B6B3D9 /* Pods-LightmarksShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightmarksShare.release.xcconfig"; path = "Target Support Files/Pods-LightmarksShare/Pods-LightmarksShare.release.xcconfig"; sourceTree = "<group>"; };
+		E162FE09AD82479AB0B8690E /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		EBA40D734209381382A5608D /* Pods-Lightmarks-LightmarksTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lightmarks-LightmarksTests.debug.xcconfig"; path = "Target Support Files/Pods-Lightmarks-LightmarksTests/Pods-Lightmarks-LightmarksTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F3AF9DB292364111829C4EE6 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +146,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				27103F99AB45D0E5825D14A4 /* libPods-Lightmarks.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3095137E256B637D0039A5A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE1D866BB40DC7B52B1C351F /* libPods-LightmarksShare.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +180,7 @@
 		13B07FAE1A68108700A75B9A /* Lightmarks */ = {
 			isa = PBXGroup;
 			children = (
+				309513D9256B653D0039A5A1 /* Lightmarks.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -136,8 +198,22 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				8ADF6EA20C1257B5365C11A4 /* libPods-Lightmarks.a */,
 				73AEDAB0800EF0CAE307B335 /* libPods-Lightmarks-LightmarksTests.a */,
+				1B3B490BF6F047C49232406E /* libPods-LightmarksShare.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		30951382256B637D0039A5A1 /* LightmarksShare */ = {
+			isa = PBXGroup;
+			children = (
+				30951428256B69070039A5A1 /* ReactShareViewController.swift */,
+				309513DD256B65470039A5A1 /* LightmarksShare.entitlements */,
+				3095139F256B64A40039A5A1 /* ShareViewController.swift */,
+				30951385256B637D0039A5A1 /* MainInterface.storyboard */,
+				30951388256B637D0039A5A1 /* Info.plist */,
+				3095141F256B68D20039A5A1 /* LightmarksShare-Bridging-Header.h */,
+			);
+			path = LightmarksShare;
 			sourceTree = "<group>";
 		};
 		30D27CA825622BE100BFA466 /* Fonts */ = {
@@ -194,9 +270,11 @@
 				13B07FAE1A68108700A75B9A /* Lightmarks */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* LightmarksTests */,
+				30951382256B637D0039A5A1 /* LightmarksShare */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D3CFB02F1CDE9DD4EDEACD10 /* Pods */,
+				A2AEDD1E452A4D6A8749FB1A /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -208,8 +286,32 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* Lightmarks.app */,
 				00E356EE1AD99517003FC87E /* LightmarksTests.xctest */,
+				30951381256B637D0039A5A1 /* LightmarksShare.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A2AEDD1E452A4D6A8749FB1A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				15A4101B5E0A4D6E9E6BA4E3 /* AntDesign.ttf */,
+				6BF454685AFA41DC93434336 /* Entypo.ttf */,
+				780756F4E2A7431DBD193D84 /* EvilIcons.ttf */,
+				B33166F259A74905BDABAE51 /* Feather.ttf */,
+				576B0D1F50E24A5DB6E75E54 /* FontAwesome.ttf */,
+				5EDC49ED3A5F4E8C8A39C8CF /* FontAwesome5_Brands.ttf */,
+				E162FE09AD82479AB0B8690E /* FontAwesome5_Regular.ttf */,
+				579ACB3F85AD4440A3991BE1 /* FontAwesome5_Solid.ttf */,
+				AED0F0D5A37F45D8B7B90A13 /* Fontisto.ttf */,
+				F3AF9DB292364111829C4EE6 /* Foundation.ttf */,
+				16043E14975645E8A0DA9510 /* Ionicons.ttf */,
+				7E2D634677F74D3684341394 /* MaterialCommunityIcons.ttf */,
+				628C2FF897534F838AD58143 /* MaterialIcons.ttf */,
+				599B06AE2C4B4201832C2006 /* Octicons.ttf */,
+				746C16965FF04235918487F0 /* SimpleLineIcons.ttf */,
+				88CFF5E975B4411A9B8F1D8F /* Zocial.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		D3CFB02F1CDE9DD4EDEACD10 /* Pods */ = {
@@ -219,6 +321,8 @@
 				58146DE42772FEBBFB8DEEDB /* Pods-Lightmarks.release.xcconfig */,
 				EBA40D734209381382A5608D /* Pods-Lightmarks-LightmarksTests.debug.xcconfig */,
 				35D4C2BEA5F774943DA15E86 /* Pods-Lightmarks-LightmarksTests.release.xcconfig */,
+				C201FB322E1E7EDFBD634E23 /* Pods-LightmarksShare.debug.xcconfig */,
+				D2446B91CEE451EFC0B6B3D9 /* Pods-LightmarksShare.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -257,15 +361,37 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				00101264E1DB3DD9F89D955F /* [CP] Copy Pods Resources */,
+				3095138B256B637D0039A5A1 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3095138A256B637D0039A5A1 /* PBXTargetDependency */,
 			);
 			name = Lightmarks;
 			productName = Lightmarks;
 			productReference = 13B07F961A680F5B00A75B9A /* Lightmarks.app */;
 			productType = "com.apple.product-type.application";
+		};
+		30951380256B637D0039A5A1 /* LightmarksShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3095138F256B637D0039A5A1 /* Build configuration list for PBXNativeTarget "LightmarksShare" */;
+			buildPhases = (
+				10304C54D30ED25F6F43C763 /* [CP] Check Pods Manifest.lock */,
+				3095137D256B637D0039A5A1 /* Sources */,
+				3095137E256B637D0039A5A1 /* Frameworks */,
+				3095137F256B637D0039A5A1 /* Resources */,
+				3095142D256B69B80039A5A1 /* Bundle React Native code and images */,
+				B34B8CE88CECD4D102775ECE /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LightmarksShare;
+			productName = LightmarksShare;
+			productReference = 30951381256B637D0039A5A1 /* LightmarksShare.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -273,6 +399,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -283,6 +410,12 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = Z6P9UD2GQT;
 						LastSwiftMigration = 1120;
+					};
+					30951380256B637D0039A5A1 = {
+						CreatedOnToolsVersion = 12.2;
+						DevelopmentTeam = Z6P9UD2GQT;
+						LastSwiftMigration = 1220;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -301,6 +434,7 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* Lightmarks */,
 				00E356ED1AD99517003FC87E /* LightmarksTests */,
+				30951380256B637D0039A5A1 /* LightmarksShare */,
 			);
 		};
 /* End PBXProject section */
@@ -319,6 +453,14 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3095137F256B637D0039A5A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30951387256B637D0039A5A1 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +553,46 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		10304C54D30ED25F6F43C763 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LightmarksShare-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3095142D256B69B80039A5A1 /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\nexport ENTRY_FILE=index.share.js\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+		};
 		B3464A8FAAC6716F02816C68 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -431,6 +613,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B34B8CE88CECD4D102775ECE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LightmarksShare/Pods-LightmarksShare-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LightmarksShare/Pods-LightmarksShare-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C112880F5A041F74937B207B /* [CP] Copy Pods Resources */ = {
@@ -522,6 +722,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3095137D256B637D0039A5A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30951429256B69070039A5A1 /* ReactShareViewController.swift in Sources */,
+				309513A0256B64A40039A5A1 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -530,14 +739,29 @@
 			target = 13B07F861A680F5B00A75B9A /* Lightmarks */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
+		3095138A256B637D0039A5A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30951380256B637D0039A5A1 /* LightmarksShare */;
+			targetProxy = 30951389256B637D0039A5A1 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		30951385256B637D0039A5A1 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30951386256B637D0039A5A1 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EBA40D734209381382A5608D /* Pods-Lightmarks-LightmarksTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = Z6P9UD2GQT;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -545,7 +769,6 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = LightmarksTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -562,12 +785,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 35D4C2BEA5F774943DA15E86 /* Pods-Lightmarks-LightmarksTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = Z6P9UD2GQT;
 				INFOPLIST_FILE = LightmarksTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -586,6 +807,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Lightmarks/Lightmarks.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z6P9UD2GQT;
 				ENABLE_BITCODE = NO;
@@ -610,6 +832,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Lightmarks/Lightmarks.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z6P9UD2GQT;
 				INFOPLIST_FILE = Lightmarks/Info.plist;
@@ -623,6 +846,67 @@
 				PRODUCT_NAME = Lightmarks;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		3095138D256B637D0039A5A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C201FB322E1E7EDFBD634E23 /* Pods-LightmarksShare.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = LightmarksShare/LightmarksShare.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Z6P9UD2GQT;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = LightmarksShare/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.micahrl.Lightmarks.LightmarksShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "LightmarksShare/LightmarksShare-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3095138E256B637D0039A5A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2446B91CEE451EFC0B6B3D9 /* Pods-LightmarksShare.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = LightmarksShare/LightmarksShare.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Z6P9UD2GQT;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = LightmarksShare/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.micahrl.Lightmarks.LightmarksShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "LightmarksShare/LightmarksShare-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -758,6 +1042,15 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3095138F256B637D0039A5A1 /* Build configuration list for PBXNativeTarget "LightmarksShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3095138D256B637D0039A5A1 /* Debug */,
+				3095138E256B637D0039A5A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

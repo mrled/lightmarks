@@ -107,6 +107,28 @@ And it cannot lose data, ever.
 - Extremely fast, single view. No animations shifting over to the right to edit the description or add tags.
 - Never lose data. If it can't post to the server, must save operation and try again later.
 
+#### Share sheet steps
+
+- Using <https://github.com/meedan/react-native-share-menu>
+- When adding `ShareViewController.swift` from the `node_modules` directory, it asked me if I wanted to create a `LightmarksShare-Bridging-Headers.h`... I said NO here.
+- For the new share extension target you create, it has you update your Podfile.
+  It tells you to manually link the packages there... I think this is different from the normal target,
+  which autolinks them... I think manually linking them gives you more control so your extension doesn't get too big.
+  (There is a RAM limit for share extensions.)
+- I chose `Lightmarks://` for the URL scheme unique to my app
+  - The docs are fucking silent about this, but it's clear from the example that you enter this twice in different formats
+  - In your app's `Info.plist`, you enter it without the `://`. For intance, if your scheme is like `ExampleApp://`, you would enter `ExampleApp` only.
+  - In the share extension's `Info.plist`, you enter it WITH the `://`, like `ExampleApp://`.
+- Got an error about ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES bring overridden, fixed via
+  <https://stackoverflow.com/questions/40191140/cocoapods-1-1-1-target-overrides-the-always-embed-swift-standard-libraries>
+- There's a separate page "Custom iOS Share View
+  <https://github.com/meedan/react-native-share-menu/blob/master/SHARE_EXTENSION_VIEW.md>
+  ... if you don't do this, you get a default modal from iOS that has Cancel and Post buttons, a preview of the page you're sharing, and an editable text box that contains the HTML title of the page by default.
+- I did also make a custom share extension view
+  - Without this, you use an OS default share sheet thing, which I haven't seen since like iOS 5 or something, everyone customizes this now
+  - The share extension view is a separate entrypoint in your app, from Node's perspective
+  - Will commit it with example code from `react-native-share-menu` and add a real bookmark add screen in another commit
+
 ### ⬜️ 🔱 Perfect data sync
 
 NEVER LOSE DATA
