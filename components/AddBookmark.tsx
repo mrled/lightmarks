@@ -61,14 +61,13 @@ export const AddBookmarkScreen: React.FC<AddBookmarkScreenParams> = ({
   const [priv, setPriv] = useState(false);
   const {pinboard} = useContext(PinboardContext);
 
-  console.log(
-    `Got params: uri ${initialUri}, title ${initialTitle}, desc ${initialDesc}`,
-  );
+  console.log(`Got params: uri ${uri}, title ${title}, desc ${desc}`);
 
   const cancel = () => {
     dismiss();
   };
   const submit = () => {
+    console.log(`AddBookmarkScreen: Submitting ${uri}!`);
     pinboard.api.posts.add({
       url: uri,
       description: title,
