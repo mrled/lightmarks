@@ -9,15 +9,15 @@ type SharedItem = {
   data: string;
   extraData: any;
 };
-// const LightmarksSecrets = require('lightmarks.secrets.json');
-// const LightmarksSettings = require('lightmarks.settings.json');
-const LightmarksSecrets = {
-  pinboardApiUser: 'DefaultUsername',
-  pinboardApiSecret: 'DefaultApiSecret',
-};
-const LightmarksSettings = {
-  mode: 'mock',
-};
+const LightmarksSecrets = require('lightmarks.secrets.json');
+const LightmarksSettings = require('lightmarks.settings.json');
+// const LightmarksSecrets = {
+//   pinboardApiUser: 'DefaultUsername',
+//   pinboardApiSecret: 'DefaultApiSecret',
+// };
+// const LightmarksSettings = {
+//   mode: 'mock',
+// };
 
 import {PinboardContext, usePinboard} from 'hooks/usePinboard';
 import TabBarNavContainer from 'components/TabBarNavContainer';
