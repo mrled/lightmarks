@@ -10,13 +10,13 @@ import {
   SafeAreaView,
   Text,
   View,
-  Pressable,
   StyleSheet,
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {AppStyles, BookmarkDynamicStyles, BookmarkStyles} from 'style/Styles';
+import PressableAnchor from 'components/PressableAnchor';
+import {AppStyles, BookmarkStyles} from 'style/Styles';
 import {FunctionalColors} from 'style/Colors';
 import {PinboardBookmark} from 'lib/Pinboard/types';
 
@@ -111,12 +111,10 @@ const BookmarkListItemView: React.FC<BookmarkListItemViewProps> = ({
 
   return (
     <View style={outerViewStyle}>
-      <Pressable
-        style={BookmarkDynamicStyles.listItemPressableLink}
-        onPress={() => Linking.openURL(bookmark.uri)}>
+      <PressableAnchor href={bookmark.uri}>
         <Text style={BookmarkStyles.listItemTitle}>{bookmark.title}</Text>
         <Text style={BookmarkStyles.listItemLink}>{bookmark.uri}</Text>
-      </Pressable>
+      </PressableAnchor>
       <Text
         style={BookmarkStyles.listItemAuthorDate}
         onPress={() => Linking.openURL(pbUserUri)}>

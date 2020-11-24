@@ -35,6 +35,9 @@ export const AppStyles = StyleSheet.create({
     marginRight: 12,
     color: 'tomato',
   },
+  linkColor: {
+    color: 'blue',
+  },
   listTagsButtonContainer: {
     marginTop: 32,
     borderWidth: 1,
@@ -50,6 +53,7 @@ export const AppStyles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '600',
     color: 'black',
+    paddingVertical: 24,
   },
   sectionDescription: {
     marginTop: 8,
@@ -67,6 +71,11 @@ export const AppStyles = StyleSheet.create({
   textInputLabel: {
     color: NamedColors.DarkGray,
     margin: 4,
+  },
+  textInputLabelSmall: {
+    color: NamedColors.DarkGray,
+    margin: 4,
+    fontSize: 12,
   },
 });
 
@@ -114,10 +123,3 @@ export const BookmarkStyles = StyleSheet.create({
     padding: 4,
   },
 });
-
-export const BookmarkDynamicStyles = {
-  listItemPressableLink: ({pressed}: {pressed: boolean}) => {
-    // FIXME: 'gray' is not the same color as the pressed highlight for a <Text onpress=...>
-    return pressed ? {backgroundColor: 'gray'} : {};
-  },
-};
