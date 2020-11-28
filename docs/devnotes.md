@@ -129,6 +129,39 @@ And it cannot lose data, ever.
   - The share extension view is a separate entrypoint in your app, from Node's perspective
   - Will commit it with example code from `react-native-share-menu` and add a real bookmark add screen in another commit
 
+Update: ok, I did get the AddBookmark screen on the share sheet.
+However, it doesn't seeme to actually submit anything.
+My guess is that the share sheet process is getting killed and the submission is cancelled.
+
+#### Actually saving the result and sending the data
+
+- I should use NSUserData to save data from the extension into the app
+  <https://stackoverflow.com/questions/24118918/sharing-data-between-an-ios-8-share-extension-and-main-app>
+- I could use that + to save the shared bookmark to some kind of queue, which the app can read from
+- I also want to start a background process to handle updloads
+  - Looks like there is an iOS function for `NSURLSessionConfiguration` called `backgroundSessionConfigurationWithIdentifier`
+  - ex: <https://github.com/EkoLabs/react-native-background-downloader>
+  - ex: <https://github.com/Vydia/react-native-background-upload>
+  - Swift code: <https://stackoverflow.com/questions/52567979/background-upload-with-share-extension>
+- App will need to support "Finite-length tasks"
+  - <https://www.raywenderlich.com/5817-background-modes-tutorial-getting-started#toc-anchor-008>
+- I _think_ what I want is to have it dismiss immediately, without a "Saved!" notification like Pinner has...
+  ... but it has to be 100% trustworthy
+- Some options for data sharing: <https://dmtopolog.com/ios-app-extensions-data-sharing/>
+- Based on that list, I wonder if database sharing (using the filesystem) is a better way than `NSURLSessionConfiguration`.
+  Because: this way the queue is the only thing submitting HTTP requests,
+  and the share extension is only saving to the queue and then asking the queue to start work
+  (which the queue may do immediately, or may wait for earlier actions to do first).
+- That makes me think of another thing: I could use the priority of `smart-request-balancer`
+  to distinguish between background API calls and user-initiated API calls.
+- Some details on `NSUserDefaults`: <http://dscoder.com/defaults.html>
+
+### Show a list of unresolved actions in the UI
+
+If there are actions that haven't been completed yet, like adding a new bookmark,
+show that the action is still in the queue and what its state is.
+A way of convincing users that the app is trustworthy by allowing them to verify it.
+
 ### ⬜️ 🔱 Perfect data sync
 
 NEVER LOSE DATA
