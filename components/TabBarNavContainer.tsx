@@ -36,44 +36,56 @@ const TabBarNavContainer = () => {
   return (
     <NavigationContainer>
       <TabBar.Navigator
-        screenOptions={({route}) => ({
-          tabBarIcon: ({color, size}) => {
-            let iconName;
-
-            if (route.name === 'Discover') {
-              iconName = 'ios-compass';
-            } else if (route.name === 'DumbTags') {
-              iconName = 'ios-pricetags';
-            } else if (route.name === 'About') {
-              iconName = 'ios-information-circle';
-            } else if (route.name === 'Profile') {
-              iconName = 'ios-person';
-            } else if (route.name === 'Debug') {
-              iconName = 'ios-bug';
-            } else {
-              console.error(
-                `Unknown route ${route.name}, showing question mark icon`,
-              );
-              iconName = 'ios-help';
-            }
-
-            // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-        })}
         tabBarOptions={{
           activeTintColor: FunctionalColors.TabBarIconSelected,
           inactiveTintColor: FunctionalColors.TabBarIconDeselected,
         }}>
-        <TabBar.Screen name="Discover" component={DiscoverStackScreen} />
-        <TabBar.Screen name="DumbTags" component={DumbTagView} />
-        <TabBar.Screen name="Profile" component={ProfileStackScreen} />
+        <TabBar.Screen
+          name="Discover"
+          component={DiscoverStackScreen}
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <Ionicons name="ios-compass" size={size} color={color} />
+            ),
+          }}
+        />
+        <TabBar.Screen
+          name="DumbTags"
+          component={DumbTagView}
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <Ionicons name="ios-pricetags" size={size} color={color} />
+            ),
+          }}
+        />
+        <TabBar.Screen
+          name="Profile"
+          component={ProfileStackScreen}
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <Ionicons name="ios-person" size={size} color={color} />
+            ),
+          }}
+        />
         <TabBar.Screen
           name="About"
           component={About}
-          options={mockModeBadgeOpts}
+          options={{
+            ...mockModeBadgeOpts,
+            tabBarIcon: ({color, size}) => (
+              <Ionicons name="ios-person" size={size} color={color} />
+            ),
+          }}
         />
-        <TabBar.Screen name="Debug" component={DebugInfo} />
+        <TabBar.Screen
+          name="Debug"
+          component={DebugInfo}
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <Ionicons name="ios-bug" size={size} color={color} />
+            ),
+          }}
+        />
       </TabBar.Navigator>
     </NavigationContainer>
   );
