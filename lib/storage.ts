@@ -74,5 +74,14 @@ export function setCredential(
 }
 
 export function setSetting(name: string, newValue: string): Promise<void> {
-  return DefaultPreference.set(name, newValue);
+  return DefaultPreference.set(name, newValue)
+    .then((_result) => {
+      console.log(`Set setting '${name}' to '${newValue}'.`);
+    })
+    .catch((error) => {
+      console.error(
+        `Error setting credential '${name}' to ${newValue}: ${error}`,
+      );
+      throw error;
+    });
 }
