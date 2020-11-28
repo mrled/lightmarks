@@ -22,6 +22,7 @@ import {
   isApiPasswordCredential,
   TPinboardApiPostsUpdateResult,
   OneToThreeStrings,
+  TPinboardResultString,
 } from './types';
 
 /* The /posts/* routes for the Pinboard API
@@ -164,7 +165,9 @@ class PinboardApiUser implements IPinboardApiUser {
   /* Returns the user's secret RSS key (for viewing private feeds)
    */
   public secret() {
-    return this.api.getJson('common', 'user/secret');
+    return this.api
+      .getJson<TPinboardResultString>('common', 'user/secret')
+      .then((result) => result.result);
   }
 
   /* Returns the secret part of the user's API token

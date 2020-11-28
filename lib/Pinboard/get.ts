@@ -167,7 +167,11 @@ export function queuedFetchOrReturnFaux(
   return queue
     .request(requestor, queueKey, queueName)
     .then((response) => {
-      console.log(`queuedFetchOrReturnFaux(): Returning response: ${response}`);
+      console.log(
+        `queuedFetchOrReturnFaux(): Returning response: ${JSON.stringify(
+          response,
+        )}`,
+      );
       return response;
     })
     .catch((error) => {

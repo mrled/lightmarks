@@ -200,7 +200,7 @@ export interface IPinboardApiTags {
  */
 export interface IPinboardApiUser {
   api: IPinboardApi;
-  secret(): Promise<any>;
+  secret(): Promise<string>;
   apiToken(): Promise<any>;
 }
 
@@ -436,3 +436,9 @@ export function TPinboardApiBookmarkResultToPinboardBookmarkArr(
   );
   return bookmarks;
 }
+
+/* Some Pinboard APIs return {"result":"something"}
+ */
+export type TPinboardResultString = {
+  result: string;
+};

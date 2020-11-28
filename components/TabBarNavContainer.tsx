@@ -5,6 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import About from 'components/About';
+import DebugInfo from 'components/DebugInfo';
 import {DiscoverStackScreen} from 'components/Discover';
 import {ProfileStackScreen} from 'components/Profile';
 import DumbTagView from 'components/DumbTagView';
@@ -47,9 +48,13 @@ const TabBarNavContainer = () => {
               iconName = 'ios-information-circle';
             } else if (route.name === 'Profile') {
               iconName = 'ios-person';
-            } else {
-              console.error(`Unknown route ${route.name}, showing bug icon`);
+            } else if (route.name === 'Debug') {
               iconName = 'ios-bug';
+            } else {
+              console.error(
+                `Unknown route ${route.name}, showing question mark icon`,
+              );
+              iconName = 'ios-help';
             }
 
             // You can return any component that you like here!
@@ -68,6 +73,7 @@ const TabBarNavContainer = () => {
           component={About}
           options={mockModeBadgeOpts}
         />
+        <TabBar.Screen name="Debug" component={DebugInfo} />
       </TabBar.Navigator>
     </NavigationContainer>
   );

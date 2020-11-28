@@ -3,6 +3,10 @@ import {StyleSheet} from 'react-native';
 import {FunctionalColors, NamedColors} from 'style/Colors';
 
 const styleBases = {
+  buttonView: {
+    borderWidth: 1,
+    borderRadius: 4,
+  },
   textInputBox_L: {
     borderBottomWidth: 1,
     borderLeftWidth: 1,
@@ -42,6 +46,14 @@ export const AppStyles = StyleSheet.create({
     marginTop: 32,
     borderWidth: 1,
   },
+  loginButtonView: {
+    ...styleBases.buttonView,
+    borderWidth: 2,
+    borderColor: 'tomato',
+  },
+  loginSubsection: {
+    paddingTop: 12,
+  },
   screenRootScrollView: {
     backgroundColor: NamedColors.OffWhite,
   },
@@ -60,6 +72,9 @@ export const AppStyles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     color: NamedColors.DarkGray,
+  },
+  subSectionContainer: {
+    marginVertical: 8,
   },
   textInputBox: {
     ...styleBases.textInputBox,
