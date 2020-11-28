@@ -23,6 +23,7 @@ import {
   TPinboardApiPostsUpdateResult,
   OneToThreeStrings,
   TPinboardResultString,
+  Fetcher,
 } from './types';
 
 /* The /posts/* routes for the Pinboard API
@@ -211,6 +212,7 @@ export class PinboardApi implements IPinboardApi {
   public notes: IPinboardApiNotes;
 
   public constructor(
+    readonly fetcher: Fetcher,
     readonly mode: PinboardMode,
     readonly credential?:
       | PinboardApiPasswordCredential

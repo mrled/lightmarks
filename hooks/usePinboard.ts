@@ -9,8 +9,7 @@ import {
   setSetting,
   unsetCredential,
 } from 'lib/storage';
-
-const PinboardDefault = new Pinboard(PinboardMode.Mock);
+import {Fetcher} from 'lib/Pinboard/types';
 
 /* The application configuration that the user can save to persistent storage
  * (like to the keychain, UserDefaults, etc)
@@ -25,16 +24,16 @@ type AppConfiguration = {
 /* React Context for managing Pinboard state
  */
 type PinboardContextType = {
-  pinboard: Pinboard;
+  pinboard: Pinboard | undefined;
   setAppConfiguration: (
-    newMode: PinboardMode,
+    newMode: PinboardMode | undefined,
     newUsername: string | undefined,
     newApiTokenSecret: string | undefined,
   ) => Promise<any>;
   removeCredentials: () => Promise<any>;
 };
 export const PinboardContext = createContext<PinboardContextType>({
-  pinboard: PinboardDefault,
+  pinboard: undefined,
   setAppConfiguration: (_newMode, _newUsername, _newApiTokenSecret) => {
     return new Promise<any>((_resolve, reject) =>
       reject('Pinboard context accessed outside of context provider'),
@@ -83,13 +82,14 @@ function getAppConfiguration(): Promise<AppConfiguration> {
  * Use a temporary Pinboard object for this.
  */
 function getRssSecret(
+  fetcher: Fetcher,
   mode: PinboardMode,
   username: string,
   authTokenSecret: string,
 ): Promise<string> {
   // Create a temporary Pinboard object just to retrieve the RSS token
   // TODO: would be nice if there was a static function for this on Pinboard ?
-  const tempPinboard = new Pinboard(mode, {
+  const tempPinboard = new Pinboard(fetcher, mode, {
     username,
     authTokenSecret,
   });
@@ -141,7 +141,7 @@ export function usePinboard() {
     'rssSecret',
     undefined,
   );
-  const [pinboard, setPinboard] = useState<Pinboard>(PinboardDefault);
+  const [pinboard, setPinboard] = useState<Pinboard | undefined>(undefined);
 
   /* Retrieve config from persistent storage and set the Pinboard object to use it
    */

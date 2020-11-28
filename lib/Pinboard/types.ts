@@ -1,5 +1,13 @@
 import {QueueName} from './get';
 
+/* Interface for a pluggable URI fetching function
+ */
+export type Fetcher = (
+  uri: string,
+  headers?: {[key: string]: string},
+  fauxData?: object,
+) => Promise<any>;
+
 /* Are we running in production?
  */
 export enum PinboardMode {
@@ -99,6 +107,7 @@ export function pinboardCredentialOptionalEq(
 /* Interface for the Pinboard class
  */
 export interface IPinboard {
+  readonly fetcher: Fetcher;
   readonly api: IPinboardApi;
   readonly feeds: IPinboardFeeds;
   readonly aggregates: IPinboardAggregates;

@@ -2,7 +2,7 @@ import {
   FauxFeedsAuthenticatedData,
   FauxFeedsUnauthenticatedData,
 } from './FauxData';
-import {fetchOrReturnFaux, optionalQueryStringWithQmark} from './get';
+import {optionalQueryStringWithQmark} from './get';
 import {
   IPinboardFeeds,
   IPinboardFeedsAuthenticated,
@@ -12,6 +12,7 @@ import {
   PinboardFeedsRssSecretCredential,
   PinboardMode,
   TPinboardFeedsBookmarkListToPinboardBookmarkList,
+  Fetcher,
 } from './types';
 
 /* Take a list of tags and return Pinboard-style tag path components
@@ -82,6 +83,7 @@ export class PinboardFeeds implements IPinboardFeeds {
   public feedsRoot = 'https://feeds.pinboard.in';
 
   public constructor(
+    readonly fetcher: Fetcher,
     readonly mode: PinboardMode,
     readonly auth?: PinboardFeedsRssSecretCredential,
   ) {}
@@ -101,11 +103,12 @@ export class PinboardFeeds implements IPinboardFeeds {
   ): Promise<ResultT> {
     const queryString = optionalQueryStringWithQmark(query);
     const uri = `${this.feedsRoot}/json/${endpoint}${queryString}`;
-    return fetchOrReturnFaux(
-      this.mode,
-      FauxFeedsUnauthenticatedData[endpoint],
+    return this.fetcher(
       uri,
       {},
+      this.mode === PinboardMode.Production
+        ? undefined
+        : FauxFeedsUnauthenticatedData[endpoint],
     ).then((result) => {
       // console.log(
       //   `pinboard.feeds.getJsonPublic(): result before typing: ${JSON.stringify(
@@ -137,11 +140,12 @@ export class PinboardFeeds implements IPinboardFeeds {
     }
     const queryString = optionalQueryStringWithQmark(query);
     const uri = `${this.feedsRoot}/json/secret:${this.auth.rssSecret}/u:${this.auth.username}/${endpoint}${queryString}`;
-    return fetchOrReturnFaux(
-      this.mode,
-      FauxFeedsAuthenticatedData[endpoint],
+    return this.fetcher(
       uri,
       {},
+      this.mode === PinboardMode.Production
+        ? undefined
+        : FauxFeedsUnauthenticatedData[endpoint],
     );
   };
 

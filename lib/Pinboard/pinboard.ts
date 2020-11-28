@@ -13,6 +13,7 @@ import {
   PinboardFeedsRssSecretCredential,
   PinboardMode,
   isApiTokenSecretCredential,
+  Fetcher,
 } from './types';
 
 /* Container for authentication-related tasks
@@ -47,7 +48,11 @@ export class PinboardAuth implements IPinboardAuth {
             ? this.pinboard.feedsCredential.rssSecret
             : undefined,
         };
-        return new Pinboard(this.pinboard.mode, credential);
+        return new Pinboard(
+          this.pinboard.fetcher,
+          this.pinboard.mode,
+          credential,
+        );
       })
       .catch((err) => {
         console.error(
@@ -77,7 +82,11 @@ export class PinboardAuth implements IPinboardAuth {
         const credential = Object.assign({}, apiCredential, {
           rssSecret: result.result,
         });
-        return new Pinboard(this.pinboard.mode, credential);
+        return new Pinboard(
+          this.pinboard.fetcher,
+          this.pinboard.mode,
+          credential,
+        );
       })
       .catch((err) =>
         console.error(`Failed to get Pinboard RSS secret: ${err}`),
@@ -99,6 +108,7 @@ export class Pinboard implements IPinboard {
   public readonly feedsCredential?: PinboardFeedsRssSecretCredential;
 
   public constructor(
+    readonly fetcher: Fetcher,
     readonly mode: PinboardMode,
     readonly credential?: IPinboardCredential,
   ) {
@@ -135,8 +145,8 @@ export class Pinboard implements IPinboard {
       console.debug('Pinboard(): Created Pinboard with undefined credential');
     }
 
-    this.api = new PinboardApi(this.mode, this.apiCredential);
-    this.feeds = new PinboardFeeds(this.mode, this.feedsCredential);
+    this.api = new PinboardApi(fetcher, this.mode, this.apiCredential);
+    this.feeds = new PinboardFeeds(fetcher, this.mode, this.feedsCredential);
     this.aggregates = new PinboardAggregates(this);
   }
 }
