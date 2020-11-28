@@ -1,4 +1,4 @@
-package com.betterpins;
+package com.micahrl.lightmarks;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "betterpins";
+    return "Lightmarks";
   }
 }

@@ -1,4 +1,4 @@
-package com.betterpins;
+package com.micahrl.lightmarks;
 
 import android.app.Application;
 import android.content.Context;
