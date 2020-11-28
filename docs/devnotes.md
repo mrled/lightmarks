@@ -72,6 +72,24 @@ info Reloading app...
 info Opening developer menu...
 ```
 
+#### Maybe I should use React Query?
+
+The overview really sells it <https://react-query.tanstack.com/docs/overview>. I have like, ALL of those problems.
+
+Biggest question: can I rate limit its requests?
+Looks like the answer is YES!
+<https://react-query.tanstack.com/docs/guides/default-query-function>
+
+I can define a 'default query function', which in the example uses `axios.get`.
+`smart-request-balancer` also uses Axios... I bet I can glue these things together.
+
+I think that would also work for fetching real/fake data.
+
+### ⬜️ Replace `console.error` with `console.warn`
+
+Apparently React Native doesn't play nice with `console.error`?
+See <https://react-query.tanstack.com/docs/react-native>.
+
 ### ⬜️ Should be using hook for smart request balancer queue
 
 Realized just now that I define the queue in the module, but I don't think it'll work like that.
