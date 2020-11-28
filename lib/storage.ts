@@ -8,7 +8,11 @@ export function getCredential(
     service: serviceName,
   })
     .then((value) => {
-      console.log(`Retrieved Keychain credential '${serviceName}': ${value}`);
+      console.log(
+        `Retrieved Keychain credential '${serviceName}': ${JSON.stringify(
+          value,
+        )}`,
+      );
       return value;
     })
     .catch((error) => {
@@ -23,7 +27,9 @@ export function getCredential(
 export function getSetting(name: string): Promise<string> {
   const resultPromise = DefaultPreference.get(name)
     .then((value) => {
-      console.log(`Retrieved DefaultPreference '${name}': ${value}`);
+      console.log(
+        `Retrieved DefaultPreference '${name}': ${JSON.stringify(value)}`,
+      );
       return value;
     })
     .catch((error) => {
