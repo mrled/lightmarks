@@ -105,11 +105,12 @@ export default () => {
                 <Text style={AppStyles.textInputLabel}>Username</Text>
                 <TextInput
                   style={AppStyles.textInputBox}
-                  multiline={true}
                   textAlignVertical="top"
                   onChangeText={(newText: string) => setUsername(newText)}
                   value={username}
                   autoCapitalize="none"
+                  autoCorrect={false}
+                  textContentType="username"
                 />
               </View>
 
@@ -126,11 +127,13 @@ export default () => {
                 </PressableAnchor>
                 <TextInput
                   style={AppStyles.textInputBox}
-                  multiline={true}
                   textAlignVertical="top"
                   onChangeText={(newText: string) => setTokenSecret(newText)}
                   value={tokenSecret}
                   autoCapitalize="none"
+                  autoCorrect={false}
+                  secureTextEntry={true}
+                  textContentType="password"
                 />
               </View>
 
