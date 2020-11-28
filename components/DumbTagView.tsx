@@ -26,8 +26,8 @@ const DumbTagView: React.FC<DumbTagViewProps> = () => {
         setLoading(false);
       })
       .catch((err: Error) => {
-        console.error('Could not retrieve tags');
-        console.error(err);
+        console.warn('Could not retrieve tags');
+        console.warn(err);
       });
   };
 

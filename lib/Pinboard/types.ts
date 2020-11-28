@@ -365,7 +365,7 @@ export function PinboardBookmarkFromTPinboardFeedsBookmark(
       `1) ${JSON.stringify(obj).slice(0, 512)}`,
       `2) ${JSON.stringify(err)}`,
     ].join('\n');
-    console.error(msg);
+    console.warn(msg);
     throw msg;
   }
 }
@@ -391,7 +391,7 @@ export function TPinboardFeedsBookmarkListToPinboardBookmarkList(
       `1) ${JSON.stringify(arr).slice(0, 512)}`,
       `2) ${JSON.stringify(error)}`,
     ].join('\n');
-    console.error(msg);
+    console.warn(msg);
     throw msg;
   }
 }

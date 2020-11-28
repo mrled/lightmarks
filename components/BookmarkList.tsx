@@ -170,7 +170,7 @@ export const BookmarkListView: React.FC<BookmarkListViewProps> = ({
         setBookmarks(result);
       })
       .catch((err) => {
-        console.error(
+        console.warn(
           `BookmarkListView:bookmarksGetter(): got error ${JSON.stringify(
             err,
           )}`,

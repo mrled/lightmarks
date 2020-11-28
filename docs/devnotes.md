@@ -85,11 +85,6 @@ I can define a 'default query function', which in the example uses `axios.get`.
 
 I think that would also work for fetching real/fake data.
 
-### ⬜️ Replace `console.error` with `console.warn`
-
-Apparently React Native doesn't play nice with `console.error`?
-See <https://react-query.tanstack.com/docs/react-native>.
-
 ### ⬜️ Break up usePinboard into multiple hooks
 
 Advice on the Reactiflux Discord is that if you have a hook more than a page, it's probably too long.
@@ -414,3 +409,8 @@ Now it is.
 
 - Set package name to `com.micahrl.lightmarks`, lower case. Apparently Java convention is that packages ought to have lower case, and my linter caught it -- although I seem to be importing a bunch of things with case, idk.
 - All I had to do was `rg` files containing the old name, and `find` files/directories with the old name in their filenames, and rebuild, and that was it
+
+### ✅️ Replace `console.error` with `console.warn`
+
+Apparently React Native doesn't play nice with `console.error`?
+See <https://react-query.tanstack.com/docs/react-native>.

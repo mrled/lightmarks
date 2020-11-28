@@ -165,7 +165,7 @@ export function usePinboard() {
         setRssSecret(config.feedsTokenSecret);
       })
       .catch((reason) => {
-        console.error(
+        console.warn(
           `setConfigurationFromPersistentStorage(): Failure: ${JSON.stringify(
             reason,
           )}`,

@@ -50,7 +50,7 @@ export class PinboardAuth implements IPinboardAuth {
         return new Pinboard(this.pinboard.mode, credential);
       })
       .catch((err) => {
-        console.error(
+        console.warn(
           `Failed to get Pinboard API token secret credential: ${err}`,
         );
         throw err;
@@ -80,7 +80,7 @@ export class PinboardAuth implements IPinboardAuth {
         return new Pinboard(this.pinboard.mode, credential);
       })
       .catch((err) =>
-        console.error(`Failed to get Pinboard RSS secret: ${err}`),
+        console.warn(`Failed to get Pinboard RSS secret: ${err}`),
       );
   }
 }

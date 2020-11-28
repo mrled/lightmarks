@@ -49,7 +49,7 @@ function fauxFetch(uri: string, fauxData: object): Promise<IFetchResult> {
       resolve({ok: true, status: 200, json: () => fauxData});
     } else {
       const msg = `No faux data to return for URI ${uri}`;
-      console.error(`fauxFetch(): ${msg}`);
+      console.warn(`fauxFetch(): ${msg}`);
       reject(msg);
     }
   });
@@ -90,7 +90,7 @@ export function fetchOrReturnFaux(
       return jsonResult;
     })
     .catch((err) => {
-      console.error(`fetchOrReturnFaux() error: ${err}`);
+      console.warn(`fetchOrReturnFaux() error: ${err}`);
       throw err;
     });
 }
@@ -175,7 +175,7 @@ export function queuedFetchOrReturnFaux(
       return response;
     })
     .catch((error) => {
-      console.error(`queuedFetchOrReturnFaux(): error: ${error}`);
+      console.warn(`queuedFetchOrReturnFaux(): error: ${error}`);
       throw error;
     });
 }

@@ -16,7 +16,7 @@ export function getCredential(
       return value;
     })
     .catch((error) => {
-      console.error(
+      console.warn(
         `Error retrieving Keychain credential '${serviceName}': ${error}`,
       );
       throw error;
@@ -33,7 +33,7 @@ export function getSetting(name: string): Promise<string> {
       return value;
     })
     .catch((error) => {
-      console.error(`Error retrieving DefaultPreference '${name}': ${error}`);
+      console.warn(`Error retrieving DefaultPreference '${name}': ${error}`);
       throw error;
     });
   return resultPromise;
@@ -47,7 +47,7 @@ export function unsetCredential(serviceName: string): Promise<void> {
       console.log(`Unset Keychain credential ${serviceName}`);
     })
     .catch((error) => {
-      console.error(
+      console.warn(
         `Error unsetting Keychain credential ${serviceName}: ${error}`,
       );
     });
@@ -67,7 +67,7 @@ export function setCredential(
       return result;
     })
     .catch((error) => {
-      console.error(`Error setting credential '${serviceName}': ${error}`);
+      console.warn(`Error setting credential '${serviceName}': ${error}`);
       throw error;
     });
   return resultPromise;
@@ -79,7 +79,7 @@ export function setSetting(name: string, newValue: string): Promise<void> {
       console.log(`Set setting '${name}' to '${newValue}'.`);
     })
     .catch((error) => {
-      console.error(
+      console.warn(
         `Error setting credential '${name}' to ${newValue}: ${error}`,
       );
       throw error;
