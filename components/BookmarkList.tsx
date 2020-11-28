@@ -68,7 +68,7 @@ const TagsListView: React.FC<TagsListProps> = ({tags}) => {
     <View style={Styles.flexDirectionRow}>
       {/* <View style={[AppStyles.flex, adjustIconYPos.s]}> */}
       <View style={Styles.tagIconCell}>
-        <Ionicons name="ios-pricetags" color={FunctionalColors.TagIcon} />
+        <Ionicons name="pricetags" color={FunctionalColors.TagIcon} />
       </View>
       <View>
         <Text>{tags.join(', ')}</Text>

@@ -45,7 +45,7 @@ const TabBarNavContainer = () => {
           component={DiscoverStackScreen}
           options={{
             tabBarIcon: ({color, size}) => (
-              <Ionicons name="ios-compass" size={size} color={color} />
+              <Ionicons name="compass" size={size} color={color} />
             ),
           }}
         />
@@ -54,7 +54,7 @@ const TabBarNavContainer = () => {
           component={DumbTagView}
           options={{
             tabBarIcon: ({color, size}) => (
-              <Ionicons name="ios-pricetags" size={size} color={color} />
+              <Ionicons name="pricetags" size={size} color={color} />
             ),
           }}
         />
@@ -63,7 +63,7 @@ const TabBarNavContainer = () => {
           component={ProfileStackScreen}
           options={{
             tabBarIcon: ({color, size}) => (
-              <Ionicons name="ios-person" size={size} color={color} />
+              <Ionicons name="person" size={size} color={color} />
             ),
           }}
         />
@@ -73,7 +73,7 @@ const TabBarNavContainer = () => {
           options={{
             ...mockModeBadgeOpts,
             tabBarIcon: ({color, size}) => (
-              <Ionicons name="ios-settings" size={size} color={color} />
+              <Ionicons name="settings" size={size} color={color} />
             ),
           }}
         />
@@ -82,7 +82,7 @@ const TabBarNavContainer = () => {
           component={DebugInfo}
           options={{
             tabBarIcon: ({color, size}) => (
-              <Ionicons name="ios-bug" size={size} color={color} />
+              <Ionicons name="bug" size={size} color={color} />
             ),
           }}
         />
