@@ -60,12 +60,12 @@ export default () => {
 
   const login = () => {
     console.log(
-      `About.tsx: Logging in as ${username} with secret ${tokenSecret}`,
+      `SettingsScreen: Logging in as ${username} with secret ${tokenSecret}`,
     );
     setAppConfiguration(pinboardMode, username, tokenSecret);
   };
   const logout = () => {
-    console.log(`About.tsx: Logging out from ${username}`);
+    console.log(`SettingsScreen: Logging out from ${username}`);
     removeCredentials();
   };
 
