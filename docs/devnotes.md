@@ -90,6 +90,16 @@ I think that would also work for fetching real/fake data.
 Apparently React Native doesn't play nice with `console.error`?
 See <https://react-query.tanstack.com/docs/react-native>.
 
+### ⬜️ Break up usePinboard into multiple hooks
+
+Advice on the Reactiflux Discord is that if you have a hook more than a page, it's probably too long.
+Certainly my 200 line usePinboard hook should probably be refactored.
+
+Advised I keep storage (Keychain/UserDefaults) and the API client separate, for example.
+
+Can be decomposed into multiple hooks.
+Libs like React Query should help as well.
+
 ### ⬜️ Should be using hook for smart request balancer queue
 
 Realized just now that I define the queue in the module, but I don't think it'll work like that.
