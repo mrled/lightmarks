@@ -189,17 +189,27 @@ export function usePinboard() {
   ) => Promise<any> = (newMode, newUsername, newApiTokenSecret) => {
     console.log(`Setting credentials to ${newUsername}:${newApiTokenSecret}`);
 
+    // Set the local state FIRST
     setMode(newMode);
     setUsername(newUsername);
     setApiTokenSecret(newApiTokenSecret);
 
+    // Handle the case where we are setting any of the credentials to null
     if (!newUsername || !newApiTokenSecret) {
+      setUsername(undefined);
+      setApiTokenSecret(undefined);
       setRssSecret(undefined);
       return Promise.all([
         unsetCredential('PinboardApiTokenSecretCredential'),
         unsetCredential('PinboardFeedsRssSecretCredential'),
       ]);
     }
+
+    // Set the mode first
+    // If we set the mode AFTER the HTTP request to get the RSS secret (below),
+    // that'll work fine as long as the HTTP request succeeds,
+    // but will fail to persist to local storage if the HTTP request fails
+    const modeSettingPromise = setSetting('PinboardMode', newMode);
 
     // Retrieve the RSS token from the temp Pinboard object,
     // and setWhatever() calls to set values which will be used on the "real" Pinboard object
@@ -218,14 +228,16 @@ export function usePinboard() {
     });
 
     return Promise.all([
-      setSetting('PinboardMode', newMode),
+      modeSettingPromise,
       setCredential(
         'PinboardApiTokenSecretCredential',
         newUsername,
         newApiTokenSecret,
       ),
       rssSecretPromise,
-    ]);
+    ]).then((_results) => {
+      console.log('setAppConfiguration(): All promises resolved');
+    });
   };
 
   /* Set a new Pinboard object idempotently.
