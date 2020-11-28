@@ -110,9 +110,16 @@ function getRssSecret(
 /* Hook for logging in and using the Pinboard API
  *
  * Return value:
- *   pinboard: A Pinboard or FauxPinboard object, ready to be used
- *   pinboardLogin(): A function that can re-login to Pinboard
- *   diag: Diagnostic data to e.g. show the username that is logged in
+ *   firstRun:
+ *      True if we have not yet run setConfigurationFromPersistentStorage
+ *   pinboard:
+ *      A Pinboard object
+ *   setConfigurationFromPersistentStorage:
+ *      Sets the Pinboard object from configuration in e.g. UserDefaults / Keychain
+ *  setAppConfiguration:
+ *      Sets the Pinboard object and persistent storage to new values
+ *  removeCredentials:
+ *      Removes existing configuration on both Pinboard object and persistent storage
  */
 export function usePinboard() {
   const [firstRun, setFirstRun] = useStateIdempotently<boolean>(
@@ -167,6 +174,9 @@ export function usePinboard() {
       });
   };
 
+  /* Unset credentials in storage and memory.
+   * Effectively logs out of Pinboard and forgets any saved credentials.
+   */
   const removeCredentials: () => Promise<any> = () => {
     setUsername(undefined);
     setApiTokenSecret(undefined);
@@ -291,10 +301,10 @@ export function usePinboard() {
   setPinboardIdempotently(mode, username, apiTokenSecret, rssSecret);
 
   return {
-    firstRun, // True if we have not yet run setConfigurationFromPersistentStorage
-    pinboard, // A Pinboard object
-    setConfigurationFromPersistentStorage, // Sets the Pinboard object from configuration in e.g. UserDefaults / Keychain
-    setAppConfiguration, // Sets the Pinboard object and persistent storage to new values
-    removeCredentials, // Removes existing configuration on both Pinboard object and persistent storage
+    firstRun,
+    pinboard,
+    setConfigurationFromPersistentStorage,
+    setAppConfiguration,
+    removeCredentials,
   };
 }
