@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import About from 'components/About';
+import SettingsScreen from 'components/SettingsScreen';
 import DebugInfo from 'components/DebugInfo';
 import {DiscoverStackScreen} from 'components/Discover';
 import {ProfileStackScreen} from 'components/Profile';
@@ -68,12 +68,12 @@ const TabBarNavContainer = () => {
           }}
         />
         <TabBar.Screen
-          name="About"
-          component={About}
+          name="Settings"
+          component={SettingsScreen}
           options={{
             ...mockModeBadgeOpts,
             tabBarIcon: ({color, size}) => (
-              <Ionicons name="ios-person" size={size} color={color} />
+              <Ionicons name="ios-settings" size={size} color={color} />
             ),
           }}
         />
