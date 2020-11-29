@@ -95,7 +95,22 @@ Advised I keep storage (Keychain/UserDefaults) and the API client separate, for 
 Can be decomposed into multiple hooks.
 Libs like React Query should help as well.
 
-### ⬜️ Should be using hook for smart request balancer queue
+#### Ok this is going to be a fucking huge thing
+
+- React Query actually recommends that you have a _separate hook for each API call_:
+  <https://react-query.tanstack.com/docs/examples/custom-hooks>.
+  "...each query has been refactored to be it's own custom hook. This design is the suggested way to use React Query, as it makes it much easier to manage query keys and shared query logic."
+- This would mean a couple dozen hooks, e.g. `hooks/pinboard/usePbApiUserPosts`, `hooks/pinboard/usePbApiUserTags`, `hooks/pinboard/usePbApiUserRecent`, etc etc etc. (... is this even sustainable for larger APIs? What are you doing, using codegen for this shit? Fuck's sake.)
+- How would I manage state like PinboardMode, authentication, etc in such a regime?
+- I think the answer is _more fucking hooks_. E.g. `usePinboardMode()` and `usePinboardAuth()` hooks that are called from every API endpoint hook.
+- That seems _surprising_ but maybe not _insane_? Like if someone knows React it'll probably make sense, but it would probably not make sense at all who hasn't been inducted into the Church of Hooks.
+- What helped crystalize how this is expected to work started with this blog post: <https://blog.logrocket.com/frustrations-with-react-hooks/>...
+- ... which linked to this GitHub comment from a React developer: <https://github.com/facebook/react/issues/14476#issuecomment-471199055>
+- In the latter, there is an example of separate `useFetch` and `useFetchWithAuth` hooks
+- And in both of them are some good examples of patterns I can use.
+- I guess I'm afraid this is faddish... is anyone going to understand this shit in 5 years?
+
+### ⬜️ Should be usig hook for smart request balacer queue
 
 Realized just now that I define the queue in the module, but I don't think it'll work like that.
 Need to use a hook or something.
@@ -414,3 +429,11 @@ Now it is.
 
 Apparently React Native doesn't play nice with `console.error`?
 See <https://react-query.tanstack.com/docs/react-native>.
+
+### Figured out what flipper is lol
+
+All the fucking flipper shit everywhere is for a nice debugger.
+How come no one told me this.
+smh.
+
+https://fbflipper.com/

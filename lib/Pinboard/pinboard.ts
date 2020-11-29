@@ -89,6 +89,7 @@ export class PinboardAuth implements IPinboardAuth {
  * Includes authentication, the official API, and JSON feeds.
  */
 export class Pinboard implements IPinboard {
+  public readonly fetcher: Fetcher;
   public readonly api: IPinboardApi;
   public readonly feeds: IPinboardFeeds;
   public readonly aggregates: IPinboardAggregates;

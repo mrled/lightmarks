@@ -1,10 +1,5 @@
 import {FauxApiData} from './FauxData';
 import {
-  QueueName,
-  optionalQueryStringWithQmark,
-  queuedFetchOrReturnFaux,
-} from './get';
-import {
   IPinboardApi,
   IPinboardApiNotes,
   IPinboardApiPosts,
@@ -24,6 +19,7 @@ import {
   OneToThreeStrings,
   TPinboardResultString,
 } from './types';
+import {optionalQueryStringWithQmark} from './util';
 
 /* The /posts/* routes for the Pinboard API
  */

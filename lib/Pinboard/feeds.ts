@@ -2,7 +2,6 @@ import {
   FauxFeedsAuthenticatedData,
   FauxFeedsUnauthenticatedData,
 } from './FauxData';
-import {fetchOrReturnFaux, optionalQueryStringWithQmark} from './get';
 import {
   IPinboardFeeds,
   IPinboardFeedsAuthenticated,
@@ -13,6 +12,7 @@ import {
   PinboardMode,
   TPinboardFeedsBookmarkListToPinboardBookmarkList,
 } from './types';
+import {optionalQueryStringWithQmark} from './util';
 
 /* Take a list of tags and return Pinboard-style tag path components
  *

@@ -11,23 +11,31 @@ import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Text, View} from 'react-native';
 
 import {ShareMenuReactView} from 'react-native-share-menu';
+import {QueryCache, ReactQueryCacheProvider, setConsole} from 'react-query';
 
 import {AddBookmarkScreen} from 'components/AddBookmark';
 
-const Share = () => {
-  const [sharedData, setSharedData] = useState<string>('');
-  const [sharedMimeType, setSharedMimeType] = useState<string>('');
-  const [received, setReceived] = useState<boolean>(false);
+// Work around console.error everywhere in React Query
+// https://react-query.tanstack.com/docs/react-native
+setConsole({
+  log: console.log,
+  warn: console.warn,
+  error: console.warn,
+});
 
-  useEffect(() => {
-    ShareMenuReactView.data().then((receivedData: any) => {
-      console.log(`Share(): receivedData: ${JSON.stringify(receivedData)}`);
-      setSharedData(receivedData.data);
-      setSharedMimeType(receivedData.mimeType);
-      setReceived(true);
-    });
-  }, []);
+const shareQueryCache = new QueryCache();
 
+if (__DEV__) {
+  import('react-query-native-devtools').then(({addPlugin}) => {
+    addPlugin(shareQueryCache);
+  });
+}
+
+type ShareScreenProps = {
+  received: boolean;
+  sharedData: string;
+};
+const ShareScreen: React.FC<ShareScreenProps> = ({received, sharedData}) => {
   if (!received) {
     return (
       <View>
@@ -43,6 +51,29 @@ const Share = () => {
       />
     );
   }
+};
+
+const Share = () => {
+  const [sharedData, setSharedData] = useState<string>('');
+  const [sharedMimeType, setSharedMimeType] = useState<string>('');
+  const [received, setReceived] = useState<boolean>(false);
+
+  useEffect(() => {
+    ShareMenuReactView.data().then((receivedData: any) => {
+      console.log(`Share(): receivedData: ${JSON.stringify(receivedData)}`);
+      setSharedData(receivedData.data);
+      setSharedMimeType(receivedData.mimeType);
+      setReceived(true);
+    });
+  }, []);
+
+  return (
+    <>
+      <ReactQueryCacheProvider queryCache={shareQueryCache}>
+        <ShareScreen received={received} sharedData={sharedData} />
+      </ReactQueryCacheProvider>
+    </>
+  );
 };
 
 export default Share;
