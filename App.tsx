@@ -1,16 +1,23 @@
 import 'react-native-gesture-handler';
 
 import React, {useState, useEffect, useCallback} from 'react';
+
+// @ts-ignore
 import ShareMenu from 'react-native-share-menu';
+
 import {StatusBar} from 'react-native';
 import {QueryCache, ReactQueryCacheProvider, setConsole} from 'react-query';
 
-import {PinboardContext, usePinboard} from 'hooks/usePinboard';
+import {
+  AppConfigurationContext,
+  useAppConfiguration,
+} from 'hooks/useAppConfiguration';
 import {
   SmartRequestQueueContext,
   useSmartRequestQueue,
 } from 'hooks/useSmartRequestQueue';
 import TabBarNavContainer from 'components/TabBarNavContainer';
+import {useWhyDidYouUpdate} from 'hooks/useWhyDidYouUpdate';
 
 // Work around console.error everywhere in React Query
 // https://react-query.tanstack.com/docs/react-native
@@ -35,72 +42,57 @@ type SharedItem = {
 };
 
 const App = () => {
+  /* Apply the application configuration
+   */
+  useWhyDidYouUpdate('App', {});
+  const {
+    firstRun,
+    setFirstRun,
+    setAppConfigFromStorage,
+    productionMode,
+    setProductionModeWrapper,
+    unsetProduction,
+    apiAuthTokenCredential,
+    setApiAuthTokenCredentialWrapper,
+    unsetApiAuthTokenCredential,
+    feedsTokenSecret,
+    setFeedsTokenSecretWrapper,
+    unsetFeedsTokenSecret,
+  } = useAppConfiguration();
+  const appConfigContextValue = {
+    productionMode: !!productionMode, // If its undefined, assume its false
+    setProductionModeWrapper,
+    unsetProduction,
+    apiAuthTokenCredential,
+    setApiAuthTokenCredentialWrapper,
+    unsetApiAuthTokenCredential,
+    feedsTokenSecret,
+    setFeedsTokenSecretWrapper,
+    unsetFeedsTokenSecret,
+  };
+
   /* Configure the smart request queue
    */
-  const {
-    enqueueFactory,
-    queue,
-    setDefaultQueueKey,
-    setQueueConfig,
-  } = useSmartRequestQueue();
-
-  /* The queue key is always the same.
-   * smart-request-balancer was designed to have keyed queues,
-   * where you can e.g. send X messages per second per user.
-   * In this example, you might use the username as the key.
-   * The Pinboard API doesn't have keyed queues, so we use a constant for the key.
-   */
-  setDefaultQueueKey('PinboardQueueKey');
-
-  setQueueConfig({
-    rules: {
-      // Default queue: one request every 3 seconds
-      common: {
-        rate: 1,
-        limit: 3,
-        priority: 1,
-      },
-      // API's posts/recent call is more stringent: one request every minute
-      apiPostsRecent: {
-        rate: 1,
-        limit: 60,
-        priority: 1,
-      },
-      // API's posts/all call is still more stringent: one post every 5 minutes
-      apiPostsAll: {
-        rate: 1,
-        limit: 300,
-        priority: 1,
-      },
-    },
-    retryTime: 9,
-  });
+  const {enqueueFactory, enqueue, queue} = useSmartRequestQueue();
 
   const smartRequestQueueContextValue = {
     enqueueFactory,
+    enqueue,
     queue,
   };
 
-  /* Configure Pinboard
-   */
-  const {
-    firstRun,
-    pinboard,
-    setConfigurationFromPersistentStorage,
-    setAppConfiguration,
-    removeCredentials,
-  } = usePinboard();
-  if (firstRun) {
-    setConfigurationFromPersistentStorage();
-  }
-  const pinboardContextValue = {
-    pinboard,
-    setAppConfiguration,
-    removeCredentials,
-  };
+  useEffect(() => {
+    /* Get app configuration if we haven't done that yet
+     */
+    if (firstRun) {
+      setFirstRun(false);
+      setAppConfigFromStorage();
+    }
+  }, [firstRun, setAppConfigFromStorage, setFirstRun]);
 
-  /*
+  /* Handle opening the app from the share extension.
    *
+   * ... Not sure I actually need this?
    */
   const [sharedData, setSharedData] = useState('');
   const [sharedMimeType, setSharedMimeType] = useState('');
@@ -132,20 +124,19 @@ const App = () => {
 
   console.log(`App.tsx: sharedData: ${sharedData}`);
   console.log(`App.tsx: sharedMimeType: ${sharedMimeType}`);
-  /*
-   *
+  /* End share sheet section
    */
 
   return (
     <>
       <ReactQueryCacheProvider queryCache={appQueryCache}>
-        <SmartRequestQueueContext.Provider
-          value={smartRequestQueueContextValue}>
-          <PinboardContext.Provider value={pinboardContextValue}>
+        <AppConfigurationContext.Provider value={appConfigContextValue}>
+          <SmartRequestQueueContext.Provider
+            value={smartRequestQueueContextValue}>
             <StatusBar barStyle="dark-content" />
             <TabBarNavContainer />
-          </PinboardContext.Provider>
-        </SmartRequestQueueContext.Provider>
+          </SmartRequestQueueContext.Provider>
+        </AppConfigurationContext.Provider>
       </ReactQueryCacheProvider>
     </>
   );

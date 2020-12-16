@@ -11,9 +11,8 @@ import {
 } from 'react-native';
 
 import PressableAnchor from 'components/PressableAnchor';
-import {PinboardContext} from 'hooks/usePinboard';
+import {AppConfigurationContext} from 'hooks/useAppConfiguration';
 import {AppStyles} from 'style/Styles';
-import {PinboardMode} from 'lib/Pinboard';
 
 const LogInOutButton = ({
   loggedIn,
@@ -38,49 +37,57 @@ const LogInOutButton = ({
 };
 
 export default () => {
-  const [username, setUsername] = useState<string | undefined>(undefined);
-  const [tokenSecret, setTokenSecret] = useState<string | undefined>(undefined);
-  const [productionMode, setProductionMode] = useState<boolean | undefined>(
+  const [screenUsername, setScreenUsername] = useState<string | undefined>(
+    undefined,
+  );
+  const [screenTokenSecret, setScreenTokenSecret] = useState<
+    string | undefined
+  >(undefined);
+  const [screenProdMode, setScreenProdMode] = useState<boolean | undefined>(
     false,
   );
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const pinboardMode = productionMode
-    ? PinboardMode.Production
-    : PinboardMode.Mock;
-  const {pinboard, setAppConfiguration, removeCredentials} = useContext(
-    PinboardContext,
-  );
+  const [screenLoggedIn, setScreenLoggedIn] = useState<boolean>(false);
+
+  const {
+    apiAuthTokenCredential,
+    productionMode,
+    setApiAuthTokenCredentialWrapper,
+    setProductionModeWrapper,
+    unsetApiAuthTokenCredential,
+    // setAppConfiguration,
+    // removeCredentials,
+  } = useContext(AppConfigurationContext);
 
   useEffect(() => {
-    setUsername(pinboard.credential?.username);
-    setTokenSecret(pinboard.credential?.authTokenSecret);
-    setProductionMode(pinboard.mode === PinboardMode.Production);
-    setLoggedIn(pinboard.credential?.authTokenSecret !== undefined);
-  }, [pinboard.apiCredential, pinboard.credential, pinboard.mode]);
+    setScreenUsername(apiAuthTokenCredential?.username);
+    setScreenTokenSecret(apiAuthTokenCredential?.password);
+    setScreenProdMode(productionMode);
+    setScreenLoggedIn(apiAuthTokenCredential?.password !== undefined);
+  }, [apiAuthTokenCredential, productionMode]);
 
   const login = () => {
     console.log(
-      `SettingsScreen: Logging in as ${username} with secret ${tokenSecret}`,
+      `SettingsScreen: Logging in as ${screenUsername} with secret ${screenTokenSecret}`,
     );
-    setAppConfiguration(pinboardMode, username, tokenSecret);
+    if (screenUsername && screenTokenSecret) {
+      setApiAuthTokenCredentialWrapper({
+        username: screenUsername,
+        password: screenTokenSecret,
+      });
+    } else {
+      unsetApiAuthTokenCredential();
+    }
+    setProductionModeWrapper(!!screenProdMode);
   };
+
   const logout = () => {
-    console.log(`SettingsScreen: Logging out from ${username}`);
-    removeCredentials();
+    console.log(`SettingsScreen: Logging out from ${screenUsername}`);
+    unsetApiAuthTokenCredential();
   };
 
-  /* Wrapper function that sets production mode and gets a new Pinboard object
-   */
-  const setProductionModeWrapper: (prod: boolean) => void = (prod: boolean) => {
-    setProductionMode(prod);
-    const newPinboardMode = prod ? PinboardMode.Production : PinboardMode.Mock;
-    setAppConfiguration(newPinboardMode, username, tokenSecret);
-  };
-
-  const modeText =
-    pinboard.mode === PinboardMode.Production ? 'production' : 'mock';
-  const loggedInText = loggedIn
-    ? `Logged in as user ${pinboard.apiCredential?.username}`
+  const modeText = screenProdMode ? 'production' : 'mock';
+  const loggedInText = screenLoggedIn
+    ? `Logged in as user ${apiAuthTokenCredential?.username}`
     : 'Not logged in';
 
   return (
@@ -106,8 +113,8 @@ export default () => {
                 <TextInput
                   style={AppStyles.textInputBox}
                   textAlignVertical="top"
-                  onChangeText={(newText: string) => setUsername(newText)}
-                  value={username}
+                  onChangeText={(newText: string) => setScreenUsername(newText)}
+                  value={screenUsername}
                   autoCapitalize="none"
                   autoCorrect={false}
                   textContentType="username"
@@ -128,8 +135,10 @@ export default () => {
                 <TextInput
                   style={AppStyles.textInputBox}
                   textAlignVertical="top"
-                  onChangeText={(newText: string) => setTokenSecret(newText)}
-                  value={tokenSecret}
+                  onChangeText={(newText: string) =>
+                    setScreenTokenSecret(newText)
+                  }
+                  value={screenTokenSecret}
                   autoCapitalize="none"
                   autoCorrect={false}
                   secureTextEntry={true}
@@ -143,16 +152,16 @@ export default () => {
                   can be helpful when debugging.
                 </Text>
                 <Switch
-                  value={productionMode}
+                  value={screenProdMode}
                   onValueChange={() =>
-                    setProductionModeWrapper(!productionMode)
+                    setProductionModeWrapper(!screenProdMode)
                   }
                 />
               </View>
 
               <View style={AppStyles.loginSubsection}>
                 <LogInOutButton
-                  loggedIn={loggedIn}
+                  loggedIn={screenLoggedIn}
                   loginAction={login}
                   logoutAction={logout}
                 />

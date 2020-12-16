@@ -1,7 +1,7 @@
 /* Tab view for the logged in user
  */
 
-import React, {useContext, useEffect, useState} from 'react';
+import React from 'react';
 import {
   Pressable,
   SafeAreaView,
@@ -16,13 +16,16 @@ import {
 } from '@react-navigation/stack';
 
 import {BookmarkListView} from 'components/BookmarkList';
-import {PinboardContext} from 'hooks/usePinboard';
 import {AppStyles} from 'style/Styles';
 import {NavigationList, NavigationListDestination} from './NavigationList';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import {AddBookmarkScreenWithBack} from './AddBookmark';
+import usePbApiPostsAll from 'hooks/pinboard/usePbApiPostsAll';
+import usePbApiPostsGet from 'hooks/pinboard/usePbApiPostsGet';
+import usePbApiPostsRecent from 'hooks/pinboard/usePbApiPostsRecent';
+import usePbApiPostsUpdate from 'hooks/pinboard/usePbApiPostsUpdate';
 
 const ProfileStack = createStackNavigator<ProfileStackParamList>();
 
@@ -126,11 +129,13 @@ export const ProfileRootScreen: React.FC<ProfileRootScreenProps> = ({
 
 type AllBookmarksScreenProps = {};
 export const AllBookmarksScreen: React.FC<AllBookmarksScreenProps> = () => {
-  const {pinboard} = useContext(PinboardContext);
+  const posts = usePbApiPostsAll();
   return (
     <BookmarkListView
       title="All bookmarks"
-      bookmarksGetter={() => pinboard.api.posts.all({})}
+      bookmarks={posts.processed}
+      isLoading={posts.result.isLoading}
+      error={posts.result.error}
     />
   );
 };
@@ -141,9 +146,15 @@ export const AllBookmarksScreen: React.FC<AllBookmarksScreenProps> = () => {
  */
 type MostRecentDayScreenProps = {};
 const MostRecentDayScreen: React.FC<MostRecentDayScreenProps> = ({}) => {
-  const {pinboard} = useContext(PinboardContext);
-  const bookmarksGetter = () => pinboard.api.posts.get({});
-  return <BookmarkListView title="Recent" bookmarksGetter={bookmarksGetter} />;
+  const posts = usePbApiPostsGet();
+  return (
+    <BookmarkListView
+      title="Bookmarks from most recent day"
+      bookmarks={posts.processed}
+      isLoading={posts.result.isLoading}
+      error={posts.result.error}
+    />
+  );
 };
 
 /* Last 30 most recent bookmarks
@@ -151,28 +162,27 @@ const MostRecentDayScreen: React.FC<MostRecentDayScreenProps> = ({}) => {
  */
 type MostRecentScreenProps = {};
 const MostRecentScreen: React.FC<MostRecentScreenProps> = ({}) => {
-  const {pinboard} = useContext(PinboardContext);
-  const bookmarksGetter = () => pinboard.api.posts.recent({count: 30});
-  return <BookmarkListView title="Recent" bookmarksGetter={bookmarksGetter} />;
+  const posts = usePbApiPostsRecent();
+  return (
+    <BookmarkListView
+      title="Most recent bookmarks"
+      bookmarks={posts.processed}
+      isLoading={posts.result.isLoading}
+      error={posts.result.error}
+    />
+  );
 };
 
 /* The date the Pinboard server last received an update
  */
 type LastUpdateScreenProps = {};
 const LastUpdateScreen: React.FC<LastUpdateScreenProps> = ({}) => {
-  const {pinboard} = useContext(PinboardContext);
-  const [lastUpdated, setLastUpdated] = useState<string>('Loading...');
-  useEffect(() => {
-    pinboard.api.posts
-      .update()
-      .then((date) =>
-        setLastUpdated(
-          `Last update to Pinboard account was on ${date.toString()}`,
-        ),
-      )
-      .catch((error) => setLastUpdated(`error: ${error}`));
-  }, [pinboard.api.posts]);
-
+  const date = usePbApiPostsUpdate();
+  console.debug(date);
+  const lastUpdated =
+    date.processed && !date.result.isError
+      ? `Last update to Pinboard account was on ${date.processed.toString()}`
+      : `Error retrieving last update to Pinboard account: ${date.result.error}`;
   return (
     <>
       <StatusBar barStyle="dark-content" />

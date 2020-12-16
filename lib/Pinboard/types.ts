@@ -1,5 +1,3 @@
-import {QueueName} from './get';
-
 /* Are we running in production?
  */
 export enum PinboardMode {
@@ -138,7 +136,7 @@ export interface IPinboardApi {
   mode: PinboardMode;
   credential?: PinboardApiPasswordCredential | PinboardApiTokenSecretCredential;
   getJson<ResultT>(
-    queueName: QueueName,
+    // queueName: QueueName,
     endpoint: string,
     query?: object,
   ): Promise<ResultT>;
@@ -373,10 +371,10 @@ export function PinboardBookmarkFromTPinboardFeedsBookmark(
 /* Convert an array of TPinboardFeedsBookmark objects to an array of real PinboardBookmark objects
  */
 export function TPinboardFeedsBookmarkListToPinboardBookmarkList(
-  arr: Array<TPinboardFeedsBookmark>,
-): Array<PinboardBookmark> {
+  arr: TPinboardFeedsBookmark[] | undefined,
+): PinboardBookmark[] {
   try {
-    const bookmarks = arr.map((bookmark) => {
+    const bookmarks = arr?.map((bookmark) => {
       return PinboardBookmarkFromTPinboardFeedsBookmark(bookmark);
     });
     // console.log(
@@ -384,7 +382,7 @@ export function TPinboardFeedsBookmarkListToPinboardBookmarkList(
     //     bookmarks,
     //   ).slice(0, 512)}`,
     // );
-    return bookmarks;
+    return bookmarks ? bookmarks : [];
   } catch (error) {
     const msg = [
       'TPinboardFeedsBookmarkListToPinboardBookmarkList(): Failed to convert PinboardFeedsBookmark array (1) to PinboardBookmark array because of error: (2):',
@@ -422,8 +420,11 @@ export function TPinboardApiBookmarkToPinboardBookmark(
 /* Convert a TPinboardApiBookmarkResult to an array of real PinboardBookmark objects
  */
 export function TPinboardApiBookmarkResultToPinboardBookmarkArr(
-  apiResult: TPinboardApiBookmarkResult,
-): Array<PinboardBookmark> {
+  apiResult: TPinboardApiBookmarkResult | undefined,
+): PinboardBookmark[] {
+  if (apiResult === undefined) {
+    return [];
+  }
   const bookmarks = apiResult.posts.map((post) =>
     TPinboardApiBookmarkToPinboardBookmark(
       post,
@@ -441,4 +442,11 @@ export function TPinboardApiBookmarkResultToPinboardBookmarkArr(
  */
 export type TPinboardResultString = {
   result: string;
+};
+
+/* The tags/get endpoint returns a JSON object.
+ * The object keys are the tag names, and the values are the number of bookmarks with that tag.
+ */
+export type TTagsWithCount = {
+  [key: string]: number;
 };

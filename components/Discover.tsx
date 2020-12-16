@@ -1,12 +1,13 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 import {BookmarkListView} from 'components/BookmarkList';
-import {PinboardContext} from 'hooks/usePinboard';
 import {AppStyles} from 'style/Styles';
 import {NavigationListDestination, NavigationList} from './NavigationList';
+import usePbFeedsUnauthPopular from 'hooks/pinboard/usePbFeedsUnauthPopular';
+import usePbFeedsUnauthRecent from 'hooks/pinboard/usePbFeedsUnauthRecent';
 
 type DiscoverStackParamList = {
   Discover: undefined;
@@ -66,22 +67,26 @@ type PopularScreenProps = {
 
 // const PopularScreen: React.FC<PopularScreenProps> = ({navigation}) => {
 const PopularScreen: React.FC<PopularScreenProps> = ({}) => {
-  const {pinboard} = useContext(PinboardContext);
+  const popular = usePbFeedsUnauthPopular({count: 400});
   return (
     <BookmarkListView
       title="Popular"
-      bookmarksGetter={() => pinboard.feeds.unauthenticated.popular(400)}
+      bookmarks={popular.processed !== undefined ? popular.processed : []}
+      isLoading={popular.result.isLoading}
+      error={popular.result.error}
     />
   );
 };
 
 type RecentScreenProps = {};
 const RecentScreen: React.FC<RecentScreenProps> = ({}) => {
-  const {pinboard} = useContext(PinboardContext);
+  const recent = usePbFeedsUnauthRecent({count: 400});
   return (
     <BookmarkListView
       title="Recent"
-      bookmarksGetter={() => pinboard.feeds.unauthenticated.recent(400)}
+      bookmarks={recent.processed !== undefined ? recent.processed : []}
+      isLoading={recent.result.isLoading}
+      error={recent.result.error}
     />
   );
 };

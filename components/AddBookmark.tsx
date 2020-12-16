@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
-import {PinboardContext} from 'hooks/usePinboard';
-import React, {useContext, useState} from 'react';
+import usePbApiPostsAdd from 'hooks/pinboard/usePbApiPostsAdd';
+import React, {useState} from 'react';
 import {
   Button,
   SafeAreaView,
@@ -59,24 +59,28 @@ export const AddBookmarkScreen: React.FC<AddBookmarkScreenParams> = ({
   const [tags, setTags] = useState<string[]>([]);
   const [readLater, setReadLater] = useState(false);
   const [priv, setPriv] = useState(false);
-  const {pinboard} = useContext(PinboardContext);
 
-  console.log(`Got params: uri ${uri}, title ${title}, desc ${desc}`);
+  const [mutate, data] = usePbApiPostsAdd({
+    url: uri,
+    description: title,
+    extended: desc,
+    tags: tags,
+    replace: 'no',
+    shared: priv ? 'no' : 'yes',
+    toread: readLater ? 'yes' : 'no',
+  });
+
+  console.log(
+    `AddBookmarkScreen: Got params: uri ${uri}, title ${title}, desc ${desc}`,
+  );
 
   const cancel = () => {
     dismiss();
   };
   const submit = () => {
     console.log(`AddBookmarkScreen: Submitting ${uri}!`);
-    pinboard.api.posts.add({
-      url: uri,
-      description: title,
-      extended: desc,
-      tags: tags,
-      replace: 'no',
-      shared: priv ? 'no' : 'yes',
-      toread: readLater ? 'yes' : 'no',
-    });
+    mutate();
+    console.log(`AddBookmarkScreen: mutation data result: ${data}`);
     dismiss();
   };
 

@@ -58,13 +58,12 @@ export function setCredential(
   serviceName: string,
   username: string,
   password: string,
-): Promise<false | Keychain.Result> {
+): Promise<void> {
   const resultPromise = Keychain.setGenericPassword(username, password, {
     service: serviceName,
   })
-    .then((result) => {
+    .then((_result) => {
       console.log(`Set credential '${serviceName}'`);
-      return result;
     })
     .catch((error) => {
       console.warn(`Error setting credential '${serviceName}': ${error}`);
@@ -82,6 +81,17 @@ export function setSetting(name: string, newValue: string): Promise<void> {
       console.warn(
         `Error setting credential '${name}' to ${newValue}: ${error}`,
       );
+      throw error;
+    });
+}
+
+export function unsetSetting(name: string): Promise<void> {
+  return DefaultPreference.clear(name)
+    .then((_result) => {
+      console.log(`Remove setting '${name}'.`);
+    })
+    .catch((error) => {
+      console.warn(`Error setting credential '${name}': ${error}`);
       throw error;
     });
 }

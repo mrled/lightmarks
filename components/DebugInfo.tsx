@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {FlatList, SafeAreaView, ScrollView, Text, View} from 'react-native';
 
-import {PinboardContext} from 'hooks/usePinboard';
+import {AppConfigurationContext} from 'hooks/useAppConfiguration';
 import {AppStyles} from 'style/Styles';
 import {getCredential, getSetting} from 'lib/storage';
 
@@ -15,7 +15,9 @@ class DebugDatum {
 }
 
 const DebugInfo = () => {
-  const {pinboard} = useContext(PinboardContext);
+  const {apiAuthTokenCredential, productionMode, feedsTokenSecret} = useContext(
+    AppConfigurationContext,
+  );
 
   const [storageMode, setStorageMode] = useState('');
   const [storageUser, setStorageUser] = useState('');
@@ -34,16 +36,13 @@ const DebugInfo = () => {
   }, []);
 
   const debugData = [
-    new DebugDatum('Pinboard object mode', pinboard.mode),
-    new DebugDatum('Pinboard object user', pinboard.credential?.username),
+    new DebugDatum('Pinboard object mode', productionMode),
+    new DebugDatum('Pinboard object user', apiAuthTokenCredential?.username),
     new DebugDatum(
       'Pinboard object API secret',
-      pinboard.credential?.authTokenSecret,
+      apiAuthTokenCredential?.password,
     ),
-    new DebugDatum(
-      'Pinboard object RSS secret',
-      pinboard.credential?.rssSecret,
-    ),
+    new DebugDatum('Pinboard object RSS secret', feedsTokenSecret),
     new DebugDatum('Storage mode', storageMode),
     new DebugDatum('Storage user', storageUser),
     new DebugDatum('Storage API token', storageApiToken),

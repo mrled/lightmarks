@@ -1,7 +1,7 @@
 /* A list of bookmarks with a title
  */
 
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -138,49 +138,18 @@ const BookmarkListItemView: React.FC<BookmarkListItemViewProps> = ({
 interface BookmarkListViewProps {
   // A title for the view, displayed to the user
   title: string;
-
-  /* A getter function that will return the required bookmarks wrapped by a promise.
-   * Some examples:
-   *  pinboard.feeds.unauthenticated.popular
-   *  () => pinboard.feeds.unauthenticated.popular(count=1)
-   */
-  bookmarksGetter: () => Promise<any>;
+  // A list of PinboardBookmark objects
+  bookmarks: PinboardBookmark[];
+  isLoading: boolean;
+  error: any;
 }
 
 export const BookmarkListView: React.FC<BookmarkListViewProps> = ({
   title,
-  bookmarksGetter,
+  bookmarks,
+  isLoading,
+  error,
 }) => {
-  const [loadErr, setLoadErr] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
-  const [bookmarks, setBookmarks] = useState<Array<any>>([]);
-
-  const getBookmarks = () => {
-    setLoadErr('');
-    setLoading(true);
-    bookmarksGetter()
-      .then((result) => {
-        // console.debug(
-        //   `BookmarkListView:bookmarksGetter(): got result ${JSON.stringify(
-        //     result,
-        //   )}`,
-        // );
-        setLoadErr('');
-        setLoading(false);
-        setBookmarks(result);
-      })
-      .catch((err) => {
-        console.warn(
-          `BookmarkListView:bookmarksGetter(): got error ${JSON.stringify(
-            err,
-          )}`,
-        );
-        setLoadErr(JSON.stringify(err));
-        setLoading(false);
-      });
-  };
-  useEffect(getBookmarks, []);
-
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -191,7 +160,7 @@ export const BookmarkListView: React.FC<BookmarkListViewProps> = ({
           </View>
         </View>
       </SafeAreaView>
-      <BookmarkList bookmarks={bookmarks} loading={loading} loadErr={loadErr} />
+      <BookmarkList bookmarks={bookmarks} loading={isLoading} loadErr={error} />
     </>
   );
 };

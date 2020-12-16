@@ -10,8 +10,7 @@ import {DiscoverStackScreen} from 'components/Discover';
 import {ProfileStackScreen} from 'components/Profile';
 import DumbTagView from 'components/DumbTagView';
 import {FunctionalColors} from 'style/Colors';
-import {PinboardContext} from 'hooks/usePinboard';
-import {PinboardMode} from 'lib/Pinboard';
+import {AppConfigurationContext} from 'hooks/useAppConfiguration';
 import {StyleSheet} from 'react-native';
 
 const Styles = StyleSheet.create({
@@ -23,15 +22,14 @@ const Styles = StyleSheet.create({
 const TabBar = createBottomTabNavigator();
 
 const TabBarNavContainer = () => {
-  const {pinboard} = useContext(PinboardContext);
+  const {productionMode} = useContext(AppConfigurationContext);
 
-  const mockModeBadgeOpts =
-    pinboard.mode === PinboardMode.Production
-      ? {}
-      : {
-          tabBarBadge: 'mock',
-          tabBarBadgeStyle: Styles.mockBadgeStyle,
-        };
+  const mockModeBadgeOpts = productionMode
+    ? {}
+    : {
+        tabBarBadge: 'mock',
+        tabBarBadgeStyle: Styles.mockBadgeStyle,
+      };
 
   return (
     <NavigationContainer>
@@ -40,6 +38,16 @@ const TabBarNavContainer = () => {
           activeTintColor: FunctionalColors.TabBarIconSelected,
           inactiveTintColor: FunctionalColors.TabBarIconDeselected,
         }}>
+        <TabBar.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{
+            ...mockModeBadgeOpts,
+            tabBarIcon: ({color, size}) => (
+              <Ionicons name="settings" size={size} color={color} />
+            ),
+          }}
+        />
         <TabBar.Screen
           name="Discover"
           component={DiscoverStackScreen}
@@ -64,16 +72,6 @@ const TabBarNavContainer = () => {
           options={{
             tabBarIcon: ({color, size}) => (
               <Ionicons name="person" size={size} color={color} />
-            ),
-          }}
-        />
-        <TabBar.Screen
-          name="Settings"
-          component={SettingsScreen}
-          options={{
-            ...mockModeBadgeOpts,
-            tabBarIcon: ({color, size}) => (
-              <Ionicons name="settings" size={size} color={color} />
             ),
           }}
         />
