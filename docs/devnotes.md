@@ -85,38 +85,6 @@ I can define a 'default query function', which in the example uses `axios.get`.
 
 I think that would also work for fetching real/fake data.
 
-### ⬜️ Break up usePinboard into multiple hooks
-
-Advice on the Reactiflux Discord is that if you have a hook more than a page, it's probably too long.
-Certainly my 200 line usePinboard hook should probably be refactored.
-
-Advised I keep storage (Keychain/UserDefaults) and the API client separate, for example.
-
-Can be decomposed into multiple hooks.
-Libs like React Query should help as well.
-
-#### Ok this is going to be a fucking huge thing
-
-- React Query actually recommends that you have a _separate hook for each API call_:
-  <https://react-query.tanstack.com/docs/examples/custom-hooks>.
-  "...each query has been refactored to be it's own custom hook. This design is the suggested way to use React Query, as it makes it much easier to manage query keys and shared query logic."
-- This would mean a couple dozen hooks, e.g. `hooks/pinboard/usePbApiUserPosts`, `hooks/pinboard/usePbApiUserTags`, `hooks/pinboard/usePbApiUserRecent`, etc etc etc. (... is this even sustainable for larger APIs? What are you doing, using codegen for this shit? Fuck's sake.)
-- How would I manage state like PinboardMode, authentication, etc in such a regime?
-- I think the answer is _more fucking hooks_. E.g. `usePinboardMode()` and `usePinboardAuth()` hooks that are called from every API endpoint hook.
-- That seems _surprising_ but maybe not _insane_? Like if someone knows React it'll probably make sense, but it would probably not make sense at all who hasn't been inducted into the Church of Hooks.
-- What helped crystalize how this is expected to work started with this blog post: <https://blog.logrocket.com/frustrations-with-react-hooks/>...
-- ... which linked to this GitHub comment from a React developer: <https://github.com/facebook/react/issues/14476#issuecomment-471199055>
-- In the latter, there is an example of separate `useFetch` and `useFetchWithAuth` hooks
-- And in both of them are some good examples of patterns I can use.
-- I guess I'm afraid this is faddish... is anyone going to understand this shit in 5 years?
-
-### ⬜️ Should be usig hook for smart request balacer queue
-
-Realized just now that I define the queue in the module, but I don't think it'll work like that.
-Need to use a hook or something.
-Not sure of the right abstractions for this...
-maybe I create the queue in usePinboard() and pass it in to `new Pinboard()` when I instantiate?
-
 ### ⬜️ Use some secret gesture to bring up DebugInfo
 
 It's nice to have, but it would be nicer if it weren't a tab.
@@ -150,7 +118,7 @@ They contain a link or two and some thoughts.
 - Expose all of the rest of the API
 - See network
 
-### ⬜️ Finish typing the Pinboard library
+### ⬜️ Finish typing the Pinboard React Query hooks
 
 - Type return values
 - Use a generic `.getJson<ReturnType>()` -like function to set `ReturnType` so I know what to expect the raw API results to be. See the stuff I just did in the PinboardApi for examples.
@@ -177,15 +145,15 @@ One idea: a `Local cache` control panel that pops up or over or something
 - "Force refresh now" button
 - Displays info on when item was last cached etc
 
-### ⬜️ Do I need a UI kit?
+UPDATE: I think this is done now that I'm using React Query, but need to do some testing.
 
-- NativeBase seems like a decent default. It has a lot of components. (Maybe some are paid only?)
-- UI Kitten might look pretty good, but has way fewer components.
-- react-native-paper is Material Design, so I don't think it'll look right on iOS
-- Lots of other ones, but these seem to be the biggest?
+### ⬜️ Fix queuing
 
-I have to say, discovering this stuff is hard when you're starting from absolute scratch like me.
-I literally only even found these because I was searching all of github for how to set a React Navigation stack nav top bar... and the results were all from people using paper or UI Kitten or similar.
+Now that I've moved to React Query, fetching all bookmarks pauses future queries for 5 minutes.
+
+### ⬜️ Remove unnecessary types from types.ts
+
+Lots of cruft in here from pre- React Query
 
 ### ⬜️ Work perfectly offline
 
@@ -437,3 +405,53 @@ How come no one told me this.
 smh.
 
 https://fbflipper.com/
+
+### ✅️ Break up usePinboard into multiple hooks
+
+Advice on the Reactiflux Discord is that if you have a hook more than a page, it's probably too long.
+Certainly my 200 line usePinboard hook should probably be refactored.
+
+Advised I keep storage (Keychain/UserDefaults) and the API client separate, for example.
+
+Can be decomposed into multiple hooks.
+Libs like React Query should help as well.
+
+DONE. The new useAppConfiguration hook is still 100 lines, but that's better than the old one.
+
+#### Ok this is going to be a fucking huge thing
+
+- React Query actually recommends that you have a _separate hook for each API call_:
+  <https://react-query.tanstack.com/docs/examples/custom-hooks>.
+  "...each query has been refactored to be it's own custom hook. This design is the suggested way to use React Query, as it makes it much easier to manage query keys and shared query logic."
+- This would mean a couple dozen hooks, e.g. `hooks/pinboard/usePbApiUserPosts`, `hooks/pinboard/usePbApiUserTags`, `hooks/pinboard/usePbApiUserRecent`, etc etc etc. (... is this even sustainable for larger APIs? What are you doing, using codegen for this shit? Fuck's sake.)
+- How would I manage state like PinboardMode, authentication, etc in such a regime?
+- I think the answer is _more fucking hooks_. E.g. `usePinboardMode()` and `usePinboardAuth()` hooks that are called from every API endpoint hook.
+- That seems _surprising_ but maybe not _insane_? Like if someone knows React it'll probably make sense, but it would probably not make sense at all who hasn't been inducted into the Church of Hooks.
+- What helped crystalize how this is expected to work started with this blog post: <https://blog.logrocket.com/frustrations-with-react-hooks/>...
+- ... which linked to this GitHub comment from a React developer: <https://github.com/facebook/react/issues/14476#issuecomment-471199055>
+- In the latter, there is an example of separate `useFetch` and `useFetchWithAuth` hooks
+- And in both of them are some good examples of patterns I can use.
+- I guess I'm afraid this is faddish... is anyone going to understand this shit in 5 years?
+
+DONE too. This does seem to have some benefits, like I don't have to explicitly handle promises or anything, it feels like working with synchronous code. However, it'll take me a long time to get used to it, and it took a long time to refactor, and I had to touch basically every file in my project.
+
+### ✅️ Should be using hook for smart request balancer queue
+
+Realized just now that I define the queue in the module, but I don't think it'll work like that.
+Need to use a hook or something.
+Not sure of the right abstractions for this...
+maybe I create the queue in usePinboard() and pass it in to `new Pinboard()` when I instantiate?
+
+Done.
+
+### ✅️ Do I need a UI kit?
+
+- NativeBase seems like a decent default. It has a lot of components. (Maybe some are paid only?)
+- UI Kitten might look pretty good, but has way fewer components.
+- react-native-paper is Material Design, so I don't think it'll look right on iOS
+- Lots of other ones, but these seem to be the biggest?
+
+I have to say, discovering this stuff is hard when you're starting from absolute scratch like me.
+I literally only even found these because I was searching all of github for how to set a React Navigation stack nav top bar... and the results were all from people using paper or UI Kitten or similar.
+
+UPDATE: Decided not to do this. Will just reinvent my own thing, at least for now.
