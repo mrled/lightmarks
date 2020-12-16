@@ -169,3 +169,7 @@ I have to say, discovering this stuff is hard when you're starting from absolute
 I literally only even found these because I was searching all of github for how to set a React Navigation stack nav top bar... and the results were all from people using paper or UI Kitten or similar.
 
 UPDATE: Decided not to do this. Will just reinvent my own thing, at least for now.
+
+### ✅️ Remove unnecessary types from types.ts
+
+Lots of cruft in here from pre- React Query

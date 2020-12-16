@@ -142,10 +142,6 @@ UPDATE: I think this is done now that I'm using React Query, but need to do some
 
 Now that I've moved to React Query, fetching all bookmarks pauses future queries for 5 minutes.
 
-### ⬜️ Remove unnecessary types from types.ts
-
-Lots of cruft in here from pre- React Query
-
 ### ⬜️ Work perfectly offline
 
 This is part of caching results and perfect data sync.
