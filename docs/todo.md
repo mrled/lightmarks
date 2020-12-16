@@ -25,45 +25,43 @@ Try investigating the "Should be using hook for smart request balancer queue" ta
 
 Here's a bunch of logs
 
-```
-[Fri Nov 27 2020 23:35:32.313]  DEBUG    setPinboardIdempotently(): Setting new Pinboard object
-mode: Mock ==> Production
-username: undefined ==> mrled
-tokenSecret: undefined ==> ******CENSORED******
-rssSecret: undefined === undefined
-[Fri Nov 27 2020 23:35:32.314]  DEBUG    Pinboard(): Pinboard credential: {"username":"mrled","authTokenSecret":"******CENSORED******"}
-[Fri Nov 27 2020 23:35:32.315]  DEBUG    Pinboard(): Using API token secret credential
-[Fri Nov 27 2020 23:35:32.322]  DEBUG    Pinboard(): No credential for feeds
-[Fri Nov 27 2020 23:35:32.322]  LOG      App.tsx: sharedData:
-[Fri Nov 27 2020 23:35:32.323]  LOG      App.tsx: sharedMimeType:
-[Fri Nov 27 2020 23:35:32.323]  DEBUG    setPinboardIdempotently(): Pinboard is already set, nothing to do
-[Fri Nov 27 2020 23:35:32.324]  LOG      App.tsx: sharedData:
-[Fri Nov 27 2020 23:35:32.425]  LOG      App.tsx: sharedMimeType:
-[Fri Nov 27 2020 23:35:32.647]  LOG      Set setting 'PinboardMode' to 'Production'.
-[Fri Nov 27 2020 23:35:32.648]  LOG      Set credential 'PinboardApiTokenSecretCredential'
-[Fri Nov 27 2020 23:35:37.234]  LOG      Logging in with API token mrled:******CENSORED******
-[Fri Nov 27 2020 23:35:37.234]  LOG      pinboard.api.getJsonWithApiTokenSecretCredential(): result: {"_U":0,"_V":0,"_W":null,"_X":null}
-[Fri Nov 27 2020 23:36:12.339]  ERROR    fetchOrReturnFaux() error: TypeError: Network request failed
-[Fri Nov 27 2020 23:36:12.416]  ERROR    queuedFetchOrReturnFaux(): error: TypeError: undefined is not an object (evaluating 'error.response.status')
-[Fri Nov 27 2020 23:36:47.239]  ERROR    fetchOrReturnFaux() error: TypeError: Network request failed
-[Fri Nov 27 2020 23:36:47.302]  ERROR    queuedFetchOrReturnFaux(): error: TypeError: undefined is not an object (evaluating 'error.response.status')
-[Fri Nov 27 2020 23:36:47.456]  WARN     Possible Unhandled Promise Rejection (id: 0):
-TypeError: undefined is not an object (evaluating 'error.response.status')
-http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:106292:27
-tryCallOne@http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:27058:16
-http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:27159:27
-_callTimer@http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:30598:17
-_callImmediatesPass@http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:30637:17
-callImmediates@http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:30854:33
-__callImmediates@http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:2736:35
-http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:2522:34
-__guard@http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:2719:15
-flushedQueue@http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:2521:21
-flushedQueue@[native code]
-callFunctionReturnFlushedQueue@[native code]
-info Reloading app...
-info Opening developer menu...
-```
+    [Fri Nov 27 2020 23:35:32.313]  DEBUG    setPinboardIdempotently(): Setting new Pinboard object
+    mode: Mock ==> Production
+    username: undefined ==> mrled
+    tokenSecret: undefined ==> ******CENSORED******
+    rssSecret: undefined === undefined
+    [Fri Nov 27 2020 23:35:32.314]  DEBUG    Pinboard(): Pinboard credential: {"username":"mrled","authTokenSecret":"******CENSORED******"}
+    [Fri Nov 27 2020 23:35:32.315]  DEBUG    Pinboard(): Using API token secret credential
+    [Fri Nov 27 2020 23:35:32.322]  DEBUG    Pinboard(): No credential for feeds
+    [Fri Nov 27 2020 23:35:32.322]  LOG      App.tsx: sharedData:
+    [Fri Nov 27 2020 23:35:32.323]  LOG      App.tsx: sharedMimeType:
+    [Fri Nov 27 2020 23:35:32.323]  DEBUG    setPinboardIdempotently(): Pinboard is already set, nothing to do
+    [Fri Nov 27 2020 23:35:32.324]  LOG      App.tsx: sharedData:
+    [Fri Nov 27 2020 23:35:32.425]  LOG      App.tsx: sharedMimeType:
+    [Fri Nov 27 2020 23:35:32.647]  LOG      Set setting 'PinboardMode' to 'Production'.
+    [Fri Nov 27 2020 23:35:32.648]  LOG      Set credential 'PinboardApiTokenSecretCredential'
+    [Fri Nov 27 2020 23:35:37.234]  LOG      Logging in with API token mrled:******CENSORED******
+    [Fri Nov 27 2020 23:35:37.234]  LOG      pinboard.api.getJsonWithApiTokenSecretCredential(): result: {"_U":0,"_V":0,"_W":null,"_X":null}
+    [Fri Nov 27 2020 23:36:12.339]  ERROR    fetchOrReturnFaux() error: TypeError: Network request failed
+    [Fri Nov 27 2020 23:36:12.416]  ERROR    queuedFetchOrReturnFaux(): error: TypeError: undefined is not an object (evaluating 'error.response.status')
+    [Fri Nov 27 2020 23:36:47.239]  ERROR    fetchOrReturnFaux() error: TypeError: Network request failed
+    [Fri Nov 27 2020 23:36:47.302]  ERROR    queuedFetchOrReturnFaux(): error: TypeError: undefined is not an object (evaluating 'error.response.status')
+    [Fri Nov 27 2020 23:36:47.456]  WARN     Possible Unhandled Promise Rejection (id: 0):
+    TypeError: undefined is not an object (evaluating 'error.response.status')
+    http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:106292:27
+    tryCallOne@http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:27058:16
+    http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:27159:27
+    _callTimer@http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:30598:17
+    _callImmediatesPass@http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:30637:17
+    callImmediates@http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:30854:33
+    __callImmediates@http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:2736:35
+    http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:2522:34
+    __guard@http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:2719:15
+    flushedQueue@http://10.0.2.2:8081/index.bundle?platform=android&dev=true&minify=false:2521:21
+    flushedQueue@[native code]
+    callFunctionReturnFlushedQueue@[native code]
+    info Reloading app...
+    info Opening developer menu...
 
 #### Maybe I should use React Query?
 
@@ -159,9 +157,7 @@ Maybe with this? <https://github.com/rgommezz/react-native-offline>
 If I request data from the network, and then navigate away before it returns and updates the view,
 I need to cancel that task or else I will get an error on the console like this:
 
-```
-[Fri Nov 20 2020 22:24:52.770]  ERROR    Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
-```
+    [Fri Nov 20 2020 22:24:52.770]  ERROR    Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
 
 ### ⬜️ 🔱 Implement tag management
 

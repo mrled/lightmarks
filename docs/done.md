@@ -118,7 +118,7 @@ All the fucking flipper shit everywhere is for a nice debugger.
 How come no one told me this.
 smh.
 
-https://fbflipper.com/
+<https://fbflipper.com/>
 
 ### ✅️ Break up usePinboard into multiple hooks
 
