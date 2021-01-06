@@ -87,10 +87,6 @@ Maybe a 4 finger swipe or some other gesture that's unlikely to be accidental wo
 - Do/don't display tags, user notes, user name
 - Show only bookmarks with notes / do not show bookmarks with notes
 
-### ⬜️ Toggle mock/production mode in app
-
-Maybe even with a visible reminder of what mode I'm in on all screens?
-
 ### ⬜️ Build an in-app web view
 
 This is exceptionally lazy, but: see the devnotes I added in ebd6be97e3dd990e9eafbdcae947a71882697ce2.

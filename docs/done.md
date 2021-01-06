@@ -173,3 +173,7 @@ UPDATE: Decided not to do this. Will just reinvent my own thing, at least for no
 ### ✅️ Remove unnecessary types from types.ts
 
 Lots of cruft in here from pre- React Query
+
+### ✅️ Toggle mock/production mode in app
+
+Maybe even with a visible reminder of what mode I'm in on all screens?
