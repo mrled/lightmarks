@@ -50,24 +50,14 @@ export default function FakeableFetch(
       : () => fauxFetch(uri, fauxData);
   return fetchImplementation()
     .then((result) => {
-      stupidLogger(
-        `fetchOrReturnFaux() result: ${JSON.stringify(
-          result,
-          undefined,
-          '  ',
-        )}`,
-      );
+      const prettyRes = JSON.stringify(result, undefined, '  ');
+      stupidLogger(`fetchOrReturnFaux() result: ${prettyRes}`);
       return result;
     })
     .then((result) => result.json())
     .then((jsonResult) => {
-      stupidLogger(
-        `fetchOrReturnFaux() jsonResult: ${JSON.stringify(
-          jsonResult,
-          undefined,
-          '  ',
-        )}`,
-      );
+      const prettyRes = JSON.stringify(jsonResult, undefined, '  ');
+      stupidLogger(`fetchOrReturnFaux() jsonResult: ${prettyRes}`);
       return jsonResult;
     })
     .catch((err) => {
