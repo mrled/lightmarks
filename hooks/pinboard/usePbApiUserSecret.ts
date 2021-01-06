@@ -4,7 +4,7 @@ import {TPinboardResultString} from 'lib/Pinboard/types';
 import {usePbApiQuery} from './usePbApi';
 
 const usePbApiTagsGet = () => {
-  return usePbApiQuery<TPinboardResultString>('user/secret', 'common', {});
+  return usePbApiQuery<TPinboardResultString>('user/secret', {});
 };
 
 export default usePbApiTagsGet;

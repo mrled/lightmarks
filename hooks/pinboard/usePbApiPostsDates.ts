@@ -12,7 +12,6 @@ import {usePbApiQuery} from './usePbApi';
 const usePbApiPostsDates = (params: {tag?: OneToThreeStrings}) => {
   const result = usePbApiQuery<TPinboardApiBookmarkResult>(
     'posts/dates',
-    'apiPostsDates',
     params,
   );
 

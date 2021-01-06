@@ -32,8 +32,7 @@
     "react-native-share-menu": "^5.0.2",
     "react-native-vector-icons": "^7.1.0",
     "react-query": "^2.26.3",
-    "sinon": "^9.2.1",
-    "smart-request-balancer": "^2.1.1"
+    "sinon": "^9.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

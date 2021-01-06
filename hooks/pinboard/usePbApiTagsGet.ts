@@ -5,7 +5,7 @@ import {TTagsWithCount} from 'lib/Pinboard/types';
 import {usePbApiQuery} from './usePbApi';
 
 const usePbApiTagsGet = () => {
-  return usePbApiQuery<TTagsWithCount>('tags/get', 'common', {});
+  return usePbApiQuery<TTagsWithCount>('tags/get', {});
 };
 
 export default usePbApiTagsGet;

@@ -18,7 +18,6 @@ const usePbApiPostsGet = (params?: {
 }) => {
   const result = usePbApiQuery<TPinboardApiBookmarkResult>(
     'posts/get',
-    'apiPostsRecent',
     params || {},
   );
 

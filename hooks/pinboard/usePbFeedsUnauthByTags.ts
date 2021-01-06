@@ -12,7 +12,7 @@ const usePbFeedsUnauthByTags = (params: {
   count?: number;
 }) => {
   const endpoint = `${tagListToComponents(params.tags)}`;
-  return usePbFeedsUnauthenticatedQuery<any>(endpoint, 'common', {
+  return usePbFeedsUnauthenticatedQuery<any>(endpoint, {
     count: params.count,
   });
 };

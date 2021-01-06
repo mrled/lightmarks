@@ -4,7 +4,8 @@
 import {usePbApiQuery} from './usePbApi';
 
 const usePbApiNotesById = (id: string) => {
-  return usePbApiQuery<any>(`notes/${id}`, 'common', {}, 'notes/byid');
+  const result = usePbApiQuery<any>(`notes/${id}`, {}, 'notes/byid');
+  return result;
 };
 
 export default usePbApiNotesById;

@@ -7,7 +7,6 @@ import {usePbApiQuery} from './usePbApi';
 const usePbApiPostsUpdate = () => {
   const result = usePbApiQuery<TPinboardApiPostsUpdateResult>(
     'posts/update',
-    'common',
     {},
   );
   const updateTime = result.data

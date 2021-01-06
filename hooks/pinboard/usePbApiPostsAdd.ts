@@ -13,7 +13,7 @@ const usePbApiPostsAdd = (params: {
   shared?: YesOrNo;
   toread?: YesOrNo;
 }) => {
-  const result = usePbApiMutation<any>('posts/add', 'common', params);
+  const result = usePbApiMutation<any>('posts/add', params);
   console.debug(
     `usePbApiPostsAdd() result data: ${JSON.stringify(result[1].data)}:`,
   );

@@ -5,7 +5,7 @@
 import {usePbApiQuery} from './usePbApi';
 
 const usePbApiTagsGet = () => {
-  return usePbApiQuery<any>('user/api_token', 'common', {});
+  return usePbApiQuery<any>('user/api_token', {});
 };
 
 export default usePbApiTagsGet;

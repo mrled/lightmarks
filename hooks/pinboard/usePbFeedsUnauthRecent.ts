@@ -11,7 +11,6 @@ import {usePbFeedsUnauthenticatedQuery} from './usePbFeeds';
 const usePbFeedsUnauthRecent = (params: {count?: number}) => {
   const result = usePbFeedsUnauthenticatedQuery<TPinboardFeedsBookmark[]>(
     'recent',
-    'common',
     params,
   );
   return new ProcessedQueryResult(

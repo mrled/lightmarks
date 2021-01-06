@@ -12,10 +12,6 @@ import {
   AppConfigurationContext,
   useAppConfiguration,
 } from 'hooks/useAppConfiguration';
-import {
-  SmartRequestQueueContext,
-  useSmartRequestQueue,
-} from 'hooks/useSmartRequestQueue';
 import TabBarNavContainer from 'components/TabBarNavContainer';
 import {useWhyDidYouUpdate} from 'hooks/useWhyDidYouUpdate';
 
@@ -71,16 +67,6 @@ const App = () => {
     unsetFeedsTokenSecret,
   };
 
-  /* Configure the smart request queue
-   */
-  const {enqueueFactory, enqueue, queue} = useSmartRequestQueue();
-
-  const smartRequestQueueContextValue = {
-    enqueueFactory,
-    enqueue,
-    queue,
-  };
-
   useEffect(() => {
     /* Get app configuration if we haven't done that yet
      */
@@ -131,11 +117,8 @@ const App = () => {
     <>
       <ReactQueryCacheProvider queryCache={appQueryCache}>
         <AppConfigurationContext.Provider value={appConfigContextValue}>
-          <SmartRequestQueueContext.Provider
-            value={smartRequestQueueContextValue}>
-            <StatusBar barStyle="dark-content" />
-            <TabBarNavContainer />
-          </SmartRequestQueueContext.Provider>
+          <StatusBar barStyle="dark-content" />
+          <TabBarNavContainer />
         </AppConfigurationContext.Provider>
       </ReactQueryCacheProvider>
     </>

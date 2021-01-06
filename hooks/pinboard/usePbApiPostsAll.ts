@@ -22,7 +22,6 @@ const usePbApiPostsAll = (params?: {
 }) => {
   const result = usePbApiQuery<TPinboardApiBookmark[]>(
     'posts/all',
-    'apiPostsAll',
     params || {},
   );
 

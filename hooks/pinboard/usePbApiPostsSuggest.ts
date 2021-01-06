@@ -7,7 +7,6 @@ import {usePbApiQuery} from './usePbApi';
 const usePbApiPostsSuggest = (params: {url: string}) => {
   const result = usePbApiQuery<TPinboardApiBookmarkResult>(
     'posts/suggest',
-    'common',
     params,
   );
   // return new ProcessedQueryResult(

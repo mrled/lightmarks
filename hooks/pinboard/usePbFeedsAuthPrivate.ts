@@ -4,7 +4,7 @@
 import {usePbFeedsUnauthenticatedQuery} from './usePbFeeds';
 
 const usePbFeedsAuthNetwork = (params: {count?: number}) => {
-  return usePbFeedsUnauthenticatedQuery<any>('secret', 'common', {
+  return usePbFeedsUnauthenticatedQuery<any>('secret', {
     count: params.count,
   });
 };

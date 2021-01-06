@@ -4,7 +4,7 @@
 import {usePbFeedsUnauthenticatedQuery} from './usePbFeeds';
 
 const usePbFeedsAuthUntagged = (params: {count?: number}) => {
-  return usePbFeedsUnauthenticatedQuery<any>('untagged', 'common', {
+  return usePbFeedsUnauthenticatedQuery<any>('untagged', {
     count: params.count,
   });
 };

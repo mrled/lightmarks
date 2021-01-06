@@ -16,11 +16,9 @@ const usePbFeedsUnauthByUser = (params: {
     ? `/${tagListToComponents(params.tags)}`
     : '';
   const endpoint = `u:${params.user}${tagsComponent}/`;
-  return usePbFeedsUnauthenticatedQuery<TPinboardFeedsBookmark[]>(
-    endpoint,
-    'common',
-    {count: params.count},
-  );
+  return usePbFeedsUnauthenticatedQuery<TPinboardFeedsBookmark[]>(endpoint, {
+    count: params.count,
+  });
 };
 
 export default usePbFeedsUnauthByUser;

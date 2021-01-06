@@ -5,13 +5,11 @@ import {useContext} from 'react';
 import {useQuery} from 'react-query';
 
 import {AppConfigurationContext} from 'hooks/useAppConfiguration';
-import {
-  SmartRequestQueueContext,
-  useSmartRequestQueueByContext,
-} from 'hooks/useSmartRequestQueue';
+import {rqRateLimitParams} from 'lib/Pinboard';
 import {optionalQueryStringWithQmark} from 'lib/Pinboard/util';
 
 import {FauxFeedsAuthenticatedData} from '../../lib/Pinboard/FauxData';
+import FakeableFetch from 'lib/FakeableFetch';
 
 /* Take a list of tags and return Pinboard-style tag path components
  *
@@ -23,17 +21,16 @@ export const tagListToComponents = (tags: string[]) => {
   return tags.map((t) => `t:${t}`).join('/');
 };
 
+const feedsBase = 'https://feeds.pinboard.in/json';
+
 export function usePbFeedsAuthenticatedQuery<ResultType>(
   endpoint: string,
-  queueName: string,
   params: object,
   fauxDataKeyOverride?: string,
-  onSuccess?: (data: ResultType) => any,
 ) {
   const {apiAuthTokenCredential, feedsTokenSecret, productionMode} = useContext(
     AppConfigurationContext,
   );
-  const {enqueue} = useSmartRequestQueueByContext(SmartRequestQueueContext);
 
   const fauxDataKey =
     fauxDataKeyOverride !== undefined ? fauxDataKeyOverride : endpoint;
@@ -42,29 +39,24 @@ export function usePbFeedsAuthenticatedQuery<ResultType>(
     : FauxFeedsAuthenticatedData[fauxDataKey];
 
   const qs = optionalQueryStringWithQmark(params);
-  const uri = `https://feeds.pinboard.in/json/secret:${feedsTokenSecret}/u:${apiAuthTokenCredential?.username}/${endpoint}${qs}`;
+  const uri = `${feedsBase}/secret:${feedsTokenSecret}/u:${apiAuthTokenCredential?.username}/${endpoint}${qs}`;
   const headers = undefined;
 
-  let useQueryParams: any = {};
-  if (onSuccess !== undefined) {
-    useQueryParams.onSuccess = onSuccess;
-  }
   return useQuery<ResultType>(
-    ['PinboardFeedsAuth', endpoint, queueName, headers, productionMode, params],
-    () => enqueue(queueName, uri, headers, fauxData),
-    useQueryParams,
+    ['PinboardFeedsAuth', endpoint, headers, productionMode, params],
+    () => FakeableFetch(uri, headers, fauxData),
+    {
+      ...rqRateLimitParams(''),
+    },
   );
 }
 
 export function usePbFeedsUnauthenticatedQuery<ResultType>(
   endpoint: string,
-  queueName: string,
   params: object,
   fauxDataKeyOverride?: string,
-  onSuccess?: (data: ResultType) => any,
 ) {
   const {productionMode} = useContext(AppConfigurationContext);
-  const {enqueue} = useSmartRequestQueueByContext(SmartRequestQueueContext);
 
   const fauxDataKey =
     fauxDataKeyOverride !== undefined ? fauxDataKeyOverride : endpoint;
@@ -73,23 +65,14 @@ export function usePbFeedsUnauthenticatedQuery<ResultType>(
     : FauxFeedsAuthenticatedData[fauxDataKey];
 
   const qs = optionalQueryStringWithQmark(params);
-  const uri = `https://feeds.pinboard.in/json/${endpoint}${qs}`;
+  const uri = `${feedsBase}/${endpoint}${qs}`;
   const headers = undefined;
 
-  let useQueryParams: any = {};
-  if (onSuccess !== undefined) {
-    useQueryParams.onSuccess = onSuccess;
-  }
   return useQuery<ResultType>(
-    [
-      'PinboardFeedsNoAuth',
-      endpoint,
-      queueName,
-      headers,
-      productionMode,
-      params,
-    ],
-    () => enqueue(queueName, uri, headers, fauxData),
-    useQueryParams,
+    ['PinboardFeedsNoAuth', endpoint, headers, productionMode, params],
+    () => FakeableFetch(uri, headers, fauxData),
+    {
+      ...rqRateLimitParams(''),
+    },
   );
 }
