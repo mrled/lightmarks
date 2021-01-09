@@ -182,7 +182,7 @@ Maybe even with a visible reminder of what mode I'm in on all screens?
 
 Bigger lift than I thought. RQ is strange!
 
-#### ✅️ Fix network error
+#### Fix network error
 
 I _think_ this is fixed, and either way I'm pretty sure that moving to RQ would have changed it. I never got good tests on this though, so it's possible that something similar is still kicking around. Will open a new item if that's the case, since it'll likely be different under RQ.
 
@@ -257,3 +257,18 @@ I can define a 'default query function', which in the example uses `axios.get`.
 I think that would also work for fetching real/fake data.
 
 ... done
+
+### ✅️️ Fix queuing
+
+Now that I've moved to React Query, fetching all bookmarks pauses future queries for 5 minutes.
+
+Done when removing the smart request queue.
+
+### ✅️️⬜️ Cancel outstanding tasks on unmounting a component
+
+If I request data from the network, and then navigate away before it returns and updates the view,
+I need to cancel that task or else I will get an error on the console like this:
+
+    [Fri Nov 20 2020 22:24:52.770]  ERROR    Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+
+Also done when removing the smart request queue.

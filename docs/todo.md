@@ -62,22 +62,11 @@ One idea: a `Local cache` control panel that pops up or over or something
 
 UPDATE: I think this is done now that I'm using React Query, but need to do some testing.
 
-### ⬜️ Fix queuing
-
-Now that I've moved to React Query, fetching all bookmarks pauses future queries for 5 minutes.
-
 ### ⬜️ Work perfectly offline
 
 This is part of caching results and perfect data sync.
 
 Maybe with this? <https://github.com/rgommezz/react-native-offline>
-
-### ⬜️ Cancel outstanding tasks on unmounting a component
-
-If I request data from the network, and then navigate away before it returns and updates the view,
-I need to cancel that task or else I will get an error on the console like this:
-
-    [Fri Nov 20 2020 22:24:52.770]  ERROR    Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
 
 ### ⬜️ 🔱 Implement tag management
 
