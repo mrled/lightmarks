@@ -138,3 +138,19 @@ export const BookmarkStyles = StyleSheet.create({
     padding: 4,
   },
 });
+
+export const TagListStyles = StyleSheet.create({
+  listItem: {
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    backgroundColor: 'white',
+  },
+  tagName: {
+    fontSize: 21,
+    fontWeight: 'bold',
+  },
+  bookmarkCount: {
+    fontSize: 14,
+    color: 'gray',
+  },
+});

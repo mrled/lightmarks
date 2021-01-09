@@ -8,7 +8,7 @@ import SettingsScreen from 'components/SettingsScreen';
 import DebugInfo from 'components/DebugInfo';
 import {DiscoverStackScreen} from 'components/Discover';
 import {ProfileStackScreen} from 'components/Profile';
-import DumbTagView from 'components/DumbTagView';
+import {TagManagerStackScreen} from 'components/TagScreen';
 import {FunctionalColors} from 'style/Colors';
 import {AppConfigurationContext} from 'hooks/useAppConfiguration';
 import {StyleSheet} from 'react-native';
@@ -58,8 +58,8 @@ const TabBarNavContainer = () => {
           }}
         />
         <TabBar.Screen
-          name="DumbTags"
-          component={DumbTagView}
+          name="Tags"
+          component={TagManagerStackScreen}
           options={{
             tabBarIcon: ({color, size}) => (
               <Ionicons name="pricetags" size={size} color={color} />

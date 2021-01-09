@@ -235,3 +235,24 @@ export type TPinboardResultString = {
 export type TTagsWithCount = {
   [key: string]: number;
 };
+// export type TTagsWithCount = Record<string, number>;
+
+/* An object representing a single tag and its count
+ * The TTagsWithCount type is intended to match the result of the tags/all endpoint,
+ * while this class is used by my own code for a single tag name/count pair.
+ */
+export class TagWithCount {
+  public constructor(public tag: string, public count: number) {}
+}
+
+/* Convert a TTagsWithCount to a TagWithCount[]
+ */
+export function TTagsWithCountToTagWithCountArr(
+  ttagsWithCount: TTagsWithCount | undefined,
+): TagWithCount[] {
+  return ttagsWithCount
+    ? Object.entries(ttagsWithCount).map(
+        ([name, count]) => new TagWithCount(name, count),
+      )
+    : [];
+}

@@ -35,7 +35,7 @@ interface BookmarkListProps {
   // navigator: any;
 }
 
-const BookmarkList: React.FC<BookmarkListProps> = ({
+export const BookmarkList: React.FC<BookmarkListProps> = ({
   bookmarks,
   loading,
   loadErr,
