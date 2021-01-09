@@ -4,6 +4,60 @@ Remaining work.
 
 ## Tasks
 
+### ⬜️ Document Pinboard notes hash thing
+
+<https://api.pinboard.in/v1/notes/ID>
+
+> Returns an individual user note. The hash property is a 20 character long sha1 hash of the note text.
+
+What can this mean?
+
+I can replicate it with a little PHP one liner + xxd:
+
+```
+> php -r 'echo sha1("test test edmlife test", 1);'| xxd
+00000000: fcd4 58f5 8801 f6c5 1bc5 0c21 f485 bd44  ..X........!...D
+00000010: 057a 4395                                .zC.
+```
+
+That corresponds to this real note that I don't know why I have in my Pinboard:
+
+```
+{
+  "id": "ca132e7c9717258e12f4",
+  "title": "important",
+  "created_at": "2012-10-21 17:28:14",
+  "updated_at": "2012-10-21 17:28:14",
+  "length": 22,
+  "text": "test test edmlife test",
+  "hash": "fcd458f58801f6c51bc5"
+}
+```
+
+... but why is the Pinboard result just the first half of the result from xxd?
+
+What I also don't understand is the difference between sha1 normal output, and hexdump'd binary from php.
+Here's the same output with a regular hex dump:
+
+```
+> echo "test test edmlife test" | openssl dgst -sha1
+68385468ab594ada47bb0f9dcdf7ee926c92d73b
+
+> echo "test test edmlife test" | openssl dgst -sha1 -binary | xxd
+00000000: 6838 5468 ab59 4ada 47bb 0f9d cdf7 ee92  h8Th.YJ.G.......
+00000010: 6c92 d73b
+```
+
+... what?
+
+[PHP docs](https://www.php.net/manual/en/function.sha1.php):
+
+```
+sha1 ( string $string , bool $binary = false ) : string
+...
+If the optional binary is set to true, then the sha1 digest is instead returned in raw binary format with a length of 20, otherwise the returned value is a 40-character hexadecimal number.
+```
+
 ### ⬜️ Use some secret gesture to bring up DebugInfo
 
 It's nice to have, but it would be nicer if it weren't a tab.
