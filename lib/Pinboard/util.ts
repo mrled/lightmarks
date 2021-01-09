@@ -40,26 +40,26 @@ function doublePerAttemptUpToMax(
  * retryDelay: Double the backoff rate up to some maximum when retries fail
  */
 export function rqRateLimitParams(endpointName: string) {
-  let cacheSecs = 3; // Length of time result stays in memory.
+  let rateLimitSecs = 3; // Minimum seconds before Pinboard API will allow calling again
   let staleSecs = 3; // Length of time before an in-memory result will be refetched.
   let maxWaitSecs = 60;
   switch (endpointName) {
     case 'postsAll':
-      cacheSecs = 5 * 60;
+      rateLimitSecs = 5 * 60;
       staleSecs = 60 * 60;
       maxWaitSecs = 60 * 60;
       break;
     case 'postsRecent':
-      cacheSecs = 60;
+      rateLimitSecs = 60;
       staleSecs = 20 * 60;
       maxWaitSecs = 20 * 60;
       break;
   }
   return {
-    cacheTime: cacheSecs * 1000, // RQ's cacheTime is in ms
-    staleTime: staleSecs * 1000, // RQ's staleTime is in ms
+    cacheTime: Infinity, // Length of time (in ms) result stays in memory
+    staleTime: staleSecs * 1000, // Length of time (in ms) before attempt to refetch in-memory result
     retry: true,
     retryDelay: (retry: number) =>
-      doublePerAttemptUpToMax(retry, cacheSecs, maxWaitSecs),
+      doublePerAttemptUpToMax(retry, rateLimitSecs, maxWaitSecs),
   };
 }
